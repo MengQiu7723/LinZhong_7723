@@ -7,6 +7,10 @@ import "./plugins/element.js";
 
 // 导入全局样式表
 import "./assets/css/global.css";
+import ElementUI from "element-ui";
+
+Vue.use(ElementUI);
+
 
 Vue.config.productionTip = false;
 
