@@ -1,142 +1,119 @@
 <template>
-  <el-container class="home-container">
-    <!-- 头部区域 -->
-    <el-header>
-      <div>
-        <!-- <img src="../assets/heima.png" alt=""> -->
-        <span>35后台管理系统</span>
+  <div class="center">
+    <div class="top">
+      <div class="top_left">
+        <div class="tu">
+          <a href=""><img src="../assets/images/ing1.png" alt=""></a>
+        </div>
+        <div class="de">
+          <a href="">广东</a>
+          <span>您好,请登录</span>
+        </div>
       </div>
-      <el-button type="info" @click="logout">退出</el-button>
-    </el-header>
-    <!-- 页面主体 -->
-    <el-container>
-      <!-- 侧边栏 -->
-      <el-aside width="250px">
-        <!-- 侧边导航栏 -->
-        <el-menu background-color="#314056" text-color="#FFF" router>
-          <el-menu-item>
-            <!-- 图标 -->
-            <i class="el-icon-monitor"></i>
-            <!-- 文本 -->
-            <span>系统首页</span>
-          </el-menu-item>
+      <div class="top_right">
+        <a href="">个人中心</a>
+        <a href="">购物车</a>
+        <a href="">收藏夹</a>
+        <a href="">我的订单</a>
+      </div>
+        
 
-          <!-- 一级菜单 -->
-          <el-submenu
-            :index="item.id + ''"
-            v-for="item in menulist"
-            :key="item.id"
-          >
-            <!-- 一级菜单的模板区域 -->
-            <template slot="title">
-              <!-- 图标 -->
-              <i class="el-icon-location"></i>
-              <!-- 文本 -->
-              <span>{{ item.authName }}</span>
-            </template>
 
-            <!-- 一级菜单的可选项 -->
-            <el-menu-item
-              :index="'/' + subItem.path"
-              v-for="subItem in item.children"
-              :key="subItem.id"
-              >{{ subItem.authName }}</el-menu-item
-            >
+    </div>
+    <div class="kai">
 
-            <!-- 二级菜单 
-            <el-submenu :index="subItem.id+''"
-                        v-for="subItem in item.children"
-                        :key="subItem.id">
-              二级菜单的模板区域
-              <template slot="title">{{subItem.authName}}</template>
-              二级菜单的可选项
-              <el-menu-item index="1-4-1">{{}}</el-menu-item>
-            </el-submenu>
-            -->
-          </el-submenu>
-          <!-- 一级菜单结束 -->
-        </el-menu>
-      </el-aside>
+    </div>
 
-      <!-- 右侧内容主体 -->
-      <el-main>
-        <router-view></router-view>
-      </el-main>
-    </el-container>
-  </el-container>
+    
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      menulist: [
-        {
-          id: 101,
-          authName: "用户管理",
-          children: [
-            { id: 111, authName: "用户--", path: "users" },
-            { id: 112, authName: "--管理", path: "users02" },
-          ],
-        },
-        {
-          id: 102,
-          authName: "商品管理",
-          children: [
-            { id: 122, authName: "商品--", path: "product" },
-            { id: 123, authName: "--管理", path: "product02" },
-          ],
-        },
-        {
-          id: 103,
-          authName: "订单管理",
-          children: [{ id: 133, authName: "订单管理的选项" }],
-        },
-      ],
-    };
+  data(){
+    return{
+
+    }
   },
-  methods: {
-    logout() {
-      // window.sessionStorage.clear();
-      this.$router.push("/login");
-    },
-  },
-  handleOpen(key, keyPath) {
-    console.log(key, keyPath);
-  },
-  handleClose(key, keyPath) {
-    console.log(key, keyPath);
-  },
-};
+  methods:{
+
+  }
+}
 </script>
 
 <style lang="less" scoped>
-.home-container {
-  height: 100%;
+*{
+	margin: 0px auto;
+	padding: 0px;
 }
-.el-header {
-  background-color: #232e41;
-  display: flex;
-  justify-content: space-between;
-  padding-left: 0;
-  align-items: center;
-  color: #fff;
+.clear{
+	clear: both;
+}
+.center{
+  width: 100%;
+  background: #ccc;
+}
+.center{
+  width: 1180px;
+  border: 1px solid #000;
+}
+.top{
+  width: 1180px;
+  height: 40px;
+  background: yellow;
+}
+.top_left{
+  width: 300px;
+  height: 40px;
+  // border: 1px solid red;
+  float: left;
+}
+.tu{
+  width: 30px;
+  height: 40px;
+  // background: grey;
+  float: left;
+}
+.tu>a>img{
+  width: 18px;
+  height: 25px;
+   margin-top: 5px;
+  // background:  green;
+}
+.de{
+  width: 250px;
+  // height: 00px;
+  // background: grey;
+   margin-top: 5px;
+   font-size: 20px;
+}
+.de a{
+  text-decoration: none;
+  color: #6C6C6C;
+}
+.de span{
+  color: #3FB3FE;
+  margin-left: 15px;
+}
+.top_right{
+  width: 860px;
+  height: 40px;
+  // background: chocolate;
+  float: right;
+}
+.top_right>a{
+  text-decoration: none;
+  color: #6C6C6C;
+  float: right;
+  width: 100px;
+  // text-align: center;
+  margin-top: 5px;
   font-size: 20px;
-  > div {
-    display: flex;
-    align-items: center;
-    span {
-      margin-left: 15px;
-    }
-  }
 }
-.el-aside {
-  background-color: #314056;
-}
-.el-menu {
-  border-right: 0px;
-}
-.el-main {
-  background-color: #efefef;
+.kai{
+  width: 1180px;
+  height: 120px;
+  background: pink;
+  margin-top: 10px;
 }
 </style>
