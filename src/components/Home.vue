@@ -22,8 +22,21 @@
           <span><img src="../assets/images/ing2.png" alt=""></span>
       </div>
       <div class="three">
-
-
+        <p>threefive</p>
+        <span>.com</span>
+      </div>
+      <div class="kai_middle">
+        <div class="sou">
+          <form  class="input_form" action="">
+            <a href=""><img src="../assets/images/ing4.png" alt=""></a>
+            <input type="text" name="" placeholder="数据库管理">
+            <button>搜索</button>
+          </form>
+            
+        </div>
+      </div>
+      <div class="kai_right">
+        <button>购物车3</button>
       </div>
     </div>
 
@@ -54,7 +67,7 @@ export default {
 }
 .center{
   width: 100%;
-  background: #ccc;
+  // background: #ccc;
 }
 .center{
   width: 1180px;
@@ -117,8 +130,8 @@ export default {
 .kai{
   width: 1180px;
   height: 120px;
-  background: pink;
-  margin-top: 10px;
+  // background: pink;
+  margin-top: 20px;
 }
 .logo{
   width: 120px;
@@ -127,13 +140,78 @@ export default {
   float: left;
 }
 .logo img{
-  width:100px;
-  height: 120px;
+  width:90px;
+  height: 100px;
 }
 .three{
-  width: 100px;
+  width: 150px;
   height: 120px;
-  border: 1px solid yellow;
+  // border: 1px solid yellow;
+  float: left;
+  
+}
+.three p{
+  font-size: 25px;
+  margin-top: 10px;
+  color: #14C9FF;
+}
+.three span{
+  font-size: 35px;
+  color: #14C9FF;
+}
+.kai_middle{
+  width: 700px;
+  height: 60px;
+  // border: 2px solid cornflowerblue;
   float: left;
 }
+.sou{
+  width: 700px;
+  height: 60px;
+  margin-top: 10p;
+  // border: 3px solid #14A5FF;
+}
+.input_form{
+  width: 700px;
+  height: 60px;
+  border: 3px solid #14C9FF;
+	display: flex;
+	justify-content: flex-end;
+  align-items: center; 
+  
+}
+.input_form>input {
+	width: 700px;
+	height: 60px;
+	outline: none;
+	border: none;
+  margin-left: 10px;
+  font-size: 20px;
+  color: #14C9FF;
+}
+.input_form>a>img {
+	width: 30px;
+  height: 30px;
+  float: left;
+}
+.input_form>button {
+	width: 140px;
+	height: 60px;
+	padding-left: 10px;
+	background: #1DB69A;
+	border: none;
+  color: #FFFFFF;
+  font-size: 20px;
+}
+.kai_right button{
+  width: 120px;
+  height: 62px;
+  float: right;
+  margin-right: 60px;
+  background: #1DB69A;
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+
 </style>
