@@ -9,6 +9,7 @@ import Users02 from '../components/user/Users02.vue'
 
 import Product from '../components/product/Product.vue'
 import Product02 from '../components/product/Product02.vue'
+import zhuce from '../components/user/zhuce.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,7 @@ const router = new Router({
   routes: [
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
+    { path: '/zhuce', component: zhuce },
     {
       path: '/home', component: Home, redirect: '/welcome',
       children: [
