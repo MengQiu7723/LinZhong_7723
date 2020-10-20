@@ -16,12 +16,15 @@
         <a href="">收藏夹</a>
         <a href="">我的订单</a>
       </div>
-        
-
-
     </div>
     <div class="kai">
+      <div class="logo">
+          <span><img src="../assets/images/ing2.png" alt=""></span>
+      </div>
+      <div class="three">
 
+
+      </div>
     </div>
 
     
@@ -86,6 +89,7 @@ export default {
   // background: grey;
    margin-top: 5px;
    font-size: 20px;
+   width: 200px;
 }
 .de a{
   text-decoration: none;
@@ -115,5 +119,21 @@ export default {
   height: 120px;
   background: pink;
   margin-top: 10px;
+}
+.logo{
+  width: 120px;
+  height: 120px;
+  background: chartreuse;
+  float: left;
+}
+.logo img{
+  width:100px;
+  height: 120px;
+}
+.three{
+  width: 100px;
+  height: 120px;
+  border: 1px solid yellow;
+  float: left;
 }
 </style>
