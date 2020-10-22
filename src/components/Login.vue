@@ -5,13 +5,45 @@
           <img src="../assets/images/1.png" alt="" id="loginbox_left1">
           <div class="loginbox_left_1">
             <img src="../assets/images/2.png" alt="" id="loginbox_left2">
-            <img src="../assets/images/3.png" alt="">
+            <img src="../assets/images/3.png" alt="" id="loginbox_left3">
+          </div>
+           <div class="loginbox_right">
+             <a href=""><h4>返回首页浏览</h4></a>
           </div>
         </div>
+        <div class="fengexian"></div>
       </el-header>
       <el-container>
-        <el-aside width="200px">图片</el-aside>
-        <el-main>登录</el-main>
+        <el-aside width="1200px">
+          <a href=""><img src="../assets/images/4.png" alt=""></a>
+        </el-aside>
+        <el-main>
+          <div class="denglu">
+            <div class="mimadenglu">
+              <h1>密码登录</h1>
+            </div>
+            <div class="yonghuming">
+              <el-input
+              placeholder="手机号/邮箱"
+              prefix-icon="el-icon-user"
+              v-model="input2">
+              </el-input>
+            </div>
+            <div class="mima">
+              <el-input
+              placeholder="输入长度6-15位的密码"
+              prefix-icon="el-icon-unlock"
+              v-model="input2">
+              </el-input>
+            </div>
+            <div class="dengluanniu">
+              <el-button type="primary">登录</el-button>
+            </div>
+            <div class="yangzhengma">
+              <a href=""><h4>切换至验证码登录</h4></a>
+            </div>
+          </div>
+        </el-main>
       </el-container>
     </el-container>
 </template>
@@ -102,25 +134,109 @@ export default {
 .loginbox_left {
   width: 800  px;
   height: 150px;
-  border:1px solid red;
+  // border:1px solid red;
 }
 .loginbox_left_1{
   width: 200px;
   height: 100px;
   position: absolute;
-  left: 400px;
+  left: 360px;
   top: 50px;
-  border: 1px solid yellow;
+  // border: 1px solid yellow;
 }
 #loginbox_left1{
   position:absolute;
   top:30px;
   left: 300px;
 }
-// #loginbox_left2{
-//   position:absolute;
-//   top: 10px;
-// }
+ #loginbox_left2{
+   position:absolute;
+   top: -20px;
+ }
+ #loginbox_left3{
+    position:absolute;
+    top: 10px;
+ }
+ .loginbox_right{
+   width: 200px;
+   height: 100px;
+  // border:1px solid green;
+ }
+ .loginbox_right>a>h4{
+   position:absolute;
+   right: 300px;
+   top: 20px;
+   color: #14A5FF;
+ }
+ .fengexian{
+   width: 2000px;
+   height: 5px;
+   margin-left: -100px;
+   border:1px solid #14A5FF;
+   background-color: #14A5FF;
+ }
+ .el-aside>a>img{
+   margin-top: 20px;
+ }
+ .denglu{
+   width: 500px;
+   height: 567px;
+   border: 1px solid #DDDDDD;
+ }
+ .mimadenglu{
+   width: 350px;
+   height: 50px;
+   margin: 50px;
+  //  border: 1px solid red;
+ }
+ .mimadenglu>h1{
+   font-weight: bold;
+   margin-top: 10px;
+   margin-left: -220px;
+ }
+ .yonghuming{
+   width: 350px;
+   height: 50px;
+   margin: 50px;
+  //  border: 1px solid red
+ }
+//  input{
+//    width: 350px;
+//    height: 50px;
+//    background: url(../assets/images/5.png);background-repeat:no-repeat;
+//  }
+//  .yonghuming>img{
+
+//  }
+ .mima{
+    width: 350px;
+   height: 50px;
+   margin: 50px;
+  //  border: 1px solid red
+ }
+ .dengluanniu{
+    width: 350px;
+   height: 50px;
+   margin: 50px;
+  //  border: 1px solid red
+ }
+ .yangzhengma{
+    width: 350px;
+   height: 50px;
+   margin: 50px;
+  //  border: 1px solid red
+ }
+  .yangzhengma>a>h4{
+    color: #14C7FF;
+    margin-left: 200px;
+  }
+ .el-input{
+   width: 350px;
+   margin-right: 55px;
+}
+.el-button{
+  width: 350px;
+}
 .el-header, .el-footer {
     background-color:#ffff;
     color:  #14C7FF;
@@ -128,15 +244,20 @@ export default {
     line-height: 60px;
   }
   .el-aside {
-    background-color: #D3DCE6;
+    background-color: #ffff;
     color: #333;
     text-align: center;
-    line-height: 200px;
+    line-height: 60px;
+  }
+  .el-aside>a>img{
+    width: 800px;
+    height: 567px;
+    margin-left: 100px;
   }
   .el-main {
-    background-color: #E9EEF3;
+    background-color: #ffff;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    line-height: 60px;
   } 
 </style>
