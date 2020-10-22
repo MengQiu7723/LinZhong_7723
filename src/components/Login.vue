@@ -92,7 +92,7 @@ export default {
       });
     },
     register() {
-          this.$router.replace('/zhuce')
+          this.$router.replace('/register')
         }
   },
 };

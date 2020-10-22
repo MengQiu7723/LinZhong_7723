@@ -16,24 +16,30 @@
           <a href="#">请登录</a>
         </div>
     </el-header>
-    <el-main>Main</el-main>
+    <!-- <el-main></el-main> -->
   </el-container>
 </template>
 
-
+<script>
+export default {
+    name:"registerHeader"
+}
+</script>
 
 <style lang="less" scoped>
+ .el-container{
+  height: 100%;
+ }
  .el-header{
     background-color: #ffffff;
     // text-align: center;
     height: 148px !important;
-  }
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
+    box-shadow: 0px 10px 0px 0px #F8F8F8;
+ }
+  // .el-main {
+  //   background-color: #F8F8F8;
+  //   box-shadow: 0px -10px 0px 0px inset #F7F7F7;
+  // }
   .header_left {
   width: 800 px;
   height: 150px;
