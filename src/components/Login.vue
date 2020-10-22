@@ -132,7 +132,7 @@ export default {
 
 <style lang="less" scoped>
 .loginbox_left {
-  width: 800  px;
+  width: 800 px;
   height: 150px;
   // border:1px solid red;
 }
