@@ -109,14 +109,16 @@
       </div>
       <div class="zheng_right">
         <div class="deng"> 
-          <form>
-            <a href="" class="logo1"><img src="../assets/images/ing5.png" alt=""></a>
-            <input type="text" class="zz" placeholder="">
-          </form>
-          <form>
-            <a href="" class="logo1"><img src="../assets/images/ing6.png" alt=""></a>
-            <input type="text" class="zz" placeholder="">
-          </form>
+         <el-input
+            placeholder=""
+            prefix-icon="el-icon-user"
+            v-model="input2">
+          </el-input>
+          <el-input
+            placeholder=""
+            prefix-icon="el-icon-unlock"
+            v-model="input2">
+          </el-input>
           <div class="last">
             <div class="last_last">
               <a class="last_left">注册</a>
@@ -136,9 +138,59 @@
 
       </div>
       <div class="zheng_middle_middle">
-
+        <img src="../assets/images/ing13.png" alt="">
+        <div  class="ji">
+          <span >热门书籍</span>
+        </div>
       </div>
       <div class="zheng_buttom">
+        <div class="java">
+          <div class="mei">
+            <div class="niao">
+              <a href=""><img src="../assets/images/ing9.png" alt=""></a>
+            </div>
+            <div class="zi">
+              <a href="">中国鸟类图鉴</a>
+            </div>
+            <div class="jia">
+              <a href=""> ￥39.9</a>
+            </div>
+          </div>
+          <div class="mei">
+            <div class="niao">
+              <a href=""><img src="../assets/images/ing10.png" alt=""></a>
+            </div>
+            <div class="zi">
+              <a href="">java从入门到精通</a>
+            </div>
+            <div class="jia">
+              <a href=""> ￥29.9</a>
+            </div>
+          </div>
+          <div class="mei">
+            <div class="niao">
+              <a href=""><img src="../assets/images/ing11.png" alt=""></a>
+            </div>
+            <div class="zi">
+              <a href="">游戏开发</a>
+            </div>
+            <div class="jia">
+              <a href=""> ￥25.9</a>
+            </div>
+          </div>
+          <div class="mei">
+            <div class="niao">
+              <a href=""><img src="../assets/images/ing12.png" alt=""></a>
+            </div>
+            <div class="zi">
+              <a href="">投资管理从入门到精通</a>
+            </div>
+            <div class="jia">
+              <a href=""> ￥59.9</a>
+            </div>
+          </div>
+
+        </div>
 
       </div>
 
@@ -426,25 +478,6 @@ export default {
   justify-content: space-around;
   background: #fff;
 }
-
-.logo1{
-  width: 25px;
-  height: 25px;
-}
-.logo1 img{
-  width: 25px;
-  height: 25px; 
-  margin-top: 10px;
-  float: left;
-  margin-left: 20px;
-  background: #F4F4F4;
-}
-.zz{
-  width: 150px;
-  height: 25px;
-  margin-top: 10px;
-}
-
 .last_last{
   width: 200px;
   height: 40px;font-size: 15px;
@@ -486,7 +519,7 @@ export default {
   margin-left: 60px;
 }
 .wei img{
-  width: 25px;
+  width: 23px;
   height: 25px;
   margin-top: 5px;
 }
@@ -494,14 +527,71 @@ export default {
 .zheng_middle_middle{
   width: 945px;
   height: 50px;
-  background: green;
+  // background: green;
   float: right;
+}
+.zheng_middle_middle img{
+  margin-left: 20px;
+  margin-top: 10px;
+  width: 40px;
+  height: 28px;
+  // border: 1px solid #fff;
+}
+.ji{
+  width: 200px;
+  // border: 1px solid red;
+ margin-left: 80px;
+ font-size: 20px;
+ color: #14AAFF;
+  margin-top: -33px;
+
 }
 .zheng_buttom{
   width: 945px;
   height: 200px;
-  background: yellow;
+  // background: yellow;
   float: left;
+}
+.java{
+  width: 930px;
+  height: 190px;
+  border: 1px solid #14AAFF;
+  margin-top: 5px;
+}
+.mei{
+  width: 232px;
+  height: 190px;
+  float: left;
+}
+.niao{
+  width: 100px;
+  height: 130px;
+  margin-top: 10px;
+}
+.niao img{
+  width: 100px;
+  height: 130px;
+}
+.zi{
+  width: 232px;
+  height: 25px;text-align: center;
+  line-height: 25px;
+}
+.zi a{
+  text-decoration: none;
+  color: #000;
+  font-size: 15px; 
+}
+.jia{
+  width: 232px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+}
+.jia a{
+  text-decoration: none;
+  color: red;
+  font-size: 20px;
 }
 
 </style>
