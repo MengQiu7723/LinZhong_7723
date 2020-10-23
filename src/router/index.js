@@ -9,7 +9,8 @@ import Users02 from '../components/user/Users02.vue'
 
 import Product from '../components/product/Product.vue'
 import Product02 from '../components/product/Product02.vue'
-import zhuce from '../components/user/zhuce.vue'
+import register from '../components/user/register.vue'
+import register1 from '../components/user/register1.vue'
 
 Vue.use(Router)
 
@@ -17,7 +18,13 @@ const router = new Router({
   routes: [
     { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
-    { path: '/zhuce', component: zhuce },
+    {
+      path: '/register', component: register,
+      children:[
+        { path: '/register1', component:register1},
+      ]
+    },
+    { path: '/register', component: register },
     {
       path: '/home', component: Home, redirect: '/welcome',
       children: [
