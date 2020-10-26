@@ -105,7 +105,14 @@
 
       </div>
       <div class="zheng_middle">
-        
+        <div class="block">
+          <!-- <span class="demonstration">默认 Hover 指示器触发</span> -->
+          <el-carousel height="340px">
+            <el-carousel-item v-for="item in 4" :key="item">
+              <h3 class="small">{{ item }}</h3>
+            </el-carousel-item>
+          </el-carousel>
+        </div>
       </div>
       <div class="zheng_right">
         <div class="deng"> 
@@ -134,6 +141,17 @@
             <a href="" class="qq"><img src="../assets/images/ing8.png" alt=""></a>
             <a href="" class="ww"><img src="../assets/images/ing7.png" alt=""></a>
           </div>
+        </div>
+        <div class="zheng_right_buttom">
+          <div class="block1">
+            <el-carousel height="140px" width="180px">
+              <el-carousel-item v-for="item in 4" :key="item">
+                <h3 class="small">{{ item }}</h3>
+              </el-carousel-item>
+            </el-carousel>
+            
+          </div>
+
         </div>
 
       </div>
@@ -376,6 +394,10 @@ export default {
   float: left;
   text-align: center;
 }
+.kai_button>a:hover{
+  color: red;
+  font-weight: 600;
+}
 .b1{
   width: 100px;
   height: 40px;
@@ -392,13 +414,14 @@ export default {
 .zheng{
   width: 1180px;
   height: 600px;
-  background: grey;
+  // background: grey;
 }
 .zheng_left{
   width: 230px;
-  height: 600px;
+  height: 597px;
   border: 2px solid #14AAFF;
   float: left;
+  overflow: hidden;
 }
 .fen{
   width: 230px;
@@ -424,12 +447,12 @@ export default {
   text-decoration: none;
   font-size: 15px;
   color: #14AAFF;
-  font-weight: 40px;
+  font-weight: 600;
 }
 .er{
   width: 230px;
   height: 84px;
-  background: pink;
+  // background: pink;
   text-align: center;
 }
 .er1{
@@ -438,6 +461,7 @@ export default {
   text-align: center;
   line-height: 35px;
   color: #14AAFF;
+  font-weight: 600;
 }
 .wen{  
   height: 50px;
@@ -450,6 +474,10 @@ export default {
   text-decoration: none;
   font-size: 15px;
 }
+.wen a:hover{
+  color: red;
+  font-weight: 600;
+}
 .wen>a.heng{
   justify-content: space-around;
   margin-left: 18px;
@@ -460,28 +488,64 @@ export default {
 .zheng_middle{
   width: 650px;
   height: 350px;
-  background: #3FB3FE;
+  // background: #3FB3FE;
   float: left;
+  overflow: hidden;
 }
+.block{
+  width: 650px;
+  height: 340px;
+  // border: 1px solid blue;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.block{
+  &/deep/.el-carousel__button{
+    width: 5px;
+    height: 5px;
+    border-radius:30%
+  }
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  // line-height: 340px;
+  margin: 0;
+}
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+  
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
+
 .zheng_right{
   width: 280px;
   height: 350px;
   // background: red;
   float: left;
    margin-left: 10px;
+  //  overflow: hidden;
 }
 .deng{
-  width: 230px;
+  width: 260px;
   height: 200px;
-  border: 1px solid #14AAFF;
+  border:3px solid #14AAFF;
   // margin-top: 10px;
   justify-content: space-around;
+  float: right;
   background: #fff;
 }
 .last_last{
   width: 200px;
   height: 40px;font-size: 15px;
   margin-top: 10px;
+}
+.last_last a:hover{
+  color: red;
+  font-weight: 600px;
 }
 .last_left{
   float:left;
@@ -503,6 +567,7 @@ export default {
   background: #14AAFF;
   font-size: 15px;
   margin-top: -5px;
+  color: #fff;
 
 }
 .wei{
@@ -519,11 +584,28 @@ export default {
   margin-left: 60px;
 }
 .wei img{
-  width: 23px;
+  width: 20px;
   height: 25px;
   margin-top: 5px;
 }
-
+.zheng_right_buttom{
+  width:260px;
+  height: 140px; 
+  float: right;
+  // background: chartreuse;
+  overflow: hidden; border: 1px solid #14AAFF; margin-top: 10px;
+}
+.block1{
+  width: 258px;
+  height: 130px;
+}
+.block1{
+  &/deep/.el-carousel__button{
+    width: 5px;
+    height: 5px;
+    border-radius:30%
+  }
+}
 .zheng_middle_middle{
   width: 945px;
   height: 50px;
@@ -546,6 +628,7 @@ export default {
   margin-top: -33px;
 
 }
+
 .zheng_buttom{
   width: 945px;
   height: 200px;
