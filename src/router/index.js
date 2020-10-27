@@ -11,6 +11,8 @@ import Product from '../components/product/Product.vue'
 import Product02 from '../components/product/Product02.vue'
 import register from '../components/user/register.vue'
 import register1 from '../components/user/register1.vue'
+import register2 from '../components/user/register2.vue'
+import register3 from '../components/user/register3.vue'
 
 Vue.use(Router)
 
@@ -20,8 +22,10 @@ const router = new Router({
     { path: '/login', component: Login },
     {
       path: '/register', component: register,
-      children:[
-        { path: '/register1', component:register1},
+      children: [
+        { path: '/register1', component: register1 },
+        { path: '/register2', component: register2 },
+        { path: '/register3', component: register3 },
       ]
     },
     { path: '/register', component: register },
