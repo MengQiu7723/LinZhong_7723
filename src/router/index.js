@@ -14,6 +14,7 @@ import register1 from '../components/user/register1.vue'
 import register2 from '../components/user/register2.vue'
 import register3 from '../components/user/register3.vue'
 
+import Search from '../components/搜索商品界面.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -29,6 +30,7 @@ const router = new Router({
       ]
     },
     { path: '/register', component: register },
+    { path: '/search', component: Search },
     {
       path: '/home', component: Home, redirect: '/welcome',
       children: [

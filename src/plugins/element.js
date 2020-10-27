@@ -13,6 +13,8 @@ import {
   Submenu,
   MenuItemGroup,
   MenuItem,
+  Carousel,
+  CarouselItem,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -27,4 +29,6 @@ Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItemGroup)
 Vue.use(MenuItem)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
 Vue.prototype.$message = Message
