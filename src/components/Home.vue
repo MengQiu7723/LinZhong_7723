@@ -1,22 +1,6 @@
 <template>
   <div class="center">
-    <div class="top">
-      <div class="top_left">
-        <div class="tu">
-          <a href=""><img src="../assets/images/ing1.png" alt=""></a>
-        </div>
-        <div class="de">
-          <a href="">广东</a>
-          <span>您好,请登录</span>
-        </div>
-      </div>
-      <div class="top_right">
-        <a href="">个人中心</a>
-        <a href="">购物车</a>
-        <a href="">收藏夹</a>
-        <a href="">我的订单</a>
-      </div>
-    </div>
+    <Top></Top>
     <div class="kai">
       <div class="logo">
           <span><img src="../assets/images/ing2.png" alt=""></span>
@@ -41,7 +25,7 @@
         </div>
       </div>
       <div class="kai_right">
-        <button>购物车3</button>
+        <a href="">购物车3</a>
       </div>
     </div>
       <div class="xian"></div>
@@ -104,113 +88,117 @@
         </div>
 
       </div>
-      <div class="zheng_middle">
-        <div class="block">
-          <!-- <span class="demonstration">默认 Hover 指示器触发</span> -->
-          <el-carousel height="340px">
-            <el-carousel-item v-for="item in 4" :key="item">
-              <h3 class="small">{{ item }}</h3>
-            </el-carousel-item>
-          </el-carousel>
-        </div>
-      </div>
-      <div class="zheng_right">
-        <div class="deng"> 
-         <el-input
-            placeholder=""
-            prefix-icon="el-icon-user"
-            v-model="input2">
-          </el-input>
-          <el-input
-            placeholder=""
-            prefix-icon="el-icon-unlock"
-            v-model="input2">
-          </el-input>
-          <div class="last">
-            <div class="last_last">
-              <a class="last_left">注册</a>
-              <a class="last_right">找回密码</a>
-            </div>
+      <div class="bigzheng">
 
-          </div>
-          <div class="lu">  
-            <button>登录</button>
-
-          </div>
-          <div class="wei">
-            <a href="" class="qq"><img src="../assets/images/ing8.png" alt=""></a>
-            <a href="" class="ww"><img src="../assets/images/ing7.png" alt=""></a>
-          </div>
-        </div>
-        <div class="zheng_right_buttom">
-          <div class="block1">
-            <el-carousel height="140px" width="180px">
+        <div class="zheng_middle">
+          <div class="block">
+            <!-- <span class="demonstration">默认 Hover 指示器触发</span> -->
+            <el-carousel height="340px">
               <el-carousel-item v-for="item in 4" :key="item">
                 <h3 class="small">{{ item }}</h3>
               </el-carousel-item>
             </el-carousel>
-            
+          </div>
+        </div>
+        <div class="zheng_right">
+          <div class="deng"> 
+          <el-input
+              placeholder=""
+              prefix-icon="el-icon-user"
+              v-model="input2">
+            </el-input>
+            <el-input
+              placeholder=""
+              prefix-icon="el-icon-unlock"
+              v-model="input2">
+            </el-input>
+            <div class="last">
+              <div class="last_last">
+                <a class="last_left">注册</a>
+                <a class="last_right">找回密码</a>
+              </div>
+
+            </div>
+            <div class="lu">  
+              <a href="">登录</a>
+
+            </div>
+            <div class="wei">
+              <a href="" class="qq"><img src="../assets/images/ing8.png" alt=""></a>
+              <a href="" class="ww"><img src="../assets/images/ing7.png" alt=""></a>
+            </div>
+          </div>
+          <div class="zheng_right_buttom">
+            <div class="block1">
+              <el-carousel height="140px" width="180px">
+                <el-carousel-item v-for="item in 4" :key="item">
+                  <h3 class="small">{{ item }}</h3>
+                </el-carousel-item>
+              </el-carousel>
+              
+            </div>
+
           </div>
 
         </div>
+        <div class="zheng_middle_middle">
+          <img src="../assets/images/ing13.png" alt="">
+          <div  class="ji">
+            <span >热门书籍</span>
+          </div>
+        </div>
+        <div class="zheng_buttom">
+          <div class="java">
+            <div class="mei">
+              <div class="niao">
+                <a href=""><img src="../assets/images/ing9.png" alt=""></a>
+              </div>
+              <div class="zi">
+                <a href="">中国鸟类图鉴</a>
+              </div>
+              <div class="jia">
+                <a href=""> ￥39.9</a>
+              </div>
+            </div>
+            <div class="mei">
+              <div class="niao">
+                <a href=""><img src="../assets/images/ing10.png" alt=""></a>
+              </div>
+              <div class="zi">
+                <a href="">java从入门到精通</a>
+              </div>
+              <div class="jia">
+                <a href=""> ￥29.9</a>
+              </div>
+            </div>
+            <div class="mei">
+              <div class="niao">
+                <a href=""><img src="../assets/images/ing11.png" alt=""></a>
+              </div>
+              <div class="zi">
+                <a href="">游戏开发</a>
+              </div>
+              <div class="jia">
+                <a href=""> ￥25.9</a>
+              </div>
+            </div>
+            <div class="mei">
+              <div class="niao">
+                <a href=""><img src="../assets/images/ing12.png" alt=""></a>
+              </div>
+              <div class="zi">
+                <a href="">投资管理从入门到精通</a>
+              </div>
+              <div class="jia">
+                <a href=""> ￥59.9</a>
+              </div>
+            </div>
 
-      </div>
-      <div class="zheng_middle_middle">
-        <img src="../assets/images/ing13.png" alt="">
-        <div  class="ji">
-          <span >热门书籍</span>
+          </div>
+
         </div>
       </div>
-      <div class="zheng_buttom">
-        <div class="java">
-          <div class="mei">
-            <div class="niao">
-              <a href=""><img src="../assets/images/ing9.png" alt=""></a>
-            </div>
-            <div class="zi">
-              <a href="">中国鸟类图鉴</a>
-            </div>
-            <div class="jia">
-              <a href=""> ￥39.9</a>
-            </div>
-          </div>
-          <div class="mei">
-            <div class="niao">
-              <a href=""><img src="../assets/images/ing10.png" alt=""></a>
-            </div>
-            <div class="zi">
-              <a href="">java从入门到精通</a>
-            </div>
-            <div class="jia">
-              <a href=""> ￥29.9</a>
-            </div>
-          </div>
-          <div class="mei">
-            <div class="niao">
-              <a href=""><img src="../assets/images/ing11.png" alt=""></a>
-            </div>
-            <div class="zi">
-              <a href="">游戏开发</a>
-            </div>
-            <div class="jia">
-              <a href=""> ￥25.9</a>
-            </div>
-          </div>
-          <div class="mei">
-            <div class="niao">
-              <a href=""><img src="../assets/images/ing12.png" alt=""></a>
-            </div>
-            <div class="zi">
-              <a href="">投资管理从入门到精通</a>
-            </div>
-            <div class="jia">
-              <a href=""> ￥59.9</a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+      
 
     </div>
 
@@ -218,11 +206,16 @@
 </template>
 
 <script>
+import Top from '../components/top.vue'
 export default {
+  
   data(){
     return{
 
     }
+  },
+  components:{
+      Top
   },
   methods:{
 
@@ -242,58 +235,6 @@ export default {
 .center{
   width: 100%;
   border: 1px solid #000;
-}
-.top{
-  width: 1180px;
-  height: 40px;
-  // background: yellow;
-}
-.top_left{
-  width: 300px;
-  height: 40px;
-  // border: 1px solid red;
-  float: left;
-}
-.tu{
-  width: 30px;
-  height: 40px;
-  // background: grey;
-  float: left;
-}
-.tu>a>img{
-  width: 18px;
-  height: 25px;
-   margin-top: 5px;
-  // background:  green;
-}
-.de{
-  width: 250px;
-   margin-top: 5px;
-   font-size: 20px;
-   width: 200px;
-}
-.de a{
-  text-decoration: none;
-  color: #6C6C6C;
-}
-.de span{
-  color: #3FB3FE;
-  margin-left: 15px;
-}
-.top_right{
-  width: 860px;
-  height: 40px;
-  // background: chocolate;
-  float: right;
-}
-.top_right>a{
-  text-decoration: none;
-  color: #6C6C6C;
-  float: right;
-  width: 100px;
-  // text-align: center;
-  margin-top: 5px;
-  font-size: 20px;
 }
 .kai{
   width: 1180px;
@@ -371,14 +312,17 @@ export default {
   color: #FFFFFF;
   font-size: 20px;
 }
-.kai_right button{
+.kai_right a{
   width: 120px;
   height: 62px;
   float: right;
   margin-right: 30px;
   background: #1DB69A;
+  line-height: 62px;
+  text-align: center;
   color: #FFFFFF;
   font-size: 20px;
+  text-decoration: none;
 }
 .kai_button{
   width: 700px;
@@ -418,7 +362,7 @@ export default {
 }
 .zheng_left{
   width: 230px;
-  height: 597px;
+  height: 595px;
   border: 2px solid #14AAFF;
   float: left;
   overflow: hidden;
@@ -485,6 +429,12 @@ export default {
   margin-top: 5px;
   margin-right: 5px;
 }
+.bigzheng{
+  width: 940px;
+  float: right;
+  height: 600px;
+  // background: #1DB69A;
+}
 .zheng_middle{
   width: 650px;
   height: 350px;
@@ -531,8 +481,8 @@ export default {
 }
 .deng{
   width: 260px;
-  height: 200px;
-  border:3px solid #14AAFF;
+  height: 190px;
+  border:2px solid #14AAFF;
   // margin-top: 10px;
   justify-content: space-around;
   float: right;
@@ -540,7 +490,7 @@ export default {
 }
 .last_last{
   width: 200px;
-  height: 40px;font-size: 15px;
+  height: 32px;font-size: 15px;
   margin-top: 10px;
 }
 .last_last a:hover{
@@ -558,22 +508,22 @@ export default {
 }
 .lu{
   width: 200px;
-  height: 35px;
+  height: 32px;
    text-align: center;
+   background: #14AAFF;
 }
-.lu button{
+.lu a{
   width: 100px;
-  height: 35px;
-  background: #14AAFF;
-  font-size: 15px;
-  margin-top: -5px;
+  height: 32px;
+  line-height: 35px;
+  text-decoration: none;
+  font-size: 20px;
   color: #fff;
 
 }
 .wei{
   width: 230px;
   height: 35px;
-  // background: red;
 }
 .qq{
   width: 115px;
@@ -585,7 +535,7 @@ export default {
 }
 .wei img{
   width: 20px;
-  height: 25px;
+  height: 20px;
   margin-top: 5px;
 }
 .zheng_right_buttom{
@@ -593,7 +543,9 @@ export default {
   height: 140px; 
   float: right;
   // background: chartreuse;
-  overflow: hidden; border: 1px solid #14AAFF; margin-top: 10px;
+  overflow: hidden; 
+  border: 1px solid #14AAFF;
+   margin-top: 10px;
 }
 .block1{
   width: 258px;
@@ -607,8 +559,8 @@ export default {
   }
 }
 .zheng_middle_middle{
-  width: 945px;
-  height: 50px;
+  width: 920px;
+  height: 45px;
   // background: green;
   float: right;
 }
