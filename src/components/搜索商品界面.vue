@@ -1,20 +1,23 @@
 <template>
-    <el-container>
-        <el-header>Header</el-header>
-        <el-main>Main</el-main>
-    </el-container>
+  <div>
+    <Top></Top>
+  </div>
 </template>
+
+
+<script>
+import Top from "../components/top.vue";
+
+export default {
+  data() {
+    return {};
+  },
+  components: {
+    Top,
+  },
+  methods: {},
+};
+</script>
+
 <style lang="less" scoped>
-.el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-.el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-}
 </style>
