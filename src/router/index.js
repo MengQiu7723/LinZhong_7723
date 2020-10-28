@@ -11,6 +11,7 @@ import Product from '../components/product/Product.vue'
 import Product02 from '../components/product/Product02.vue'
 import register from '../components/user/register.vue'
 import register1 from '../components/user/register1.vue'
+import Shou from '../components/shuo.vue'
 
 Vue.use(Router)
 
@@ -25,6 +26,7 @@ const router = new Router({
       ]
     },
     { path: '/register', component: register },
+    { path: '/shou', component: Shou },
     {
       path: '/home', component: Home, redirect: '/welcome',
       children: [

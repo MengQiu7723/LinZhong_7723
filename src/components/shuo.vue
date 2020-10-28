@@ -28,7 +28,17 @@
         <a href="">购物车3</a>
       </div>
     </div>
-      <div class="xian"></div>
+    <div class="xian"></div>
+    <div class="babei">
+      <p>全部宝贝</p>
+    </div>
+    <div class="xian1"></div>
+    <div class="lei">
+      <span>分类</span>
+    </div>
+    <div class="kuang">
+      
+    </div>
 </div>
 </template>
 <script>
@@ -179,5 +189,30 @@ export default {
   height: 20px;
   width: 100%;
   border-top: 3px solid #14AAFF;
+}
+.babei{
+  width: 1180px;
+  height: 30px;
+  // background: red;
+}
+.xian1{
+  width: 1180px;
+  height: 5px;
+  border-top: 1px solid #000;
+  
+}
+.lei{
+  width:1180px;
+  height: 20px;
+  font-size: 15px;
+  // margin-left: 20px;
+}
+.lei span{
+  margin-left: 15px;
+}
+.kuang{
+  width: 1180px;
+  height: 350px;
+  background: green;
 }
 </style>
