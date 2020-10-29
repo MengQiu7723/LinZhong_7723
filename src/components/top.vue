@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cent">
     <div class="top">
       <div class="top_left">
         <div class="tu">
@@ -35,8 +35,13 @@ export default {
 
 
 <style lang="less" scoped>
+.cent {
+  width: 100%;
+  background: #f4f4f4;
+}
 .top {
   width: 1180px;
+
   height: 40px;
   margin: 0 auto;
   // background: yellow;
