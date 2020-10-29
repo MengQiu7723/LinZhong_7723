@@ -26,6 +26,57 @@
         </el-input>
       </div>
     </div>
+    <div style="width: 1190px; margin: 0 auto">
+      <el-row>
+        <el-col
+          :span="4"
+          v-for="(o, index) in 4"
+          :key="o"
+          :offset="index > 0 ? 1 : 2"
+        >
+          <el-card :body-style="{ padding: '0px' }">
+            <img
+              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              class="image"
+            />
+            <div style="padding: 20px">
+              <span>价格</span>
+              <div class="bottom clearfix">
+                <time class="min">名称</time>
+                <el-button type="text" class="button">商品详情</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+
+      <el-row style="margin-top: 20px">
+        <el-col
+          :span="4"
+          v-for="(o, index) in 4"
+          :key="o"
+          :offset="index > 0 ? 1 : 2"
+        >
+          <el-card :body-style="{ padding: '0px' }">
+            <img
+              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+              class="image"
+            />
+            <div style="padding: 20px">
+              <span>价格</span>
+              <div class="bottom clearfix">
+                <time class="min">名称</time>
+                <el-button type="text" class="button">商品详情</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+      <div style="margin-left:400px">
+        <el-pagination background layout="prev, pager, next" :total="100">
+        </el-pagination>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,7 +101,7 @@ export default {
   width: 1180px;
   height: 200px;
   margin: 0 auto;
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 .shousuo_left {
   width: 200px;
@@ -77,12 +128,41 @@ export default {
 .shousuo_right {
   width: 700px;
   height: 190px;
-  margin-left: 340px;
+  margin-left: 440px;
   margin-top: -190px;
   // border: 1px solid green;
 }
 .el-input {
   width: 600px;
   margin-top: 60px;
+}
+.min {
+  font-size: 20px;
+  color: #303133;
+}
+
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
+
+.button {
+  padding: 0;
+  float: right;
+}
+
+.image {
+  width: 100%;
+  display: block;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
 }
 </style>
