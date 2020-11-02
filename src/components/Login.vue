@@ -56,43 +56,43 @@ export default {
     return {
       // 这是登录表单的数据绑定对象
       loginForm: {
-        username: 'admin',
-        password: '123456',
+        username: "admin",
+        password: "123456",
       },
       // 这是表单的验证规则对象
       loginFormRules: {
         // 验证用户名是否合法
         username: [
-          { required: true, message: '请输入登录名称', trigger: 'blur' },
+          { required: true, message: "请输入登录名称", trigger: "blur" },
           {
             min: 3,
             max: 10,
-            message: '长度在 3 到 10 个字符',
-            trigger: 'blur',
+            message: "长度在 3 到 10 个字符",
+            trigger: "blur",
           },
         ],
         // 验证密码是否合法
         password: [
-          { required: true, message: '请输入登录密码', trigger: 'blur' },
+          { required: true, message: "请输入登录密码", trigger: "blur" },
           {
             min: 3,
             max: 15,
-            message: '长度在 3 到 15 个字符',
-            trigger: 'blur',
+            message: "长度在 3 到 15 个字符",
+            trigger: "blur",
           },
         ],
       },
-    }
+    };
   },
   methods: {
     // 点击重置按钮，重置登录表单
     resetLoginForm() {
       // console.log(this);
-      this.$refs.loginFormRef.resetFields()
+      this.$refs.loginFormRef.resetFields();
     },
     //登录按钮事件
     login() {
-      this.$router.push('/home')
+      this.$router.push("/home");
     },
     /** 
     login() {
@@ -131,15 +131,15 @@ export default {
     },
     */
     register() {
-      this.$router.replace('/register')
+      this.$router.replace("/register");
     },
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
 .loginbox_left {
-  width: 800 px;
+  width: 800px;
   height: 150px;
   // border:1px solid red;
 }
