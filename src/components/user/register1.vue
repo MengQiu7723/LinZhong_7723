@@ -43,7 +43,7 @@
 </el-form> -->
 
       <div class="shoujihao">
-        <el-input placeholder="建议使用常用手机号注册" v-model="input1">
+        <el-input placeholder="建议使用常用手机号注册" v-model="phonenumber">
           <template slot="prepend">手机号</template>
         </el-input>
       </div>
@@ -51,7 +51,10 @@
       <div class="yanzhengma">
         <el-row :gutter="10">
           <el-col :span="4">
-            <el-input v-model="input2" placeholder="请输入验证码"></el-input
+            <el-input
+              v-model="verificationcode"
+              placeholder="请输入验证码"
+            ></el-input
           ></el-col>
           <el-col :span="4"
             ><img width="110px" height="40px" src="#" alt="YZM" />
@@ -61,7 +64,7 @@
       </div>
     </div>
     <div class="next">
-      <el-button type="primary">下一步</el-button>
+      <el-button type="primary" @click="next()">下一步</el-button>
     </div>
   </div>
 </template>
@@ -72,8 +75,8 @@ import register from "./register";
 export default {
   data() {
     return {
-      input1: "",
-      input2: "",
+      phonenumber: "",
+      verificationcode: "",
       //    labelPosition: 'right',
       // formLabelAlign: {
       //   name: '',
@@ -83,7 +86,11 @@ export default {
     };
   },
   name: "register1",
-  methods: {},
+  methods: {
+    next(){
+      ths.$
+    }
+  },
   components: register,
 };
 </script>
