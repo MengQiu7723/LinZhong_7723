@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="next">
-      <el-button type="primary">完成并登录</el-button>
+      <el-button type="primary" @click="next()">完成并登录</el-button>
     </div>
   </div>
 </template>
@@ -36,6 +36,11 @@ import register from "./register";
 
 export default {
   name: "register3",
+  methods: {
+    next() {
+      this.$router.push("/login");
+    },
+  },
   components: register,
 };
 </script>

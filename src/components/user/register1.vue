@@ -62,9 +62,12 @@
           <el-col :span="1"> <el-button type="text">换一张</el-button></el-col>
         </el-row>
       </div>
+      <div class="error">
+        <el-alert title="手机号不能为空" type="error" effect="dark"> </el-alert>
+      </div>
     </div>
     <div class="next">
-      <el-button type="primary" @click="next()">下一步</el-button>
+      <el-button type="primary" @click="next(phonenumber)">下一步</el-button>
     </div>
   </div>
 </template>
@@ -87,9 +90,21 @@ export default {
   },
   name: "register1",
   methods: {
-    next(){
-      ths.$
-    }
+    // userRegister: function () {
+    //   if (this.phonenumber == "") {
+    //     this.uError = "手机号不能为空！";
+    //   }
+    // },
+    next(phonenumber) {
+      this.$router.push("/register2");
+      this.$router.push({
+        path: "/register2",
+        name: "register2",
+        params: {
+          phonenumber: phonenumber,
+        },
+      });
+    },
   },
   components: register,
 };
@@ -158,6 +173,14 @@ export default {
   position: relative;
   left: 170px;
   top: 150px;
+}
+.error {
+  width: 455px;
+  height: 35px;
+  position: relative;
+  left: 170px;
+  top: 160px;
+  // border: 1px solid red;
 }
 .next {
   width: 455px;
