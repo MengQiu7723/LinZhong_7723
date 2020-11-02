@@ -11,6 +11,7 @@ import register3 from '../components/user/register3.vue'
 import Shou from '../components/shuo.vue'
 import Search from '../components/搜索商品界面.vue'
 import Personalcenter from '../components/Personalcenter.vue'
+import Shopping from '../components/Shopping.vue'
 
 Vue.use(Router)
 
@@ -30,6 +31,7 @@ const router = new Router({
     { path: '/shou', component: Shou },
     { path: '/search', component: Search },
     { path: '/Personalcenter', component: Personalcenter },
+    { path: '/shopping', component: Shopping },
 
   ],
 });
