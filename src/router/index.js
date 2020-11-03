@@ -10,6 +10,7 @@ import register3 from '../components/user/register3.vue'
 
 import Shou from '../components/shuo.vue'
 import Search from '../components/搜索商品界面.vue'
+import Ding from '../components/ding.vue'
 
 Vue.use(Router)
 
@@ -28,7 +29,7 @@ const router = new Router({
     { path: '/home', component: Home },
     { path: '/shou', component: Shou },
     { path: '/search', component: Search },
-
+    { path: '/ding', component: Ding },
   ],
 });
 
