@@ -35,6 +35,38 @@
       <el-breadcrumb-item><a href="">失效商品</a></el-breadcrumb-item>
       <el-breadcrumb-item><a href=""></a></el-breadcrumb-item>
     </el-breadcrumb>
+    <div class="shangping">
+      <el-checkbox v-model="isAllCheck" @change="selectedAll">全选</el-checkbox>
+      <h7 style="margin-left: 500px">单价</h7>
+      <h7>数量</h7>
+      <h7>总额</h7>
+      <h7>操作</h7>
+    </div>
+    <li class="shoplist"  v-for="(item,index) in shopCart" :key="index">
+      <div class="pro-check">
+        <el-checkbox
+          v-model="item.select"
+          @change="itemCheck(item)"
+        ></el-checkbox>
+      </div>
+      <div class="pro-img">
+        <img :src="item.imgSrc" alt="" />
+      </div>
+      <div class="pro-name">{{ item.title }}</div>
+      <div class="pro-price">￥{{ item.price }}</div>
+      <div class="pro-num">
+        <el-input-number
+          v-model="item.num"
+          @change="handleChange"
+          :min="1"
+          :max="10"
+        ></el-input-number>
+      </div>
+      <div class="pro-total">￥{{ getTotalItem[index] }}</div>
+      <div class="pro-action">
+        <el-button type="danger" @click="removeShop(index)">删除</el-button>
+      </div>
+    </li>
   </div>
 </template>
 
@@ -43,7 +75,36 @@ import Top from "../components/top.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      item:'',
+      isAllCheck: false,
+    }
+  },
+  selectedAll() {
+    // 控制全选 全不选
+    this.shopCart.forEach((item) => {
+      !this.isAllCheck ? (item.select = false) : (item.select = true);
+    })
+  },
+  itemCheck(item) {
+    // 当子选项全选中时 全选按钮也要选中 反之则不选中
+    var arrTrue = [] // 定义两个空数组 当子选项是选中的状态则放入arrTrue数组中反之放进arrFalse里
+    var arrFalse = []
+    this.shopCart.forEach((item) => {
+      if (item.select) {
+        arrTrue.push(item.select);
+      } else {
+        arrFalse.push(item.select);
+      }
+    })
+
+    if (arrTrue.length == this.shopCart.length) {
+      this.isAllCheck = true;
+    }
+    // 当arrFalse 长度大于0时 说明其中有 没有勾选的子选项
+    if (arrFalse.length > 0) {
+      this.isAllCheck = false;
+    }
   },
   components: {
     Top,
@@ -104,5 +165,15 @@ export default {
 }
 .el-breadcrumb {
   margin-left: 180px;
+}
+.shangping {
+  width: 1190px;
+  height: 30px;
+  margin: 0px auto;
+  background-color: #f4f4f4;
+  // border: 1px solid red;
+}
+.shangping > h7 {
+  margin: 60px;
 }
 </style>
