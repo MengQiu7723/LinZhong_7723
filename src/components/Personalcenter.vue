@@ -27,10 +27,22 @@
       </div>
     </div>
     <el-main>
-      <div class="user">
-        <div class="headportrait">
-          <img src="../assets/images/头像.png" alt="" />
+      <div class="text">
+        <div class="user">
+          <div class="headportrait">
+            <img src="../assets/images/头像1.jpg" alt="" />
+          </div>
+          <div class="username">
+            <h1>35_threefive1034879</h1>
+          </div>
+          <div class="credit">
+            <h1>信用等级</h1>
+          </div>
+          <div class="grade">
+            <h1>极好</h1>
+          </div>
         </div>
+        <div class="wallet"></div>
       </div>
     </el-main>
   </div>
@@ -57,6 +69,9 @@ export default {
 
 
 <style lang="less" scoped>
+// .body {
+//   background-color: #f4f4f4;
+// }
 .header {
   width: 100%;
   height: 150px;
@@ -116,11 +131,15 @@ export default {
   border: 2px solid #14a5ff;
 }
 .header_right .el-input .el-button {
-  background: #14a5ff !important;
+  background-image: linear-gradient(to right, #14a5ff, #14d2ff) !important;
+  // 14a5ff 14d2ff
   color: #ffffff !important;
 }
 .el-main {
   background: #f4f4f4;
+}
+.text {
+  width: 1190px;
 }
 .user {
   position: relative;
@@ -130,19 +149,64 @@ export default {
   left: 340px;
   background: url(../assets/images/名片.png) no-repeat;
   background-size: cover;
+  float: left;
+  z-index: 1;
 }
 .headportrait {
   position: absolute;
-  width: 120px;
-  height: 120px;
-  border: 1px solid red;
+  width: 110px;
+  height: 110px;
+  border: 10px solid #ffffff;
   top: 60px;
-  left: 110px;
+  left: 100px;
   overflow: hidden;
   border-radius: 50%;
 }
 .headportrait img {
   width: 100%;
   height: 100%;
+}
+.username {
+  position: absolute;
+  // width: 210px;
+  // height: 30px;
+  // border: 1px solid red;
+  top: 200px;
+  left: 60px;
+}
+.username h1 {
+  font-size: larger;
+  color: #ffffff;
+}
+.credit {
+  // width: 210px;
+  // height: 30px;
+  position: absolute;
+  // border: 1px solid black;
+  top: 250px;
+  left: 90px;
+}
+.credit h1 {
+  font-size: medium;
+  color: #ffffff;
+}
+.grade {
+  position: absolute;
+  // border: 1px solid green;
+  top: 245px;
+  right: 110px;
+}
+.grade h1 {
+  font-size: larger;
+  color: #ffffff;
+}
+.wallet {
+  position: relative;
+  width: 450px;
+  height: 280px;
+  top: 30px;
+  left: 330px;
+  background-color: #ffffff;
+  float: left;
 }
 </style>
