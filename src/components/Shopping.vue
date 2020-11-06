@@ -35,6 +35,21 @@
       <el-breadcrumb-item><a href="">失效商品</a></el-breadcrumb-item>
       <el-breadcrumb-item><a href=""></a></el-breadcrumb-item>
     </el-breadcrumb>
+    <div class="shangping">
+      <el-checkbox v-model="checked" @change="selectedAll">全选</el-checkbox>
+      <h7 style="margin-left: 500px">单价</h7>
+      <h7>数量</h7>
+      <h7>总额</h7>
+      <h7>操作</h7>
+    </div>
+    <el-checkbox v-model="checked" style="margin-left: 180px"
+      >店铺: 魅力图书店</el-checkbox
+    >
+    <div class="mlshangping">
+      <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+      <div class="mlshangping_photo">图书</div>
+      <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
+    </div>
   </div>
 </template>
 
@@ -43,7 +58,9 @@ import Top from "../components/top.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      checked: true,
+    };
   },
   components: {
     Top,
@@ -104,5 +121,33 @@ export default {
 }
 .el-breadcrumb {
   margin-left: 180px;
+}
+.shangping {
+  width: 1190px;
+  height: 30px;
+  margin: 0px auto;
+  background-color: #f4f4f4;
+  // border: 1px solid red;
+}
+.shangping > h7 {
+  margin: 60px;
+}
+.mlshangping {
+  width: 1190px;
+  height: 150px;
+  margin: 0px auto;
+  position: relative;
+  border: 1px solid #e5e5e5;
+}
+.mlshangping_photo {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50px;
+  border: 1px solid #e5e5e5;
+}
+#mlsp {
+  margin-left: 20px;
+  top: 55px;
 }
 </style>
