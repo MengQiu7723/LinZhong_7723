@@ -17,7 +17,7 @@
       </div>
       <div class="header_right">
         <h2>已有账号？</h2>
-        <a href="#">请登录</a>
+        <a href="./login">请登录</a>
       </div>
     </el-header>
     <el-main>

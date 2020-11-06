@@ -131,7 +131,7 @@ export default {
     },
     */
     register() {
-      this.$router.replace("/register");
+      this.$router.replace("/register1");
     },
   },
 };

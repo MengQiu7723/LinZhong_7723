@@ -43,7 +43,7 @@
 </el-form> -->
 
       <div class="shoujihao">
-        <el-input placeholder="建议使用常用手机号注册" v-model="input1">
+        <el-input placeholder="建议使用常用手机号注册" v-model="phonenumber">
           <template slot="prepend">手机号</template>
         </el-input>
       </div>
@@ -51,7 +51,10 @@
       <div class="yanzhengma">
         <el-row :gutter="10">
           <el-col :span="4">
-            <el-input v-model="input2" placeholder="请输入验证码"></el-input
+            <el-input
+              v-model="verificationcode"
+              placeholder="请输入验证码"
+            ></el-input
           ></el-col>
           <el-col :span="4"
             ><img width="110px" height="40px" src="#" alt="YZM" />
@@ -59,9 +62,12 @@
           <el-col :span="1"> <el-button type="text">换一张</el-button></el-col>
         </el-row>
       </div>
+      <div class="error">
+        <el-alert title="手机号不能为空" type="error" effect="dark"> </el-alert>
+      </div>
     </div>
     <div class="next">
-      <el-button type="primary">下一步</el-button>
+      <el-button type="primary" @click="next(phonenumber)">下一步</el-button>
     </div>
   </div>
 </template>
@@ -72,8 +78,8 @@ import register from "./register";
 export default {
   data() {
     return {
-      input1: "",
-      input2: "",
+      phonenumber: "",
+      verificationcode: "",
       //    labelPosition: 'right',
       // formLabelAlign: {
       //   name: '',
@@ -83,7 +89,23 @@ export default {
     };
   },
   name: "register1",
-  methods: {},
+  methods: {
+    // userRegister: function () {
+    //   if (this.phonenumber == "") {
+    //     this.uError = "手机号不能为空！";
+    //   }
+    // },
+    next(phonenumber) {
+      this.$router.push("/register2");
+      this.$router.push({
+        path: "/register2",
+        name: "register2",
+        params: {
+          phonenumber: phonenumber,
+        },
+      });
+    },
+  },
   components: register,
 };
 </script>
@@ -151,6 +173,14 @@ export default {
   position: relative;
   left: 170px;
   top: 150px;
+}
+.error {
+  width: 455px;
+  height: 35px;
+  position: relative;
+  left: 170px;
+  top: 160px;
+  // border: 1px solid red;
 }
 .next {
   width: 455px;
