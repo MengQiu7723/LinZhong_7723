@@ -11,8 +11,8 @@
         </div>
       </div>
       <div class="top_right">
-        <a href="javascript:void(0)">个人中心</a>
-        <a href="javascript:void(0)">购物车</a>
+        <a href="javascript:void(0)" @click="pc()">个人中心</a>
+        <a href="javascript:void(0)" @click="shopCar()">购物车</a>
         <a href="javascript:void(0)" @click="shou()">收藏夹</a>
         <a href="javascript:void(0)" @click="ding()">我的订单</a>
       </div>
@@ -23,17 +23,23 @@
 <script>
 export default {
   data() {
-    return {};
+    return {}
   },
   methods: {
+    pc() {
+      this.$router.push('/Personalcenter')
+    },
+    shopCar() {
+      this.$router.push('/shopping')
+    },
     shou() {
-      this.$router.push("/shou");
+      this.$router.push('/shou')
     },
     ding() {
-      this.$router.push("/ding");
+      this.$router.push('/ding')
     },
   },
-};
+}
 </script>
 
 
