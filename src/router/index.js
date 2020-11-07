@@ -10,12 +10,9 @@ import register3 from '../components/user/register3.vue'
 
 import Shou from '../components/shuo.vue'
 import Search from '../components/搜索商品界面.vue'
-// <<<<<<< HEAD
 import Ding from '../components/ding.vue'
-// =======
 import Personalcenter from '../components/Personalcenter.vue'
 import Shopping from '../components/Shopping.vue'
-// >>>>>>> 957a4cec151ce37d86a3287aef78fd364a434e0b
 
 Vue.use(Router)
 
@@ -34,13 +31,9 @@ const router = new Router({
     { path: '/home', component: Home },
     { path: '/shou', component: Shou },
     { path: '/search', component: Search },
-    // <<<<<<< HEAD
     { path: '/ding', component: Ding },
-    // =======
     { path: '/Personalcenter', component: Personalcenter },
     { path: '/shopping', component: Shopping },
-
-    // >>>>>>> 957a4cec151ce37d86a3287aef78fd364a434e0b
   ],
 });
 
