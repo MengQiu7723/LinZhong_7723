@@ -135,7 +135,6 @@ export default {
 }
 .conter {
   width: 100%;
-  border: 1px solid #0000;
 }
 .top {
   width: 1180px;
@@ -270,7 +269,6 @@ export default {
 }
 .el-button {
   width: 350px;
-  height: 30px;
 }
 .el-header,
 .el-footer {
