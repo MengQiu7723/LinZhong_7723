@@ -110,7 +110,7 @@ export default {
           params: this.loginForm,
         })
         if (res.code == 0) {
-          // window.sessionStorage.setItem("token", res.data.token);
+          window.sessionStorage.setItem('token', res.data)
           this.$message.success('登录成功')
           this.$router.push('/home')
         } else if (res.code == 1) {

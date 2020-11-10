@@ -15,7 +15,7 @@ Vue.use(Router)
 
 const router = new Router({
   routes: [
-    { path: '/', redirect: '/login' },
+    { path: '/', redirect: '/home' },
     { path: '/login', component: Login },
     { path: '/register', component: register },
     { path: '/home', component: Home },
