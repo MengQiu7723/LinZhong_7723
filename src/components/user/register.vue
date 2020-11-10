@@ -162,8 +162,8 @@ export default {
     },
     async addUser() {
       const { data: res } = await this.$http.post('user/regist', {
+        verifyCodeActual: this.captcha,
         addForm: this.addForm,
-        captcha: this.captcha,
       })
       if (res.code == 0) {
         return res.msg
@@ -183,7 +183,7 @@ export default {
 .head_main {
   width: 1200px;
   margin: 0 auto;
-  background-color: pink;
+  // background-color: pink;
 }
 .logo {
   width: 170px;
@@ -238,7 +238,7 @@ span:hover {
   height: 600px;
   margin: 20px auto 0 auto;
   padding-top: 50px;
-  background-color: #7cdcf0;
+  // background-color: #7cdcf0;
 }
 .steps {
   width: 400px;
