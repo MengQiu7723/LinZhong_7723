@@ -116,12 +116,50 @@
               </div>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="待付款" name="second"
-            >配置管理 hhhhhhhhhhhhhh
+          <el-tab-pane label="待付款" name="second">
+            <div class="fu">
+              <div class="fu_mibble">
+                <img src="../assets/images/ing06.png" alt="" />
+                <div class="fu_mibble_button">
+                  <p>您还没有相关的订单</p>
+                  <span>可以去看看有哪些想买</span>
+                </div>
+              </div>
+            </div>
           </el-tab-pane>
-          <el-tab-pane label="待发货" name="third">角色管理</el-tab-pane>
-          <el-tab-pane label="待收货" name="fourth">定时任务补偿</el-tab-pane>
-          <el-tab-pane label="待评价" name="fifth">角色管理</el-tab-pane>
+          <el-tab-pane label="待发货" name="third">
+            <div class="fu">
+              <div class="fu_mibble">
+                <img src="../assets/images/ing06.png" alt="" />
+                <div class="fu_mibble_button">
+                  <p>您还没有相关的订单</p>
+                  <span>可以去看看有哪些想买</span>
+                </div>
+              </div>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="待收货" name="fourth">
+            <div class="fu">
+              <div class="fu_mibble">
+                <img src="../assets/images/ing06.png" alt="" />
+                <div class="fu_mibble_button">
+                  <p>您还没有相关的订单</p>
+                  <span>可以去看看有哪些想买</span>
+                </div>
+              </div>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="待评价" name="fifth">
+            <div class="fu">
+              <div class="fu_mibble">
+                <img src="../assets/images/ing06.png" alt="" />
+                <div class="fu_mibble_button">
+                  <p>您还没有相关的订单</p>
+                  <span>可以去看看有哪些想买</span>
+                </div>
+              </div>
+            </div>
+          </el-tab-pane>
         </el-tabs>
       </template>
     </div>
@@ -160,7 +198,7 @@ export default {
 
 .center {
   width: 100%;
-  border: 1px solid #000;
+  // border: 1px solid #000;
 }
 .quan {
   width: 1180px;
@@ -550,5 +588,32 @@ export default {
   display: inline-block;
   margin-left: 10px;
   margin-right: 10px;
+}
+.fu {
+  width: 1180px;
+  height: 400px;
+  // background: #14c9ff;
+}
+.fu_mibble {
+  width: 300px;
+  height: 400px;
+  margin-top: 50px;
+  // background: #696969;
+  text-align: center;
+}
+.fu_mibble img {
+  width: 200px;
+  height: 200px;
+}
+.fu_mibble_button {
+  text-align: center;
+}
+.fu_mibble_button p {
+  color: #000;
+  font-size: 20px;
+}
+.fu_mibble_button span {
+  color: #999da1;
+  font-size: 18px;
 }
 </style>
