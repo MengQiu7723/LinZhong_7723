@@ -15,6 +15,9 @@ import {
   MenuItem,
   Carousel,
   CarouselItem,
+  Col,
+  Row,
+  Tooltip
 } from 'element-ui'
 
 Vue.use(Button)
@@ -31,4 +34,7 @@ Vue.use(MenuItemGroup)
 Vue.use(MenuItem)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(Col)
+Vue.use(Row)
+Vue.use(Tooltip)
 Vue.prototype.$message = Message
