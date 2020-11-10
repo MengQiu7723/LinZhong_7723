@@ -49,6 +49,18 @@
       <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
       <div class="mlshangping_photo">图书</div>
       <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
+      <div class="mltsd_right">
+        <div class="mltsd_danjia">
+          <span>￥35.98</span>
+          <h6 style="margin-top: 50px">￥35.98</h6>
+        </div>
+        <div class="mltsd_jsq">
+          <el-input-number size="mini" v-model="num4"></el-input-number>
+        </div>
+        <div class="mltsd_ze">
+          <h6 style="color: red; margin-top: 55px">￥35.98</h6>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -60,10 +72,16 @@ export default {
   data() {
     return {
       checked: true,
+      num4: 1,
     };
   },
   components: {
     Top,
+  },
+  methods: {
+    handleChange(value) {
+      console.log(value);
+    },
   },
 };
 </script>
@@ -149,5 +167,42 @@ export default {
 #mlsp {
   margin-left: 20px;
   top: 55px;
+}
+.mltsd_right {
+  width: 650px;
+  height: 150px;
+  position: absolute;
+  right: 50px;
+  top: 0px;
+  border: 1px solid red;
+}
+.mltsd_danjia {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  // border: 1px solid red;
+}
+.mltsd_danjia > span {
+  text-decoration: line-through;
+  position: absolute;
+  top: 20px;
+  color: #6c6c6c;
+}
+.mltsd_jsq {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50px;
+  left: 170px;
+  // border: 1px solid red;
+}
+.mltsd_ze {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 355px;
+  // border: 1px solid red;
 }
 </style>
