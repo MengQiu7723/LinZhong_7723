@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="kai_right">
-        <a href="">购物车3</a>
+        <a href="">购物车</a>
       </div>
     </div>
     <div class="xian"></div>
@@ -99,18 +99,31 @@
         </div>
         <div class="zheng_right">
           <div class="deng">
-            <el-input
-              placeholder=""
-              prefix-icon="el-icon-user"
-              v-model="input2"
+            <!-- 登录表单区域 -->
+            <el-form
+              ref="loginFormRef"
+              :model="loginForm"
+              :rules="loginFormRules"
+              label-width="0px"
+              class="login_form"
             >
-            </el-input>
-            <el-input
-              placeholder=""
-              prefix-icon="el-icon-unlock"
-              v-model="input2"
-            >
-            </el-input>
+              <el-form-item prop="username">
+                <el-input
+                  placeholder="用户名"
+                  prefix-icon="el-icon-user"
+                  v-model="loginForm.username"
+                >
+                </el-input>
+              </el-form-item>
+              <el-form-item prop="password">
+                <el-input
+                  placeholder="密码"
+                  prefix-icon="el-icon-unlock"
+                  v-model="loginForm.password"
+                >
+                </el-input>
+              </el-form-item>
+            </el-form>
             <div class="last">
               <div class="last_last">
                 <a class="last_left">注册</a>
@@ -118,7 +131,7 @@
               </div>
             </div>
             <div class="lu">
-              <a href="">登录</a>
+              <a href="javascript:void(0)" @click="login()">登录</a>
             </div>
             <div class="wei">
               <a href="" class="qq"
@@ -199,23 +212,50 @@
 </template>
 
 <script>
-import Top from "../components/top.vue";
+import Top from '../components/top.vue'
 export default {
   data() {
-    return {};
+    return {
+      loginForm: {
+        username: '',
+        password: '',
+      },
+      loginFormRules: {},
+    }
   },
   components: {
     Top,
   },
   methods: {
+    login() {
+      this.$refs.loginFormRef.validate(async (valid) => {
+        if (!valid) return
+        //get请求
+        const { data: res } = await this.$http.get('user/login', {
+          params: this.loginForm,
+        })
+        if (res.code == 0) {
+          // window.sessionStorage.setItem('token', res.data)
+          window.localStorage.setItem('role', 0)
+          this.$message.success('登录成功')
+        } else if (res.code == 1) {
+          this.$message.error(res.msg + '，登录失败！')
+        }
+      })
+    },
     search_button() {
-      this.$router.push("/search");
+      this.$router.push('/search')
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
+/* 小登录 */
+.el-form-item {
+  margin-bottom: 10px;
+}
+/* 小登录 */
 * {
   margin: 0px auto;
   padding: 0px;
@@ -523,8 +563,8 @@ export default {
   margin-left: 60px;
 }
 .wei img {
-  width: 20px;
-  height: 20px;
+  /*   width: 20px;
+  height: 20px; */
   margin-top: 5px;
 }
 .zheng_right_buttom {

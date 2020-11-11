@@ -7,7 +7,8 @@
         </div>
         <div class="de">
           <a href="">广东</a>
-          <span>您好,请登录</span>
+          <span @click="login()" v-if="isLogin == 0">您好,请登录</span>
+          <span @click="pc()" v-if="isLogin == 1">欢迎来到35书城</span>
         </div>
       </div>
       <div class="top_right">
@@ -23,9 +24,14 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      isLogin: '',
+    }
   },
   methods: {
+    login() {
+      this.$router.push('/login')
+    },
     pc() {
       this.$router.push('/Personalcenter')
     },
@@ -38,6 +44,18 @@ export default {
     ding() {
       this.$router.push('/ding')
     },
+    isToken() {
+      if (window.sessionStorage.getItem('token')) {
+        return (this.isLogin = 1)
+      } else {
+        return (this.isLogin = 0)
+      }
+      console.log(typeof this.isLogin)
+    },
+  },
+  created() {
+    this.isToken()
+    console.log(this.isLogin)
   },
 }
 </script>
@@ -74,10 +92,10 @@ export default {
   // background:  green;
 }
 .de {
-  width: 250px;
+  // width: 250px;
   margin-top: 5px;
   font-size: 18px;
-  width: 200px;
+  // width: 200px;
 }
 .de a {
   text-decoration: none;
@@ -86,6 +104,14 @@ export default {
 .de span {
   color: #3fb3fe;
   margin-left: 15px;
+}
+/* span {
+  color: #15a4ff;
+} */
+.de span:hover {
+  color: #32c8ff;
+  cursor: pointer;
+  cursor: hand;
 }
 .top_right {
   width: 860px;

@@ -4,9 +4,6 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 
 import register from '../components/user/register.vue'
-import register1 from '../components/user/register1.vue'
-import register2 from '../components/user/register2.vue'
-import register3 from '../components/user/register3.vue'
 
 import Shou from '../components/shuo.vue'
 import Search from '../components/搜索商品界面.vue'
@@ -18,16 +15,9 @@ Vue.use(Router)
 
 const router = new Router({
   routes: [
-    { path: '/', redirect: '/login' },
+    { path: '/', redirect: '/home' },
     { path: '/login', component: Login },
-    {
-      path: '/register', component: register,
-      children: [
-        { path: '/register1', component: register1 },
-        { path: '/register2', component: register2 },
-        { path: '/register3', component: register3 },
-      ]
-    },
+    { path: '/register', component: register },
     { path: '/home', component: Home },
     { path: '/shou', component: Shou },
     { path: '/search', component: Search },
