@@ -266,7 +266,6 @@ export default {
 
 .center {
   width: 100%;
-  border: 1px solid #000;
 }
 .kai {
   width: 1180px;
