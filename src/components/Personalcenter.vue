@@ -50,7 +50,10 @@
           </div>
           <div class="coupon">
             <h1>4</h1>
-            <h2>优惠券</h2>
+            <h2>优惠券
+
+              
+            </h2>
           </div>
           <div class="bankcard">
             <h1>2</h1>
@@ -58,7 +61,19 @@
           </div>
         </div>
         <div class="follow">
-          <!-- <div class="myfollow"><h1>我的关注</h1></div> -->
+          <div class="myfollow"><h1>我的关注</h1></div>
+          <div class="commodityconcerns">
+            <h1>12</h1>
+            <h2>商品关注</h2>
+          </div>
+          <div class="storeattention">
+            <h1>3</h1>
+            <h2>店铺关注</h2>
+          </div>
+          <div class="collection">
+            <h1>2</h1>
+            <h2>收藏</h2>
+          </div>
         </div>
       </div>
     </el-main>
@@ -86,9 +101,9 @@ export default {
 
 
 <style lang="less" scoped>
-// .body {
-//   background-color: #f4f4f4;
-// }
+body {
+  background-color: #f4f4f4;
+}
 .header {
   width: 100%;
   height: 150px;
@@ -156,7 +171,7 @@ export default {
   background: #f4f4f4;
 }
 .text {
-  width: 1190px;
+  width: 1250px;
 }
 .user {
   position: relative;
@@ -272,7 +287,7 @@ export default {
   margin-top: 30px;
 }
 .bankcard {
-  width: 110px;
+  width: 100px;
   height: 140px;
   // border: 1px solid red;
   position: absolute;
@@ -292,8 +307,69 @@ export default {
   width: 450px;
   height: 280px;
   top: 30px;
-  left: 380px;
+  left: 320px;
   background-color: #ffffff;
   float: right;
+}
+.myfollow {
+  position: absolute;
+  left: 10px;
+  width: 420px;
+  height: 70px;
+  border-bottom: 1px solid #999999;
+}
+.myfollow h1 {
+  margin-left: 50px;
+  font-size: 25px;
+  color: #999999;
+  font-weight: lighter;
+}
+.commodityconcerns {
+  width: 140px;
+  height: 140px;
+  // border: 1px solid black;
+  position: absolute;
+  top: 90px;
+  left: 60px;
+  overflow: hidden;
+}
+.commodityconcerns h1 {
+  font-size: 25px;
+}
+.commodityconcerns h2 {
+  font-weight: lighter;
+  margin-top: 30px;
+}
+.storeattention {
+  width: 110px;
+  height: 140px;
+  // border: 1px solid blue;
+  position: absolute;
+  top: 90px;
+  left: 210px;
+  overflow: hidden;
+}
+.storeattention h1 {
+  font-size: 25px;
+}
+.storeattention h2 {
+  font-weight: lighter;
+  margin-top: 30px;
+}
+.collection {
+  width: 90px;
+  height: 140px;
+  // border: 1px solid red;
+  position: absolute;
+  top: 90px;
+  left: 340px;
+  overflow: hidden;
+}
+.collection h1 {
+  font-size: 25px;
+}
+.collection h2 {
+  font-weight: lighter;
+  margin-top: 30px;
 }
 </style>
