@@ -7,14 +7,15 @@
         </div>
         <div class="de">
           <a href="">广东</a>
-          <span>您好,请登录</span>
+          <span @click="login()" v-if="isLogin == 0">您好,请登录</span>
+          <span @click="pc()" v-if="isLogin == 1">欢迎来到35书城</span>
         </div>
       </div>
       <div class="top_right">
-        <a href="javascript:void(0)">个人中心</a>
-        <a href="javascript:void(0)">购物车</a>
+        <a href="javascript:void(0)" @click="pc()">个人中心</a>
+        <a href="javascript:void(0)" @click="shopCar()">购物车</a>
         <a href="javascript:void(0)" @click="shou()">收藏夹</a>
-        <a href="javascript:void(0)">我的订单</a>
+        <a href="javascript:void(0)" @click="ding()">我的订单</a>
       </div>
     </div>
   </div>
@@ -23,14 +24,40 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      isLogin: '',
+    }
   },
   methods: {
+    login() {
+      this.$router.push('/login')
+    },
+    pc() {
+      this.$router.push('/Personalcenter')
+    },
+    shopCar() {
+      this.$router.push('/shopping')
+    },
     shou() {
-      this.$router.push("/shou");
+      this.$router.push('/shou')
+    },
+    ding() {
+      this.$router.push('/ding')
+    },
+    isToken() {
+      if (window.sessionStorage.getItem('token')) {
+        return (this.isLogin = 1)
+      } else {
+        return (this.isLogin = 0)
+      }
+      console.log(typeof this.isLogin)
     },
   },
-};
+  created() {
+    this.isToken()
+    console.log(this.isLogin)
+  },
+}
 </script>
 
 
@@ -65,10 +92,10 @@ export default {
   // background:  green;
 }
 .de {
-  width: 250px;
+  // width: 250px;
   margin-top: 5px;
-  font-size: 20px;
-  width: 200px;
+  font-size: 18px;
+  // width: 200px;
 }
 .de a {
   text-decoration: none;
@@ -77,6 +104,14 @@ export default {
 .de span {
   color: #3fb3fe;
   margin-left: 15px;
+}
+/* span {
+  color: #15a4ff;
+} */
+.de span:hover {
+  color: #32c8ff;
+  cursor: pointer;
+  cursor: hand;
 }
 .top_right {
   width: 860px;
@@ -91,6 +126,6 @@ export default {
   width: 100px;
   // text-align: center;
   margin-top: 5px;
-  font-size: 20px;
+  font-size: 18px;
 }
 </style>
