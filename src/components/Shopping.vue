@@ -55,12 +55,77 @@
           <h6 style="margin-top: 50px">￥35.98</h6>
         </div>
         <div class="mltsd_jsq">
-          <el-input-number size="mini" v-model="num4"></el-input-number>
+          <el-input-number size="mini" v-model="num1"></el-input-number>
         </div>
         <div class="mltsd_ze">
           <h6 style="color: red; margin-top: 55px">￥35.98</h6>
         </div>
+        <div class="mltsd_cz">
+          <el-popconfirm title="此商品确定删除吗？">
+            <el-button slot="reference">删除</el-button>
+          </el-popconfirm>
+        </div>
       </div>
+    </div>
+    <el-checkbox v-model="checked" style="margin-left: 180px"
+      >店铺: 儿童图书馆</el-checkbox
+    >
+    <div class="mlshangping">
+      <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+      <div class="mlshangping_photo">图书</div>
+      <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
+      <div class="mltsd_right">
+        <div class="mltsd_danjia">
+          <h6 style="margin-top: 38px">￥29.9</h6>
+        </div>
+        <div class="mltsd_jsq">
+          <el-input-number size="mini" v-model="num2"></el-input-number>
+        </div>
+        <div class="mltsd_ze">
+          <h6 style="color: red; margin-top: 55px">￥55.98</h6>
+        </div>
+        <div class="mltsd_cz">
+          <el-popconfirm title="此商品确定删除吗？">
+            <el-button slot="reference">删除</el-button>
+          </el-popconfirm>
+        </div>
+      </div>
+    </div>
+    <div class="mlshangping">
+      <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+      <div class="mlshangping_photo">图书</div>
+      <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
+      <div class="mltsd_right">
+        <div class="mltsd_danjia">
+          <h6 style="margin-top: 38px">￥29.9</h6>
+        </div>
+        <div class="mltsd_jsq">
+          <el-input-number size="mini" v-model="num3"></el-input-number>
+        </div>
+        <div class="mltsd_ze">
+          <h6 style="color: red; margin-top: 55px">￥55.98</h6>
+        </div>
+        <div class="mltsd_cz">
+          <el-popconfirm title="此商品确定删除吗？">
+            <el-button slot="reference">删除</el-button>
+          </el-popconfirm>
+        </div>
+      </div>
+    </div>
+    <div class="gouwuche_js">
+      <el-checkbox v-model="checked" @change="selectedAll" style="margin: 15px"
+        >全选</el-checkbox
+      >
+      <el-link :underline="false">删除</el-link>
+      <el-link :underline="false" style="margin-left: 15px"
+        >删除失效商品</el-link
+      >
+      <el-button type="info" style="margin: ">信息按钮</el-button>
+      <!-- <div class="gouwuche_js_jsbutton">
+        <h6>已选商品</h6>
+        <h7 style="color: red">0</h7>
+        <h6>件</h6>
+      </div> -->
     </div>
   </div>
 </template>
@@ -72,7 +137,9 @@ export default {
   data() {
     return {
       checked: true,
-      num4: 1,
+      num1: 1,
+      num2: 1,
+      num3: 1,
     };
   },
   components: {
@@ -174,7 +241,7 @@ export default {
   position: absolute;
   right: 50px;
   top: 0px;
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 .mltsd_danjia {
   width: 100px;
@@ -204,5 +271,28 @@ export default {
   position: absolute;
   left: 355px;
   // border: 1px solid red;
+}
+.mltsd_cz {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 490px;
+  // border: 1px solid red;
+}
+.el-button {
+  margin-top: 40px;
+}
+.gouwuche_js {
+  width: 1190px;
+  height: 80px;
+  margin: 20px auto;
+  border: 1px solid #e5e5e5;
+}
+.gouwuche_js_jsbutton {
+  width: 200px;
+  height: 30px;
+  position: absolute;
+  right: 50px;
+  border: 1px solid red;
 }
 </style>
