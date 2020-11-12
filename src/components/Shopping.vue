@@ -120,7 +120,7 @@
       <el-link :underline="false" style="margin-left: 15px"
         >删除失效商品</el-link
       >
-      <el-button type="info" style="margin: ">信息按钮</el-button>
+      <el-button type="info" style="margin-left: 883px">信息按钮</el-button>
       <!-- <div class="gouwuche_js_jsbutton">
         <h6>已选商品</h6>
         <h7 style="color: red">0</h7>
