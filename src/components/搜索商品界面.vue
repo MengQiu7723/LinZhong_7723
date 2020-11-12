@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Top></Top>;
+    <Top></Top>
     <div class="shousuo">
       <div class="shousuo_left">
         <a href=""
@@ -18,11 +18,10 @@
       <div class="shousuo_right">
         <el-input
           placeholder="请输入内容"
-          v-model="input"
-          clearable
+          v-model="bookName_Val"
           prefix-icon="el-icon-search"
         >
-          <template slot="append">搜索</template>
+          <template slot="append"><span @click="search()">搜索</span></template>
         </el-input>
       </div>
     </div>
@@ -30,70 +29,78 @@
       <el-row>
         <el-col
           :span="4"
-          v-for="(o, index) in 4"
-          :key="o"
-          :offset="index > 0 ? 1 : 2"
+          v-for="(o, index) in bookInfo"
+          :key="index"
+          :offset="index == 0 || index == 4 ? 0 : 2"
         >
-          <el-card :body-style="{ padding: '0px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-            />
-            <div style="padding: 20px">
-              <span>价格</span>
+          <el-card :body-style="{ padding: '0px' }" class="cardBox">
+            <div class="cardBoxImgBox">
+              <img :src="o.imagesUrl" class="image" />
+            </div>
+            <div style="padding: 14px">
+              <span>{{ o.price }}</span>
               <div class="bottom clearfix">
-                <time class="min">名称</time>
+                <time class="min">{{ o.bookName }}</time>
                 <el-button type="text" class="button">商品详情</el-button>
               </div>
             </div>
           </el-card>
         </el-col>
       </el-row>
-
-      <el-row style="margin-top: 20px">
-        <el-col
-          :span="4"
-          v-for="(o, index) in 4"
-          :key="o"
-          :offset="index > 0 ? 1 : 2"
-        >
-          <el-card :body-style="{ padding: '0px' }">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="image"
-            />
-            <div style="padding: 20px">
-              <span>价格</span>
-              <div class="bottom clearfix">
-                <time class="min">名称</time>
-                <el-button type="text" class="button">商品详情</el-button>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-      <div style="margin-left:400px">
-        <el-pagination background layout="prev, pager, next" :total="100">
-        </el-pagination>
-      </div>
+    </div>
+    <div style="margin: 0 auto">
+      <el-pagination background layout="prev, pager, next" :total="100">
+      </el-pagination>
     </div>
   </div>
 </template>
 
 
 <script>
-import Top from "../components/top.vue";
+import Top from '../components/top.vue'
 
 export default {
   data() {
-    return {};
+    return {
+      bookName_Val: '',
+      bookInfo: [
+        {
+          id: '',
+          cid: '',
+          sid: '',
+          bookName: '',
+          publisher: '',
+          author: '',
+          price: '',
+          introduce: '',
+          imagesUrl: '',
+          modifyCategory: '',
+          ggct: '',
+          returnGoods: '',
+          invoice: '',
+          promise: '',
+          region: '',
+          specialOffer: '',
+          isbn: '',
+        },
+      ],
+    }
   },
   components: {
     Top,
   },
-  methods: {},
-  input: "",
-};
+  methods: {
+    async search() {
+      const { data: res } = await this.$http.get(
+        'book/getBookNameLike/' + this.bookName_Val
+      )
+      if (res.code == 0) {
+        this.bookInfo = res.data
+      }
+    },
+  },
+  input: '',
+}
 </script>
 
 <style lang="less" scoped>
@@ -151,15 +158,24 @@ export default {
   float: right;
 }
 
+.cardBox {
+  width: 250px;
+  height: 350px;
+}
+.cardBoxImgBox {
+  width: 250px;
+  height: 250px;
+}
 .image {
   width: 100%;
+  height: 100%;
   display: block;
 }
 
 .clearfix:before,
 .clearfix:after {
   display: table;
-  content: "";
+  content: '';
 }
 
 .clearfix:after {

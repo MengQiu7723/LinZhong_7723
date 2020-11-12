@@ -235,7 +235,7 @@ export default {
           params: this.loginForm,
         })
         if (res.code == 0) {
-          // window.sessionStorage.setItem('token', res.data)
+          window.sessionStorage.setItem('token', res.data)
           window.localStorage.setItem('role', 0)
           this.$message.success('登录成功')
         } else if (res.code == 1) {
@@ -266,7 +266,6 @@ export default {
 
 .center {
   width: 100%;
-  border: 1px solid #000;
 }
 .kai {
   width: 1180px;

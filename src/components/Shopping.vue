@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Top></Top>;
+    <Top></Top>
     <div class="shousuo">
       <div class="shousuo_left">
         <a href=""
@@ -66,24 +66,24 @@
 </template>
 
 <script>
-import Top from "../components/top.vue";
+import Top from '../components/top.vue'
 
 export default {
   data() {
     return {
       checked: true,
       num4: 1,
-    };
+    }
   },
   components: {
     Top,
   },
   methods: {
     handleChange(value) {
-      console.log(value);
+      console.log(value)
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
