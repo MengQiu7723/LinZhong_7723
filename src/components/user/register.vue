@@ -37,9 +37,15 @@
       </div>
       <div style="margin: 20px"></div>
       <!-- 表单区 -->
-      <el-form :label-position="labelPosition" :model="addForm">
+      <el-form
+        ref="addUserFormRef"
+        status-icon
+        :rules="addUserFormRules"
+        :label-position="labelPosition"
+        :model="addForm"
+      >
         <div v-if="active == 0" style="width: 500px; margin: 0 auto">
-          <el-form-item>
+          <el-form-item prop="mobile">
             <el-tooltip
               class="item"
               effect="dark"
@@ -54,10 +60,13 @@
               </el-input>
             </el-tooltip>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="verifyCode">
             <el-row :gutter="20">
               <el-col :span="12">
-                <el-input placeholder="验证码" v-model="captcha"></el-input>
+                <el-input
+                  placeholder="验证码"
+                  v-model="addForm.verifyCode"
+                ></el-input>
               </el-col>
               <el-col :span="8">
                 <img class="code-img" alt="图片验证码" :src="codeSrc" />
@@ -104,10 +113,37 @@
 <script>
 export default {
   data() {
+    // 验证手机号的规则
+    var checkMobile = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入常用手机号'))
+      }
+      // 验证手机号的正则表达式
+      const regMobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/
+      if (regMobile.test(value)) {
+        return callback()
+      }
+      callback(new Error('请输入合法的手机号'))
+    }
+    // 验证验证码
+    var checkVerifyCode = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('验证码为空啦(´-ω-`)'))
+      }
+      setTimeout(() => {
+        this.getVerifyCode()
+        if (this.getVerifyCode.code != 0) {
+          callback(new Error('验证码不对不对哦(´-ω-`)'))
+        } else if (this.getVerifyCode.code == 1) {
+          callback(new Error('验证码过期了>~<'))
+        }
+      }, 1000)
+    }
+
     return {
       /* 验证码图片 */
       codeSrc: '',
-      captcha: '',
+      verifyCode: '',
       /* 步骤表单 */
       active: 0,
       messageTip: '下一步',
@@ -117,6 +153,12 @@ export default {
         username: '',
         password: '',
         mobile: '',
+        verifyCode: '',
+      },
+      /* 注册表单验证规则 */
+      addUserFormRules: {
+        mobile: [{ validator: checkMobile, trigger: 'blur' }],
+        verifyCode: [{ validator: checkVerifyCode, trigger: 'blur' }],
       },
     }
   },
@@ -127,12 +169,16 @@ export default {
     },
     /* 步骤表单 */
     next() {
-      console.log(this.active)
       if (this.active > 3) {
         this.active = 0
       } else {
-        this.active = this.active + 1
+        this.active = this.active
       }
+      if (this.active == 0) {
+        this.getVerifyCode()
+      }
+    },
+    register() {
       if (this.active == 1) {
         this.messageTip = '注册'
       }
@@ -160,9 +206,25 @@ export default {
           this.codeSrc = path
         })
     },
+    /* 验证　验证码　 */
+    async getVerifyCode() {
+      var code
+      if (this.addForm.verifyCode == '') return
+      const { data: res } = await this.$http.get('user/checkVerify', {
+        params: { verifyCodeInput: this.addForm.verifyCode },
+      })
+      if (res.code == 0) {
+        code = res.code
+        console.log(code)
+        return
+      } else {
+        code = res.code
+        console.log(code)
+        return
+      }
+    },
     async addUser() {
       const { data: res } = await this.$http.post('user/regist', {
-        verifyCodeActual: this.captcha,
         addForm: this.addForm,
       })
       if (res.code == 0) {
