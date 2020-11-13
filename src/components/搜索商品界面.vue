@@ -38,7 +38,11 @@
               <img :src="o.imagesUrl" class="image" />
             </div>
             <div style="padding: 14px">
-              <span>{{ o.price }}</span>
+              <div class="p-price">
+                <strong
+                  ><em>￥</em><i>{{ o.price }}</i></strong
+                >
+              </div>
               <div class="bottom clearfix">
                 <time class="min">{{ o.bookName }}</time>
                 <el-button type="text" class="button">商品详情</el-button>
@@ -48,9 +52,19 @@
         </el-col>
       </el-row>
     </div>
-    <div style="margin: 0 auto">
-      <el-pagination background layout="prev, pager, next" :total="100">
-      </el-pagination>
+    <div class="pagination">
+      <div class="pagination_div">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[100, 200, 300, 400]"
+          :page-size="100"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="400"
+        >
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -84,13 +98,24 @@ export default {
           isbn: '',
         },
       ],
+      /* 翻页 */
+      currentPage: 1,
     }
   },
   components: {
     Top,
   },
   methods: {
+    search_val() {
+      if (this.$route.params.bookName_Val) {
+        this.bookName_Val = this.$route.params.bookName_Val
+        window.sessionStorage.setItem('search', this.bookName_Val)
+      }
+      this.bookName_Val = sessionStorage.getItem('search')
+    },
     async search() {
+      window.sessionStorage.setItem('search', this.bookName_Val)
+      this.bookName_Val = sessionStorage.getItem('search')
       const { data: res } = await this.$http.get(
         'book/getBookNameLike/' + this.bookName_Val
       )
@@ -98,12 +123,26 @@ export default {
         this.bookInfo = res.data
       }
     },
+    /* 翻页 */
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`)
+    },
   },
-  input: '',
+  created() {
+    this.search_val()
+    this.search()
+  },
 }
 </script>
 
 <style lang="less" scoped>
+em,
+i {
+  font-style: normal;
+}
 .shousuo {
   width: 1180px;
   height: 200px;
@@ -157,15 +196,27 @@ export default {
   padding: 0;
   float: right;
 }
-
+/* 商品卡片盒子 */
 .cardBox {
   width: 250px;
   height: 350px;
+  margin-bottom: 50px;
 }
 .cardBoxImgBox {
   width: 250px;
   height: 250px;
 }
+/* 卡片商品——价格 */
+.p-price strong {
+  color: #e4393c;
+  font-weight: 400;
+  font-size: 20px;
+  font-family: Verdana;
+}
+.p-price strong em {
+  font-size: 16px;
+}
+
 .image {
   width: 100%;
   height: 100%;
@@ -180,5 +231,12 @@ export default {
 
 .clearfix:after {
   clear: both;
+}
+.pagination {
+  width: 100%;
+}
+.pagination_div {
+  width: 555px;
+  margin: 0 auto;
 }
 </style>

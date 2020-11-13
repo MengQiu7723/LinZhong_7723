@@ -1,6 +1,6 @@
 <template>
   <div class="center">
-    <Top></Top>
+    <Top v-if="update"></Top>
     <div class="kai">
       <div class="logo">
         <span><img src="../assets/images/ing2.png" alt="" /></span>
@@ -13,7 +13,12 @@
         <div class="sou">
           <form class="input_form" action="">
             <a href=""><img src="../assets/images/ing4.png" alt="" /></a>
-            <input type="text" name="" placeholder="数据库管理" />
+            <input
+              type="text"
+              name=""
+              v-model="bookName_Val"
+              placeholder="数据库管理"
+            />
             <button @click="search_button">搜索</button>
           </form>
         </div>
@@ -216,11 +221,13 @@ import Top from '../components/top.vue'
 export default {
   data() {
     return {
+      bookName_Val: '',
       loginForm: {
         username: '',
         password: '',
       },
       loginFormRules: {},
+      update: true,
     }
   },
   components: {
@@ -238,13 +245,20 @@ export default {
           window.sessionStorage.setItem('token', res.data)
           window.localStorage.setItem('role', 0)
           this.$message.success('登录成功')
+          // 移除组件
+          this.update = false
+          // 在组件移除后，重新渲染组件
+          // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。
+          this.$nextTick(() => {
+            this.update = true
+          })
         } else if (res.code == 1) {
           this.$message.error(res.msg + '，登录失败！')
         }
       })
     },
     search_button() {
-      this.$router.push('/search')
+      this.$router.push({ name: 'search', params: {bookName_Val:this.bookName_Val} })
     },
   },
 }
