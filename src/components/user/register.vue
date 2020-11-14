@@ -128,14 +128,17 @@ export default {
     // 验证验证码
     var checkVerifyCode = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('验证码为空啦(´-ω-`)'))
+        return callback(new Error('验证码为空啦(´-ω-`)'))
       }
       setTimeout(() => {
         this.getVerifyCode()
-        if (this.getVerifyCode.code != 0) {
+        console.log(this.code)
+        if (this.code == 2) {
           callback(new Error('验证码不对不对哦(´-ω-`)'))
-        } else if (this.getVerifyCode.code == 1) {
-          callback(new Error('验证码过期了>~<'))
+        } else if (this.code == 1) {
+          callback(new Error('验证码过期啦≥﹏≤'))
+        } else {
+          callback()
         }
       }, 1000)
     }
@@ -144,6 +147,7 @@ export default {
       /* 验证码图片 */
       codeSrc: '',
       verifyCode: '',
+      code: '',
       /* 步骤表单 */
       active: 0,
       messageTip: '下一步',
@@ -169,17 +173,28 @@ export default {
     },
     /* 步骤表单 */
     next() {
-      if (this.active > 3) {
-        this.active = 0
-      } else {
-        this.active = this.active
-      }
       if (this.active == 0) {
-        this.getVerifyCode()
+        this.$refs.addUserFormRef.validateField('mobile', (mobileError) => {
+          if (mobileError) {
+            console.log('手机没有通过')
+          } else {
+            console.log('手机通过')
+            this.$refs.addUserFormRef.validateField(
+              'verifyCode',
+              (verifyCodeError) => {
+                if (verifyCodeError) {
+                  console.log('验证码没有通过')
+                } else {
+                  this.active++
+                }
+              }
+            )
+          }
+        })
       }
     },
-    register() {
-      if (this.active == 1) {
+    /*register() {
+       if (this.active == 1) {
         this.messageTip = '注册'
       }
       if (this.active == 2) {
@@ -188,8 +203,9 @@ export default {
       }
       if (this.active == 3) {
         this.login()
-      }
-    },
+      } 
+    },*/
+    
     /* 验证码 */
     async getImg() {
       this.$http
@@ -208,18 +224,15 @@ export default {
     },
     /* 验证　验证码　 */
     async getVerifyCode() {
-      var code
-      if (this.addForm.verifyCode == '') return
+      if (this.addForm.verifyCode === '') return
       const { data: res } = await this.$http.get('user/checkVerify', {
         params: { verifyCodeInput: this.addForm.verifyCode },
       })
       if (res.code == 0) {
-        code = res.code
-        console.log(code)
+        this.code = res.code
         return
       } else {
-        code = res.code
-        console.log(code)
+        this.code = res.code
         return
       }
     },
