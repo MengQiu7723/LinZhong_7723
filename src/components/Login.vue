@@ -118,9 +118,6 @@ export default {
         }
       })
     },
-    register() {
-      this.$router.replace('/register1')
-    },
   },
 }
 </script>
