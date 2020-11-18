@@ -115,82 +115,82 @@ export default {
   data() {
     // 验证手机号的规则
     var checkMobile = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入常用手机号'))
+      if (value === "") {
+        callback(new Error("请输入常用手机号"));
       }
       // 验证手机号的正则表达式
-      const regMobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/
+      const regMobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
       if (regMobile.test(value)) {
-        return callback()
+        return callback();
       }
-      callback(new Error('请输入合法的手机号'))
-    }
+      callback(new Error("请输入合法的手机号"));
+    };
     // 验证验证码
     var checkVerifyCode = (rule, value, callback) => {
-      if (value === '') {
-        return callback(new Error('验证码为空啦(´-ω-`)'))
+      if (value === "") {
+        return callback(new Error("验证码为空啦(´-ω-`)"));
       }
       setTimeout(() => {
-        this.getVerifyCode()
-        console.log(this.code)
+        this.getVerifyCode();
+        console.log(this.code);
         if (this.code == 2) {
-          callback(new Error('验证码不对不对哦(´-ω-`)'))
+          callback(new Error("验证码不对不对哦(´-ω-`)"));
         } else if (this.code == 1) {
-          callback(new Error('验证码过期啦≥﹏≤'))
+          callback(new Error("验证码过期啦≥﹏≤"));
         } else {
-          callback()
+          callback();
         }
-      }, 1000)
-    }
+      }, 1000);
+    };
 
     return {
       /* 验证码图片 */
-      codeSrc: '',
-      verifyCode: '',
-      code: '',
+      codeSrc: "",
+      verifyCode: "",
+      code: "",
       /* 步骤表单 */
       active: 0,
-      messageTip: '下一步',
-      labelPosition: 'right',
+      messageTip: "下一步",
+      labelPosition: "right",
       /* 注册信息 */
       addForm: {
-        username: '',
-        password: '',
-        mobile: '',
-        verifyCode: '',
+        username: "",
+        password: "",
+        mobile: "",
+        verifyCode: "",
       },
       /* 注册表单验证规则 */
       addUserFormRules: {
-        mobile: [{ validator: checkMobile, trigger: 'blur' }],
-        verifyCode: [{ validator: checkVerifyCode, trigger: 'blur' }],
+        mobile: [{ validator: checkMobile, trigger: "blur" }],
+        verifyCode: [{ validator: checkVerifyCode, trigger: "blur" }],
       },
-    }
+    };
   },
   methods: {
     /* 跳转登录 */
     login() {
-      this.$router.push('/login')
+      this.$router.push("/login");
     },
     /* 步骤表单 */
     next() {
       if (this.active == 0) {
-        this.$refs.addUserFormRef.validateField('mobile', (mobileError) => {
+        this.$refs.addUserFormRef.validateField("mobile", (mobileError) => {
           if (mobileError) {
-            console.log('手机没有通过')
+            console.log("手机没有通过");
           } else {
-            console.log('手机通过')
+            console.log("手机通过");
             this.$refs.addUserFormRef.validateField(
-              'verifyCode',
+              "verifyCode",
               (verifyCodeError) => {
                 if (verifyCodeError) {
-                  console.log('验证码没有通过')
+                  console.log("验证码没有通过");
                 } else {
-                  this.active++
+                  this.active++;
                 }
               }
-            )
+            );
           }
-        })
+        });
       }
     },
     /*register() {
@@ -205,50 +205,50 @@ export default {
         this.login()
       } 
     },*/
-    
+
     /* 验证码 */
     async getImg() {
       this.$http
-        .get('captcha/getcaptcha', { responseType: 'arraybuffer' })
+        .get("captcha/getcaptcha", { responseType: "arraybuffer" })
         .then((res) => {
           let path =
-            'data:image/png;base64,' +
+            "data:image/png;base64," +
             btoa(
               new Uint8Array(res.data).reduce(
                 (data, byte) => data + String.fromCharCode(byte),
-                ''
+                ""
               )
-            )
-          this.codeSrc = path
-        })
+            );
+          this.codeSrc = path;
+        });
     },
     /* 验证　验证码　 */
     async getVerifyCode() {
-      if (this.addForm.verifyCode === '') return
-      const { data: res } = await this.$http.get('user/checkVerify', {
+      if (this.addForm.verifyCode === "") return;
+      const { data: res } = await this.$http.get("user/checkVerify", {
         params: { verifyCodeInput: this.addForm.verifyCode },
-      })
+      });
       if (res.code == 0) {
-        this.code = res.code
-        return
+        this.code = res.code;
+        return;
       } else {
-        this.code = res.code
-        return
+        this.code = res.code;
+        return;
       }
     },
     async addUser() {
-      const { data: res } = await this.$http.post('user/regist', {
+      const { data: res } = await this.$http.post("user/regist", {
         addForm: this.addForm,
-      })
+      });
       if (res.code == 0) {
-        return res.msg
+        return res.msg;
       }
     },
   },
   created() {
-    this.getImg()
+    this.getImg();
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -267,7 +267,7 @@ export default {
 /* 声明清除浮动的样式 */
 .clearfix:before,
 .clearfix:after {
-  content: '';
+  content: "";
   display: table;
 }
 .clearfix:after {

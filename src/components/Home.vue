@@ -217,18 +217,18 @@
 </template>
 
 <script>
-import Top from '../components/top.vue'
+import Top from "../components/top.vue";
 export default {
   data() {
     return {
-      bookName_Val: '',
+      bookName_Val: "",
       loginForm: {
-        username: '',
-        password: '',
+        username: "",
+        password: "",
       },
       loginFormRules: {},
       update: true,
-    }
+    };
   },
   components: {
     Top,
@@ -236,32 +236,35 @@ export default {
   methods: {
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
-        if (!valid) return
+        if (!valid) return;
         //get请求
-        const { data: res } = await this.$http.get('user/login', {
+        const { data: res } = await this.$http.get("user/login", {
           params: this.loginForm,
-        })
+        });
         if (res.code == 0) {
-          window.sessionStorage.setItem('token', res.data)
-          window.localStorage.setItem('role', 0)
-          this.$message.success('登录成功')
+          window.sessionStorage.setItem("token", res.data);
+          window.localStorage.setItem("role", 0);
+          this.$message.success("登录成功");
           // 移除组件
-          this.update = false
+          this.update = false;
           // 在组件移除后，重新渲染组件
           // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。
           this.$nextTick(() => {
-            this.update = true
-          })
+            this.update = true;
+          });
         } else if (res.code == 1) {
-          this.$message.error(res.msg + '，登录失败！')
+          this.$message.error(res.msg + "，登录失败！");
         }
-      })
+      });
     },
     search_button() {
-      this.$router.push({ name: 'search', params: {bookName_Val:this.bookName_Val} })
+      this.$router.push({
+        name: "search",
+        params: { bookName_Val: this.bookName_Val },
+      });
     },
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -270,6 +273,7 @@ export default {
   margin-bottom: 10px;
 }
 /* 小登录 */
+
 * {
   margin: 0px auto;
   padding: 0px;
