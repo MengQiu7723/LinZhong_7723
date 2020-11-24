@@ -25,7 +25,7 @@ const router = new Router({
     { path: '/ding', component: Ding },
     { path: '/Personalcenter', component: Personalcenter },
     { path: '/shopping', component: Shopping },
-    { path: '/shang', component: Shang },
+    { path: '/shang', name: 'shang', component: Shang },
   ],
 });
 

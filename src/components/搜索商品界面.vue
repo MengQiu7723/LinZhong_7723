@@ -81,6 +81,7 @@ export default {
   data() {
     return {
       bookName_Val: '',
+      bookId_Val: '',
       bookInfo: [
         {
           id: '',
@@ -112,7 +113,11 @@ export default {
   methods: {
     getBookById(id) {
       console.log(id)
-      this.$router.push('/shang')
+      this.bookId_Val = id
+      this.$router.push({
+        name: 'shang',
+        params: { bookId_Val: this.bookId_Val },
+      })
     },
     search_val() {
       if (this.$route.params.bookName_Val) {

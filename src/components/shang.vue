@@ -67,7 +67,7 @@
         </div>
         <div class="right_top2">
           <span class="ge"> 发货地址</span>
-          <span class="de">{{bookInfo.region}}</span>
+          <span class="de">{{ bookInfo.region }}</span>
         </div>
         <div class="right_top3">
           <div class="right_top3_left">
@@ -203,6 +203,7 @@ export default {
       /* 头部 */
       update: true,
       bookName_Val: '',
+      bookId_Val: '',
       bookInfo: {
         id: '',
         cid: '',
@@ -247,7 +248,7 @@ export default {
     async getBookById() {
       const { data: res } = await this.$http.get('/book/getById', {
         params: {
-          id: 5,
+          id: this.bookId_Val,
         },
       })
       if (res.code == 0) {
@@ -279,6 +280,9 @@ export default {
     },
   },
   created() {
+    this.bookId_Val = this.$route.params.bookId_Val
+    console.log(this.bookId_Val)
+    console.log(this.$route.params.bookId_Val)
     this.getBookById()
   },
 }
