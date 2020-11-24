@@ -45,7 +45,11 @@
               </div>
               <div class="bottom clearfix">
                 <time class="min">{{ o.bookName }}</time>
-                <el-button type="text" class="button">商品详情</el-button>
+                <!-- <template slot-scope="scope"> -->
+                <el-button type="text" class="button" @click="getBookById(o.id)"
+                  >商品详情</el-button
+                >
+                <!-- </template> -->
               </div>
             </div>
           </el-card>
@@ -106,6 +110,10 @@ export default {
     Top,
   },
   methods: {
+    getBookById(id) {
+      console.log(id)
+      this.$router.push('/login')
+    },
     search_val() {
       if (this.$route.params.bookName_Val) {
         this.bookName_Val = this.$route.params.bookName_Val
