@@ -50,7 +50,7 @@ export default {
       } else {
         return (this.isLogin = 0)
       }
-      console.log(typeof this.isLogin)
+      // console.log(typeof this.isLogin)
     },
   },
   created() {
