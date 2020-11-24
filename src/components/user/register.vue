@@ -51,6 +51,7 @@
               effect="dark"
               content="用于找回密码、修改密码等操作"
               placement="bottom"
+              :hide-after="1000"
             >
               <el-input
                 placeholder="建议使用常用手机号注册"
@@ -79,24 +80,34 @@
         </div>
 
         <div v-if="active == 1" style="width: 500px; margin: 0 auto">
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
               placeholder="请输入6-15位的密码"
               v-model="addForm.password"
+              autocomplete="off"
             >
               <template slot="prepend">密码</template>
             </el-input>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="checkPass">
             <el-input
               placeholder="第二次输入以确认您的密码"
-              v-model="addForm.password"
+              v-model="addForm.checkPass"
+              autocomplete="off"
             >
               <template slot="prepend">确认密码</template>
             </el-input>
           </el-form-item>
         </div>
+
         <div v-if="active == 2" style="width: 500px; margin: 0 auto">
+          <div style="width: 78px; height: 102px; margin: 0 auto">
+            <ul>
+              <li>{{ addForm.mobile }}</li>
+            </ul>
+          </div>
+        </div>
+        <div v-if="active == 3" style="width: 500px; margin: 0 auto">
           <div style="width: 78px; height: 102px; margin: 0 auto">
             <img src="../../assets/images/注册成功.png" alt="" />
           </div>
@@ -104,7 +115,7 @@
       </el-form>
       <!-- 按扭区 -->
       <div class="btn">
-        <el-button @click="next" v-if="active <= 2">{{ messageTip }}</el-button>
+        <el-button @click="next" v-if="active <= 3">{{ messageTip }}</el-button>
       </div>
     </div>
   </div>
@@ -130,39 +141,71 @@ export default {
       if (value === "") {
         return callback(new Error("验证码为空啦(´-ω-`)"));
       }
-      setTimeout(() => {
-        this.getVerifyCode();
-        console.log(this.code);
-        if (this.code == 2) {
-          callback(new Error("验证码不对不对哦(´-ω-`)"));
-        } else if (this.code == 1) {
-          callback(new Error("验证码过期啦≥﹏≤"));
+      setTimeout(function () {
+        var code = window.sessionStorage.getItem('verifyCode')
+        var codeMsg = window.sessionStorage.getItem('verifyCodeMsg')
+        if (code == 0) {
+          callback()
         } else {
-          callback();
+          callback(new Error(codeMsg))
         }
-      }, 1000);
-    };
+      }, 500)
+    }
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'))
+      } else {
+        if (this.addForm.checkPass !== '') {
+          this.$refs.addUserFormRules.validateField('checkPass')
+        }
+        callback()
+      }
+    }
+    var validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'))
+      } else if (value !== this.addForm.password) {
+        callback(new Error('两次输入密码不一致!'))
+      } else {
+        callback()
+      }
+    }
 
     return {
       /* 验证码图片 */
-      codeSrc: "",
-      verifyCode: "",
-      code: "",
+      codeSrc: '',
+      verifyCode: '',
+      code: '',
+      addUserCode: '',
       /* 步骤表单 */
       active: 0,
       messageTip: "下一步",
       labelPosition: "right",
       /* 注册信息 */
       addForm: {
-        username: "",
-        password: "",
-        mobile: "",
-        verifyCode: "",
+        username: '',
+        password: '123456',
+        checkPass: '123456',
+        mobile: '18124854956',
+        verifyCode: '',
+        id: '',
+        alias: '',
+        name: '',
+        gender: '',
+        email: '',
+        mobile: '',
+        birth: '',
+        idCardNum: '',
+        region: '',
+        level: '',
+        headImage: '',
       },
       /* 注册表单验证规则 */
       addUserFormRules: {
-        mobile: [{ validator: checkMobile, trigger: "blur" }],
-        verifyCode: [{ validator: checkVerifyCode, trigger: "blur" }],
+        mobile: [{ validator: checkMobile, trigger: 'blur' }],
+        verifyCode: [{ validator: checkVerifyCode, trigger: 'blur' }],
+        password: [{ validator: validatePass, trigger: 'blur' }],
+        checkPass: [{ validator: validatePass2, trigger: 'blur' }],
       },
     };
   },
@@ -173,8 +216,10 @@ export default {
     },
     /* 步骤表单 */
     next() {
+      // console.log(this.active)
       if (this.active == 0) {
-        this.$refs.addUserFormRef.validateField("mobile", (mobileError) => {
+        this.getVerifyCode()
+        this.$refs.addUserFormRef.validateField('mobile', (mobileError) => {
           if (mobileError) {
             console.log("手机没有通过");
           } else {
@@ -185,31 +230,42 @@ export default {
                 if (verifyCodeError) {
                   console.log("验证码没有通过");
                 } else {
-                  this.active++;
+                  this.active++
+                  window.sessionStorage.clear('verifyCode')
                 }
               }
             );
           }
-        });
+        })
+      } else if (this.active == 1) {
+        this.messageTip = '确认注册'
+        this.$refs.addUserFormRef.validateField('checkPass', (checkPass) => {
+          if (checkPass) {
+            console.log('两次密码不相同')
+          } else {
+            this.active++
+          }
+        })
+      } else if (this.active == 2) {
+        let { data: res } = this.addUser().then((res) => {
+          if (res == 0) {
+          this.messageTip = '注册成功，去登录'
+          this.active++
+        } else {
+          this.active = 0
+        }
+        return res
+        })
+        
+      } else if (this.active == 3) {
+        this.login()
       }
     },
-    /*register() {
-       if (this.active == 1) {
-        this.messageTip = '注册'
-      }
-      if (this.active == 2) {
-        this.addUser()
-        this.messageTip = '注册成功，去登录'
-      }
-      if (this.active == 3) {
-        this.login()
-      } 
-    },*/
 
     /* 验证码 */
     async getImg() {
-      this.$http
-        .get("captcha/getcaptcha", { responseType: "arraybuffer" })
+      await this.$http
+        .get('captcha/getcaptcha', { responseType: 'arraybuffer' })
         .then((res) => {
           let path =
             "data:image/png;base64," +
@@ -229,20 +285,36 @@ export default {
         params: { verifyCodeInput: this.addForm.verifyCode },
       });
       if (res.code == 0) {
-        this.code = res.code;
-        return;
+        window.sessionStorage.setItem('verifyCodeMsg', res.data)
+        // this.$message.success(res.data)
+      } else if (res.code == 1) {
+        window.sessionStorage.setItem('verifyCodeMsg', res.msg)
+        // this.$message.error(res.msg)
       } else {
-        this.code = res.code;
-        return;
+        window.sessionStorage.setItem('verifyCodeMsg', res.msg)
+        // this.$message(res.msg)
       }
+      window.sessionStorage.setItem('verifyCode', res.code)
     },
+    /* 注册用户接口 */
     async addUser() {
-      const { data: res } = await this.$http.post("user/regist", {
-        addForm: this.addForm,
-      });
+      const { data: res } = await this.$http.post('user/regist', this.addForm)
       if (res.code == 0) {
-        return res.msg;
+        this.$message.success(res.msg)
+      } else {
+        this.$message(res.msg)
       }
+      this.addUserCode = res.code
+      return this.addUserCode
+    },
+  },
+  watch: {
+    'addForm.verifyCode'(news, old) {
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        this.getVerifyCode()
+      }, 300)
+      // deep: true
     },
   },
   created() {

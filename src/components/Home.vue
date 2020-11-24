@@ -41,56 +41,24 @@
         <div class="dian">
           <a href="">电子书籍</a>
         </div>
-        <div class="er">
-          <p class="er1">儿童书籍</p>
-          <div class="wen">
-            <a href="" class="heng">文学</a>
-            <a href="" class="heng">教育</a>
-            <a href="" class="heng">启蒙</a>
-            <a href="" class="heng">绘本</a>
+        <!-- 分类 START -->
+        <div
+          class="er"
+          v-for="index in indexInfo.booksClassList"
+          :key="index.id"
+        >
+          <p class="er1">{{ index.name }}</p>
+          <div
+            class="wen"
+            v-for="subIndex in index.children"
+            :key="subIndex.id"
+          >
+            <a href="" class="heng">{{ subIndex.name }}</a>
           </div>
         </div>
-        <div class="er">
-          <p class="er1">经济管理</p>
-          <div class="wen">
-            <a href="" class="heng">经济</a>
-            <a href="" class="heng">管理</a>
-            <a href="" class="heng">投资管理</a>
-          </div>
-        </div>
-        <div class="er">
-          <p class="er1">科学科普</p>
-          <div class="wen">
-            <a href="" class="heng">计算机</a>
-            <a href="" class="heng">科普</a>
-            <a href="" class="heng">医学</a>
-          </div>
-        </div>
-        <div class="er">
-          <p class="er1">生活</p>
-          <div class="wen">
-            <a href="" class="heng">美食</a>
-            <a href="" class="heng">育儿</a>
-            <a href="" class="heng">旅游</a>
-            <a href="" class="heng">家居</a>
-            <a href="" class="heng">宠物</a>
-            <a href="" class="heng">美妆</a>
-          </div>
-        </div>
-        <div class="er">
-          <p class="er1">人文社科</p>
-          <div class="wen">
-            <a href="" class="heng">历史</a>
-            <a href="" class="heng">宗教</a>
-            <a href="" class="heng">哲学</a>
-            <a href="" class="heng">军事</a>
-            <a href="" class="heng">政治</a>
-          </div>
-        </div>
-        <div class="er">
-          <p class="er1">轻小说/小说</p>
-        </div>
+        <!-- 分类 END -->
       </div>
+
       <div class="bigzheng">
         <div class="zheng_middle">
           <div class="block">
@@ -163,52 +131,26 @@
             <span>热门书籍</span>
           </div>
         </div>
+
         <div class="zheng_buttom">
-          <div class="java">
-            <div class="mei">
+          <div class="hotBookList">
+            <!-- 热门书藉 START-->
+            <div
+              class="mei"
+              v-for="index in indexInfo.bookList"
+              :key="index.id"
+            >
               <div class="niao">
-                <a href=""><img src="../assets/images/ing9.png" alt="" /></a>
+                <a href=""><img :src="index.imagesUrl" alt="" /></a>
               </div>
               <div class="zi">
-                <a href="">中国鸟类图鉴</a>
+                <a href="">{{ index.bookName }}</a>
               </div>
               <div class="jia">
-                <a href=""> ￥39.9</a>
+                <a href=""> ￥{{ index.price }}</a>
               </div>
             </div>
-            <div class="mei">
-              <div class="niao">
-                <a href=""><img src="../assets/images/ing10.png" alt="" /></a>
-              </div>
-              <div class="zi">
-                <a href="">java从入门到精通</a>
-              </div>
-              <div class="jia">
-                <a href=""> ￥29.9</a>
-              </div>
-            </div>
-            <div class="mei">
-              <div class="niao">
-                <a href=""><img src="../assets/images/ing11.png" alt="" /></a>
-              </div>
-              <div class="zi">
-                <a href="">游戏开发</a>
-              </div>
-              <div class="jia">
-                <a href=""> ￥25.9</a>
-              </div>
-            </div>
-            <div class="mei">
-              <div class="niao">
-                <a href=""><img src="../assets/images/ing12.png" alt="" /></a>
-              </div>
-              <div class="zi">
-                <a href="">投资管理从入门到精通</a>
-              </div>
-              <div class="jia">
-                <a href=""> ￥59.9</a>
-              </div>
-            </div>
+            <!-- 热门书藉 END-->
           </div>
         </div>
       </div>
@@ -227,6 +169,12 @@ export default {
         password: "",
       },
       loginFormRules: {},
+      /* 首页信息 */
+      indexInfo: {
+        bookList: [],
+        booksClassList: [],
+        advertiseList: [],
+      },
       update: true,
     };
   },
@@ -259,10 +207,20 @@ export default {
     },
     search_button() {
       this.$router.push({
-        name: "search",
+        name: 'search',
         params: { bookName_Val: this.bookName_Val },
-      });
+      })
     },
+    async getIndexInfo() {
+      const { data: res } = await this.$http.get('book/index')
+      this.indexInfo.bookList = res.data.bookList.content
+      this.indexInfo.booksClassList = res.data.booksClassList
+      this.indexInfo.advertiseList = res.data.advertiseList
+    },
+  },
+  created() {
+    this.getIndexInfo()
+    console.log(this.indexInfo)
   },
 };
 </script>
@@ -633,7 +591,7 @@ export default {
   // background: yellow;
   float: left;
 }
-.java {
+.hotBookList {
   width: 930px;
   height: 190px;
   border: 1px solid #14aaff;

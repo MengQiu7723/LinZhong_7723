@@ -79,10 +79,113 @@
           </div>
         </div>
         <div class="right_top4">
-          <span class="ge">选择版本</span>
-          <el-row>
-            <el-button disabled style="size: 200px">第一版</el-button>
-          </el-row>
+          <span class="ge1">选择版本</span>
+          <div class="yi">
+            <span>第一版</span>
+          </div>
+          <div class="er">
+            <span>第二版</span>
+          </div>
+          <div class="yi">
+            <span>第三版</span>
+          </div>
+          <div class="er1">
+            <span>第四版</span>
+          </div>
+          <div class="er">
+            <span>第五版</span>
+          </div>
+        </div>
+        <div class="right_top5">
+          <div class="right_top5_left">
+            <a href="">加入购物车</a>
+          </div>
+          <div class="right_top5_right">
+            <a href="">立即购买</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="last">
+      <div class="last_left">
+        <div class="last_left1">
+          <div class="left1_top">
+            <img src="../assets/images/ing21.png" alt="" />
+          </div>
+          <div class="left1">
+            <span>￥49.9</span>
+            <p>数据工程师五天地修炼</p>
+          </div>
+        </div>
+        <div class="last_left1">
+          <div class="left1_top">
+            <img src="../assets/images/ing20.png" alt="" />
+          </div>
+          <div class="left1">
+            <span>￥44.9</span>
+            <p>世家新人游戏开发</p>
+          </div>
+        </div>
+        <div class="last_left1">
+          <div class="left1_top">
+            <img src="../assets/images/ing20.png" alt="" />
+          </div>
+          <div class="left1">
+            <span>￥34.9</span>
+            <p>世家新人卡发培训教材</p>
+          </div>
+        </div>
+      </div>
+      <div class="last_right">
+        <div class="right">
+          <div class="right_left">
+            <h1>4.7</h1>
+            <p>综合评价</p>
+            <span>1.6w</span>
+          </div>
+          <div class="right_right">
+            <div class="right_right1">
+              <span>好评如潮 1.3w</span>
+              <span>物流很快 0.9w</span>
+              <span>客服很赞 1.6w</span>
+              <div class="right_right2">
+                <span>美物价廉 0.7w</span>
+                <span>美物价廉 0.9w</span>
+                <span class="pin">商品确实 21</span>
+              </div>
+            </div>
+          </div>
+          <div class="right_right_2">
+            <div class="right_tu">
+              <img src="../assets/images/ing25.png" alt="" />
+            </div>
+            <div class="tu_right">
+              <div class="hao">
+                <span>35-threefive1022568</span>
+              </div>
+              <div class="ju">
+                <img src="../assets/images/ing24.png" alt="" />
+                <span>举报</span>
+              </div>
+              <p>这是评价这是评价这是评价这是评价这是评价这是评价</p>
+              <div class="men">
+                <span>java从入门到入土</span>
+              </div>
+              <div class="ri">
+                <span>2020-9-29</span>
+              </div>
+              <div class="right_png">
+                <div class="ri_right">
+                  <img src="../assets/images/ing26.png" alt="" />
+                  <span>评价</span>
+                </div>
+                <div class="ri_right2">
+                  <img src="../assets/images/ing22.png" alt="" />
+                  <span>106</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -118,7 +221,7 @@ export default {
   width: 1180px;
   height: 40px;
   margin: 0 auto;
-  background: yellow;
+  // background: yellow;
 }
 
 .top_left {
@@ -188,7 +291,7 @@ export default {
 .kai {
   width: 1180px;
   height: 120px;
-  background: pink;
+  // background: pink;
   margin-top: 20px;
 }
 .logo {
@@ -322,7 +425,7 @@ export default {
 .zheng_top_right {
   width: 650px;
   height: 400px;
-  background: chartreuse;
+  // background: chartreuse;
   float: left;
   margin-left: 20px;
 }
@@ -401,11 +504,295 @@ export default {
   float: left;
 }
 .right_top4 {
-  width: 650px;
+  width: 500px;
   height: 150px;
-  background: cornflowerblue;
+  // background: cornflowerblue;
   margin-top: 10px;
   float: left;
+}
+.ge1 {
+  color: #dddddd;
+  font-size: 17px;
+  float: left;
+  margin-top: 30px;
+}
+.yi {
+  width: 100px;
+  height: 40px;
+  border: 1px dashed #ccc;
+  // border-width: 1px ;
+  float: left;
+  margin-left: 30px;
+  text-align: center;
+  margin-top: 20px;
+}
+.yi span {
+  height: 40px;
+  line-height: 40px;
+
+  font-size: 18px;
+  color: #ccc;
+}
+.er {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #000;
+  float: left;
+  margin-left: 30px;
+  text-align: center;
+  margin-top: 20px;
+}
+.er span {
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  color: #000;
+}
+.er1 {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #000;
+  float: left;
+  margin-left: 100px;
+  text-align: center;
+  margin-top: 20px;
+}
+.er1 span {
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  color: #000;
+}
+.right_top5 {
+  width: 650px;
+  height: 70px;
+  // background: chocolate;
+  margin-top: 260px;
+}
+.right_top5_left {
+  width: 190px;
+  height: 57px;
+  border: 3px solid #14aaff;
+  float: left;
+  margin-left: 30px;
+  text-align: center;
+  line-height: 57px;
+}
+.right_top5_left a {
+  text-decoration: none;
+  color: #14aaff;
+  font-size: 20px;
+}
+.right_top5_right {
+  width: 190px;
+  height: 60px;
+  background: #14aaff;
+  float: left;
+  margin-left: 30px;
+  text-align: center;
+  line-height: 60px;
+}
+.right_top5_right a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+}
+.last {
+  width: 1180px;
+  height: 800px;
+  background: chocolate;
+  margin-top: 20px;
+}
+.last_left {
+  width: 270px;
+  height: 800px;
+  // background: cornflowerblue;
+  float: left;
+}
+.last_left1 {
+  width: 265px;
+  height: 260px;
+  border: 1px solid #ccc;
+}
+.left1_top {
+  width: 270px;
+  height: 210px;
+  float: left;
+  text-align: center;
+}
+.left1_top img {
+  width: 180px;
+  height: 190px;
+  margin-top: 20px;
+}
+.left1 {
+  width: 270px;
+  height: 50px;
+  text-align: center;
+}
+.left1 span {
+  color: red;
+  font-size: 20px;
+}
+.last_right {
+  width: 900px;
+  height: 800px;
+  border: 1px solid red;
+  float: right;
+}
+.right {
+  width: 900px;
+  height: 160px;
+  // background: green;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.right_left {
+  width: 170px;
+  height: 160px;
+  float: left;
+  border-right: 1px solid #ccc;
+  text-align: center;
+}
+.right_left h1 {
+  color: #14aaff;
+  margin-top: 30px;
+}
+.right_left span {
+  color: #14aaff;
+}
+.right_left p {
+  color: #14aaff;
+}
+.right_right {
+  width: 600px;
+  height: 160px;
+  // background: #666;
+  float: right;
+  margin-right: 100px;
+}
+.right_right1 {
+  width: 600px;
+  height: 70px;
+  // text-align: center;
+  // line-height: 70px;
+  // background: #1db69a;
+  float: left;
+  margin-top: 35px;
+}
+.right_right span {
+  border: 1px solid #14aaff;
+  color: #14aaff;
+  margin-left: 30px;
+}
+.right_right2 {
+  width: 600px;
+  height: 30px;
+  // border: 1px solid red;
+  margin-top: 10px;
+}
+.right_right_2 {
+  width: 900px;
+  height: 160px;
+  background: #dddddd;
+  border-top: 1px solid #ccc;
+  margin-top: 160px;
+}
+.right_tu {
+  width: 100px;
+  height: 160px;
+  float: left;
+}
+.right_tu img {
+  width: 60px;
+  height: 60px;
+}
+.tu_right {
+  width: 800px;
+  height: 160px;
+  background: yellow;
+  float: right;
+}
+.hao {
+  width: 200px;
+  height: 20px;
+  // border: 1px solid red;
+  float: left;
+  margin-top: 10px;
+}
+.hao span {
+  color: #14aaff;
+}
+.ju {
+  width: 600px;
+  height: 20px;
+  margin-top: 10px;
+}
+.ju img {
+  width: 15px;
+  height: 15px;
+}
+.ju span {
+  color: red;
+}
+.tu_right p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+.men {
+  width: 200px;
+  height: 20px;
+  float: left;
+  margin-top: 20px;
+}
+.men span {
+  color: #ccc;
+}
+.ri {
+  width: 100px;
+  height: 20;
+  margin-top: 20px;
+  float: left;
+}
+.ri span {
+  color: #ccc;
+}
+.right_png {
+  width: 200px;
+  height: 20px;
+  margin-top: 20px;
+  float: right;
+  // border: 1px solid pink;
+}
+.ri_right {
+  width: 100px;
+  height: 20px;
+  float: left;
+  // background: #666;
+
+  // margin-right: 100px;
+}
+.ri_right img {
+  width: 15px;
+  height: 12px;
+}
+.ri_right span {
+  color: #ccc;
+  font-size: 15px;
+}
+.ri_right2 {
+  width: 90px;
+  height: 20px;
+  // margin-top: 20px;
+  float: right;
+}
+.ri_right2 img {
+  width: 15px;
+  height: 12px;
+}
+.ri_right2 span {
+  color: red;
+  font-size: 15px;
 }
 </style>
 
