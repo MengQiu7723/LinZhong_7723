@@ -38,22 +38,28 @@
         <div class="fen">
           <span>图书分类</span>
         </div>
-        <div class="dian">
-          <a href="">电子书籍</a>
-        </div>
         <!-- 分类 START -->
         <div
-          class="er"
+          class="dian"
           v-for="index in indexInfo.booksClassList"
           :key="index.id"
         >
-          <p class="er1">{{ index.name }}</p>
-          <div
-            class="wen"
-            v-for="subIndex in index.children"
-            :key="subIndex.id"
-          >
-            <a href="" class="heng">{{ subIndex.name }}</a>
+          <div>
+            <a href="">{{ index.name }}</a>
+          </div>
+          <div class="er" v-for="subIndex in index.children" :key="subIndex.id">
+            <div>
+              <span class="er1">{{ subIndex.name }}</span>
+            </div>
+            <div>
+              <span
+                class="wen"
+                v-for="subSubIndex in subIndex.children"
+                :key="subSubIndex.id"
+              >
+                <a href="" class="heng">{{ subSubIndex.name }}</a>
+              </span>
+            </div>
           </div>
         </div>
         <!-- 分类 END -->
@@ -71,7 +77,8 @@
           </div>
         </div>
         <div class="zheng_right">
-          <div class="deng">
+          <!-- 未登录 -->
+          <div class="deng" v-if="isToken() == 0">
             <!-- 登录表单区域 -->
             <el-form
               ref="loginFormRef"
@@ -115,6 +122,8 @@
               /></a>
             </div>
           </div>
+          <!-- 已登录 -->
+          <div class="deng" v-if="isToken() == 1">欢迎来到35书城~</div>
           <div class="zheng_right_buttom">
             <div class="block1">
               <el-carousel height="140px" width="180px">
@@ -182,6 +191,15 @@ export default {
     Top,
   },
   methods: {
+    /* 判断登录 */
+    isToken() {
+      if (window.sessionStorage.getItem('token')) {
+        return (this.isLogin = 1)
+      } else {
+        return (this.isLogin = 0)
+      }
+      // console.log(typeof this.isLogin)
+    },
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
         if (!valid) return
@@ -220,7 +238,7 @@ export default {
   },
   created() {
     this.getIndexInfo()
-    console.log(this.indexInfo)
+    // console.log(this.indexInfo)
   },
 }
 </script>
@@ -386,7 +404,7 @@ export default {
 }
 .dian {
   width: 230px;
-  height: 50px;
+  // height: 50px;
   text-align: center;
   line-height: 45px;
   // background: #6C6C6C;
@@ -399,7 +417,7 @@ export default {
 }
 .er {
   width: 230px;
-  height: 84px;
+  // height: 84px;
   // background: pink;
   text-align: center;
 }
@@ -412,9 +430,9 @@ export default {
   font-weight: 600;
 }
 .wen {
-  height: 50px;
+  // width: 230px;
+  // height: 50px;
   text-align: center;
-  width: 230px;
 }
 .wen a {
   color: #7d7d7d;
