@@ -112,7 +112,7 @@ export default {
   methods: {
     getBookById(id) {
       console.log(id)
-      this.$router.push('/login')
+      this.$router.push('/shang')
     },
     search_val() {
       if (this.$route.params.bookName_Val) {

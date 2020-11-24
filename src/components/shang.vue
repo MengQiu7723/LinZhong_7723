@@ -1,6 +1,6 @@
 <template>
   <div class="cent">
-    <div class="top">
+    <!-- <div class="top">
       <div class="top_left">
         <div class="tu">
           <a href=""><img src="../assets/images/ing1.png" alt="" /></a>
@@ -17,7 +17,8 @@
         <a href="javascript:void(0)" @click="shou()">收藏夹</a>
         <a href="javascript:void(0)" @click="ding()">我的订单</a>
       </div>
-    </div>
+    </div> -->
+    <Top v-if="update"></Top>
     <div class="kai">
       <div class="logo">
         <span><img src="../assets/images/ing2.png" alt="" /></span>
@@ -36,7 +37,7 @@
               v-model="bookName_Val"
               placeholder="数据库管理"
             />
-            <button @click="search_button">搜索</button>
+            <button @click="search_button()">搜索</button>
           </form>
         </div>
         <div class="kai_button">
@@ -52,21 +53,21 @@
     <div class="xian"></div>
     <div class="zheng_top">
       <div class="zheng_top_left">
-        <img src="../assets/images/ing10.png" alt="" />
+        <img :src="bookInfo.imagesUrl" alt="" />
       </div>
       <div class="zheng_top_right">
         <div class="right_top">
           <p>{{ bookInfo.bookName }}</p>
-          <span>中国齐著</span>
-          <span class="qing">清华大学出版社</span>
+          <span>{{ bookInfo.author }}</span>
+          <span class="qing">{{ bookInfo.publisher }}</span>
         </div>
         <div class="right_top1">
-          <span class="ge">价格</span>
-          <span class="jia"> {{ bookInfo.price }}</span>
+          <span class="ge">价格：</span>
+          <span class="jia"> <em>￥</em>{{ bookInfo.price }}</span>
         </div>
         <div class="right_top2">
           <span class="ge"> 发货地址</span>
-          <span class="de">广东&nbsp;深圳</span>
+          <span class="de">{{bookInfo.region}}</span>
         </div>
         <div class="right_top3">
           <div class="right_top3_left">
@@ -195,64 +196,92 @@
 
 
 <script>
+import Top from '../components/top.vue'
 export default {
   data() {
     return {
-      bookName_Val: "",
+      /* 头部 */
+      update: true,
+      bookName_Val: '',
       bookInfo: {
-        bookName: "",
-        price: "",
+        id: '',
+        cid: '',
+        sid: '',
+        bookName: '',
+        publisher: '',
+        author: '',
+        price: '',
+        introduce: '',
+        ISBN: '',
+        imagesUrl: '',
+        modifyCategory: '',
+        ggct: '',
+        returnGoods: '',
+        invoice: '',
+        promise: '',
+        region: '',
+        specialOffer: '',
+        imagesDetails: [
+          {
+            id: '',
+            bid: '',
+            url: '',
+            judge: '',
+          },
+        ],
+        imagesThumbnails: [
+          {
+            id: '',
+            bid: '',
+            url: '',
+            judge: '',
+          },
+        ],
       },
-    };
+    }
+  },
+  components: {
+    Top,
   },
   methods: {
     async getBookById() {
-      const { data: res } = await this.$http.get("/book/getById", {
+      const { data: res } = await this.$http.get('/book/getById', {
         params: {
           id: 5,
         },
-      });
+      })
       if (res.code == 0) {
-        this.bookInfo.bookName = res.data.bookName;
-        this.bookInfo.price = res.data.price;
+        this.bookInfo = res.data
       }
-      console.log(res.data.bookName);
+      console.log(res.data.bookName)
     },
     search_val() {
       if (this.$route.params.bookName_Val) {
-        this.bookName_Val = this.$route.params.bookName_Val;
-        window.sessionStorage.setItem("search", this.bookName_Val);
+        this.bookName_Val = this.$route.params.bookName_Val
+        window.sessionStorage.setItem('search', this.bookName_Val)
       }
-      this.bookName_Val = sessionStorage.getItem("search");
+      this.bookName_Val = sessionStorage.getItem('search')
     },
-    login() {
-      this.$router.push("/login");
+    search_button() {
+      this.$router.push({
+        name: 'search',
+        params: { bookName_Val: this.bookName_Val },
+      })
     },
-    pc() {
-      this.$router.push("/Personalcenter");
-    },
-    shopCar() {
-      this.$router.push("/shopping");
-    },
-    shou() {
-      this.$router.push("/shou");
-    },
-    ding() {
-      this.$router.push("/ding");
-    },
+
     isToken() {
-      if (window.sessionStorage.getItem("token")) {
-        return (this.isLogin = 1);
+      if (window.sessionStorage.getItem('token')) {
+        return (this.isLogin = 1)
       } else {
-        return (this.isLogin = 0);
+        return (this.isLogin = 0)
       }
-      console.log(typeof this.isLogin);
+      console.log(typeof this.isLogin)
     },
   },
   created() {
-    this.getBookById();
+    this.getBookById()
   },
-};
+}
 </script>
 
 
