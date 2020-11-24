@@ -8,7 +8,7 @@
         <div class="de">
           <span>广东</span>
           <a>返回首页</a>
-          <span @click="pc()" v-if="isLogin == 1">欢迎来到35书城</span>
+          <span @click="pc()">欢迎来到35书城</span>
         </div>
       </div>
       <div class="top_right">
@@ -56,13 +56,13 @@
       </div>
       <div class="zheng_top_right">
         <div class="right_top">
-          <p>Java从入门到精通（第五版）十年锤炼打造经典</p>
+          <p>{{ bookInfo.bookName }}</p>
           <span>中国齐著</span>
-          <span class="qing"> 清华大学出版社</span>
+          <span class="qing">清华大学出版社</span>
         </div>
         <div class="right_top1">
           <span class="ge">价格</span>
-          <span class="jia"> ￥49.9</span>
+          <span class="jia"> {{ bookInfo.price }}</span>
         </div>
         <div class="right_top2">
           <span class="ge"> 发货地址</span>
@@ -197,9 +197,61 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      bookName_Val: "",
+      bookInfo: {
+        bookName: "",
+        price: "",
+      },
+    };
   },
-  methods: {},
+  methods: {
+    async getBookById() {
+      const { data: res } = await this.$http.get("/book/getById", {
+        params: {
+          id: 5,
+        },
+      });
+      if (res.code == 0) {
+        this.bookInfo.bookName = res.data.bookName;
+        this.bookInfo.price = res.data.price;
+      }
+      console.log(res.data.bookName);
+    },
+    search_val() {
+      if (this.$route.params.bookName_Val) {
+        this.bookName_Val = this.$route.params.bookName_Val;
+        window.sessionStorage.setItem("search", this.bookName_Val);
+      }
+      this.bookName_Val = sessionStorage.getItem("search");
+    },
+    login() {
+      this.$router.push("/login");
+    },
+    pc() {
+      this.$router.push("/Personalcenter");
+    },
+    shopCar() {
+      this.$router.push("/shopping");
+    },
+    shou() {
+      this.$router.push("/shou");
+    },
+    ding() {
+      this.$router.push("/ding");
+    },
+    isToken() {
+      if (window.sessionStorage.getItem("token")) {
+        return (this.isLogin = 1);
+      } else {
+        return (this.isLogin = 0);
+      }
+      console.log(typeof this.isLogin);
+    },
+  },
+  created() {
+    this.getBookById();
+  },
 };
 </script>
 
@@ -600,7 +652,7 @@ export default {
 .last {
   width: 1180px;
   height: 800px;
-  background: chocolate;
+  // background: chocolate;
   margin-top: 20px;
 }
 .last_left {
@@ -637,7 +689,7 @@ export default {
 .last_right {
   width: 900px;
   height: 800px;
-  border: 1px solid red;
+  // border: 1px solid red;
   float: right;
 }
 .right {
@@ -694,7 +746,7 @@ export default {
 .right_right_2 {
   width: 900px;
   height: 160px;
-  background: #dddddd;
+  // background: #dddddd;
   border-top: 1px solid #ccc;
   margin-top: 160px;
 }
@@ -710,7 +762,7 @@ export default {
 .tu_right {
   width: 800px;
   height: 160px;
-  background: yellow;
+  // background: yellow;
   float: right;
 }
 .hao {
