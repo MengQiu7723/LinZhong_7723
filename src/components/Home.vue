@@ -29,7 +29,8 @@
         </div>
       </div>
       <div class="kai_right">
-        <a href="">购物车</a>
+        <!-- <a href="javascript:void(0)" @click="shopCar">购物车</a> -->
+        <router-link :to="{ path: '/shopping' }">购物车</router-link>
       </div>
     </div>
     <div class="xian"></div>
@@ -106,7 +107,10 @@
             </el-form>
             <div class="last">
               <div class="last_last">
-                <a class="last_left">注册</a>
+                <!-- <a class="last_left">注册</a> -->
+                <router-link class="last_left" :to="{ path: '/register' }"
+                  >注册</router-link
+                >
                 <a class="last_right">找回密码</a>
               </div>
             </div>
@@ -191,6 +195,9 @@ export default {
     Top,
   },
   methods: {
+    shopCar() {
+      this.$router.push('/shopping')
+    },
     /* 判断登录 */
     isToken() {
       if (window.sessionStorage.getItem('token')) {
