@@ -19,7 +19,7 @@
               v-model="bookName_Val"
               placeholder="数据库管理"
             />
-            <button @click="search_button">搜索</button>
+            <button @click="search_button()">搜索</button>
           </form>
         </div>
         <div class="kai_button">
