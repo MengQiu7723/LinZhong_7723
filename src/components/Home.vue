@@ -19,7 +19,7 @@
               v-model="bookName_Val"
               placeholder="数据库管理"
             />
-            <button @click="search_button">搜索</button>
+            <button @click="search_button()">搜索</button>
           </form>
         </div>
         <div class="kai_button">
@@ -29,7 +29,8 @@
         </div>
       </div>
       <div class="kai_right">
-        <a href="">购物车</a>
+        <!-- <a href="javascript:void(0)" @click="shopCar">购物车</a> -->
+        <router-link :to="{ path: '/shopping' }">购物车</router-link>
       </div>
     </div>
     <div class="xian"></div>
@@ -38,22 +39,28 @@
         <div class="fen">
           <span>图书分类</span>
         </div>
-        <div class="dian">
-          <a href="">电子书籍</a>
-        </div>
         <!-- 分类 START -->
         <div
-          class="er"
+          class="dian"
           v-for="index in indexInfo.booksClassList"
           :key="index.id"
         >
-          <p class="er1">{{ index.name }}</p>
-          <div
-            class="wen"
-            v-for="subIndex in index.children"
-            :key="subIndex.id"
-          >
-            <a href="" class="heng">{{ subIndex.name }}</a>
+          <div>
+            <a href="">{{ index.name }}</a>
+          </div>
+          <div class="er" v-for="subIndex in index.children" :key="subIndex.id">
+            <div>
+              <span class="er1">{{ subIndex.name }}</span>
+            </div>
+            <div>
+              <span
+                class="wen"
+                v-for="subSubIndex in subIndex.children"
+                :key="subSubIndex.id"
+              >
+                <a href="" class="heng">{{ subSubIndex.name }}</a>
+              </span>
+            </div>
           </div>
         </div>
         <!-- 分类 END -->
@@ -71,7 +78,8 @@
           </div>
         </div>
         <div class="zheng_right">
-          <div class="deng">
+          <!-- 未登录 -->
+          <div class="deng" v-if="isToken() == 0">
             <!-- 登录表单区域 -->
             <el-form
               ref="loginFormRef"
@@ -99,7 +107,10 @@
             </el-form>
             <div class="last">
               <div class="last_last">
-                <a class="last_left">注册</a>
+                <!-- <a class="last_left">注册</a> -->
+                <router-link class="last_left" :to="{ path: '/register' }"
+                  >注册</router-link
+                >
                 <a class="last_right">找回密码</a>
               </div>
             </div>
@@ -115,6 +126,8 @@
               /></a>
             </div>
           </div>
+          <!-- 已登录 -->
+          <div class="deng" v-if="isToken() == 1">欢迎来到35书城~</div>
           <div class="zheng_right_buttom">
             <div class="block1">
               <el-carousel height="140px" width="180px">
@@ -159,14 +172,14 @@
 </template>
 
 <script>
-import Top from '../components/top.vue'
+import Top from "../components/top.vue";
 export default {
   data() {
     return {
-      bookName_Val: '',
+      bookName_Val: "",
       loginForm: {
-        username: '',
-        password: '',
+        username: "",
+        password: "",
       },
       loginFormRules: {},
       /* 首页信息 */
@@ -176,34 +189,45 @@ export default {
         advertiseList: [],
       },
       update: true,
-    }
+    };
   },
   components: {
     Top,
   },
   methods: {
+    shopCar() {
+      this.$router.push('/shopping')
+    },
+    /* 判断登录 */
+    isToken() {
+      if (window.sessionStorage.getItem('token')) {
+        return (this.isLogin = 1)
+      } else {
+        return (this.isLogin = 0)
+      }
+    },
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
-        if (!valid) return
+        if (!valid) return;
         //get请求
-        const { data: res } = await this.$http.get('user/login', {
+        const { data: res } = await this.$http.get("user/login", {
           params: this.loginForm,
-        })
+        });
         if (res.code == 0) {
-          window.sessionStorage.setItem('token', res.data)
-          window.localStorage.setItem('role', 0)
-          this.$message.success('登录成功')
+          window.sessionStorage.setItem("token", res.data);
+          window.localStorage.setItem("role", 0);
+          this.$message.success("登录成功");
           // 移除组件
-          this.update = false
+          this.update = false;
           // 在组件移除后，重新渲染组件
           // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。
           this.$nextTick(() => {
-            this.update = true
-          })
+            this.update = true;
+          });
         } else if (res.code == 1) {
-          this.$message.error(res.msg + '，登录失败！')
+          this.$message.error(res.msg + "，登录失败！");
         }
-      })
+      });
     },
     search_button() {
       this.$router.push({
@@ -220,9 +244,9 @@ export default {
   },
   created() {
     this.getIndexInfo()
-    console.log(this.indexInfo)
+    // console.log(this.indexInfo)
   },
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -231,6 +255,7 @@ export default {
   margin-bottom: 10px;
 }
 /* 小登录 */
+
 * {
   margin: 0px auto;
   padding: 0px;
@@ -386,7 +411,7 @@ export default {
 }
 .dian {
   width: 230px;
-  height: 50px;
+  // height: 50px;
   text-align: center;
   line-height: 45px;
   // background: #6C6C6C;
@@ -399,7 +424,7 @@ export default {
 }
 .er {
   width: 230px;
-  height: 84px;
+  // height: 84px;
   // background: pink;
   text-align: center;
 }
@@ -412,9 +437,9 @@ export default {
   font-weight: 600;
 }
 .wen {
-  height: 50px;
+  // width: 230px;
+  // height: 50px;
   text-align: center;
-  width: 230px;
 }
 .wen a {
   color: #7d7d7d;

@@ -45,7 +45,11 @@
               </div>
               <div class="bottom clearfix">
                 <time class="min">{{ o.bookName }}</time>
-                <el-button type="text" class="button">商品详情</el-button>
+                <!-- <template slot-scope="scope"> -->
+                <el-button type="text" class="button" @click="getBookById(o.id)"
+                  >商品详情</el-button
+                >
+                <!-- </template> -->
               </div>
             </div>
           </el-card>
@@ -77,6 +81,7 @@ export default {
   data() {
     return {
       bookName_Val: '',
+      bookId_Val: '',
       bookInfo: [
         {
           id: '',
@@ -106,6 +111,14 @@ export default {
     Top,
   },
   methods: {
+    getBookById(id) {
+      console.log(id)
+      this.bookId_Val = id
+      this.$router.push({
+        name: 'shang',
+        params: { bookId_Val: this.bookId_Val },
+      })
+    },
     search_val() {
       if (this.$route.params.bookName_Val) {
         this.bookName_Val = this.$route.params.bookName_Val
@@ -218,8 +231,9 @@ i {
 }
 
 .image {
-  width: 100%;
+  // width: 100%;
   height: 100%;
+  margin: 0 auto;
   display: block;
 }
 
