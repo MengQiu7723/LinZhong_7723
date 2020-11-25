@@ -1,7 +1,7 @@
 <template>
   <div>
     <Top></Top>
-    <shoulogin></shoulogin>
+    <Shoulogin></Shoulogin>
     <!-- <div class="shousuo">
       <div class="shousuo_left">
         <a href=""
@@ -174,7 +174,7 @@
 
 <script>
 import Top from "../components/top.vue";
-import Shoulogin from "./shoulogin.vue";
+import Shoulogin from "../components/shoulogin.vue";
 
 export default {
   data() {
@@ -187,7 +187,7 @@ export default {
   },
   components: {
     Top,
-    // Shoulogin,
+    Shoulogin,
   },
   methods: {
     handleChange(value) {
