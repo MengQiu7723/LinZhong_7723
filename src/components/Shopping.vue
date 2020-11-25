@@ -1,7 +1,8 @@
 <template>
   <div>
     <Top></Top>
-    <div class="shousuo">
+    <shoulogin></shoulogin>
+    <!-- <div class="shousuo">
       <div class="shousuo_left">
         <a href=""
           ><img src="../assets/images/1.png" alt="" id="shousuo_left1"
@@ -15,7 +16,6 @@
           /></a>
         </div>
       </div>
-      <!-- <div class="shousuo_middle"></div> -->
       <h1 id="shousuo_middle">购物车</h1>
       <div class="shousuo_right">
         <el-input
@@ -27,7 +27,7 @@
           <template slot="append">搜索</template>
         </el-input>
       </div>
-    </div>
+    </div> -->
     <el-divider></el-divider>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="全部商品" name="first">
@@ -174,6 +174,7 @@
 
 <script>
 import Top from "../components/top.vue";
+import Shoulogin from "./shoulogin.vue";
 
 export default {
   data() {
@@ -186,6 +187,7 @@ export default {
   },
   components: {
     Top,
+    // Shoulogin,
   },
   methods: {
     handleChange(value) {
