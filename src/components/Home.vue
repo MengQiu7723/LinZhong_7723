@@ -205,7 +205,6 @@ export default {
       } else {
         return (this.isLogin = 0)
       }
-      // console.log(typeof this.isLogin)
     },
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
