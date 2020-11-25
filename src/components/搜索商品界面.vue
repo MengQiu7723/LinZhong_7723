@@ -112,7 +112,7 @@ export default {
   },
   methods: {
     getBookById(id) {
-      console.log(id)
+      // console.log(id)
       this.bookId_Val = id
       this.$router.push({
         name: 'shang',

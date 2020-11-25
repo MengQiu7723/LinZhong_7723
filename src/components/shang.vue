@@ -281,8 +281,6 @@ export default {
   },
   created() {
     this.bookId_Val = this.$route.params.bookId_Val
-    console.log(this.bookId_Val)
-    console.log(this.$route.params.bookId_Val)
     this.getBookById()
   },
 }
