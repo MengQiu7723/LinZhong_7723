@@ -277,7 +277,7 @@ export default {
 }
 
 .top_left {
-  width: 300px;
+  width: 350px;
   height: 40px;
   // border: 1px solid red;
   float: left;
@@ -325,7 +325,7 @@ export default {
 }
 
 .top_right {
-  width: 860px;
+  width: 810px;
   height: 40px;
   // background: chocolate;
   float: right;
