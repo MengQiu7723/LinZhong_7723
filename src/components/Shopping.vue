@@ -173,8 +173,8 @@
 </template>
 
 <script>
-import Top from "../components/top.vue"
-import Shoulogin from "../components/shoulogin.vue"
+import Top from "../components/top.vue";
+import Shoulogin from "../components/shoulogin.vue";
 
 export default {
   data() {
