@@ -1,7 +1,7 @@
 <template>
   <div>
     <Top></Top>
-    <shoulogin></shoulogin>
+    <Shoulogin></Shoulogin>
     <!-- <div class="shousuo">
       <div class="shousuo_left">
         <a href=""
@@ -28,7 +28,7 @@
         </el-input>
       </div>
     </div> -->
-    <el-divider></el-divider>
+    <!-- <el-divider></el-divider> -->
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="全部商品" name="first">
         <div class="shangping">
@@ -173,8 +173,8 @@
 </template>
 
 <script>
-import Top from "../components/top.vue";
-import Shoulogin from "./shoulogin.vue";
+import Top from "../components/top.vue"
+import Shoulogin from "../components/shoulogin.vue"
 
 export default {
   data() {
@@ -187,7 +187,7 @@ export default {
   },
   components: {
     Top,
-    // Shoulogin,
+    Shoulogin,
   },
   methods: {
     handleChange(value) {
