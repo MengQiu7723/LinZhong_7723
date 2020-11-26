@@ -1,8 +1,8 @@
 <template>
   <div>
     <Top></Top>
-    <Shoulogin></Shoulogin>
-    <!-- <div class="shousuo">
+    <!-- <Shoulogin></Shoulogin> -->
+    <div class="shousuo">
       <div class="shousuo_left">
         <a href=""
           ><img src="../assets/images/1.png" alt="" id="shousuo_left1"
@@ -27,7 +27,7 @@
           <template slot="append">搜索</template>
         </el-input>
       </div>
-    </div> -->
+    </div>
     <el-divider></el-divider>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="全部商品" name="first">

@@ -42,7 +42,7 @@ export default {
   width: 1180px;
   height: 200px;
   margin: 0 auto;
-  /* // border: 1px solid red; */
+  /* border: 1px solid red; */
 }
 .shousuo_left {
   width: 200px;

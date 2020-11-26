@@ -11,6 +11,7 @@ import Ding from '../components/ding.vue'
 import Personalcenter from '../components/Personalcenter.vue'
 import Shopping from '../components/Shopping.vue'
 import Shang from '../components/shang.vue'
+import Wuliu from '../components/wuliu.vue'
 
 Vue.use(Router)
 
@@ -26,6 +27,7 @@ const router = new Router({
     { path: '/Personalcenter', component: Personalcenter },
     { path: '/shopping', component: Shopping },
     { path: '/shang', name: 'shang', component: Shang },
+    { path: '/wuliu', component: Wuliu },
   ],
 });
 
