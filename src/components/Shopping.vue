@@ -1,71 +1,56 @@
 <template>
   <div>
     <Top></Top>
-    <Shoulogin></Shoulogin>
-    <!-- <div class="shousuo">
-      <div class="shousuo_left">
-        <a href=""
-          ><img src="../assets/images/1.png" alt="" id="shousuo_left1"
-        /></a>
-        <div class="shousuo_left_logo">
-          <a href=""
-            ><img src="../assets/images/2.png" alt="" id="shousuo_left2"
-          /></a>
-          <a href=""
-            ><img src="../assets/images/3.png" alt="" id="shousuo_left3"
-          /></a>
-        </div>
-      </div>
-      <h1 id="shousuo_middle">购物车</h1>
-      <div class="shousuo_right">
-        <el-input
-          placeholder="请输入内容"
-          v-model="input"
-          clearable
-          prefix-icon="el-icon-search"
-        >
-          <template slot="append">搜索</template>
-        </el-input>
-      </div>
-    </div> -->
-    <!-- <el-divider></el-divider> -->
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+    <!-- <Shoulogin></Shoulogin> -->
+    <el-tabs v-model="activeName" @tab-click="handleClick()">
       <el-tab-pane label="全部商品" name="first">
+        <!-- 行头标题 -->
         <div class="shangping">
-          <el-checkbox v-model="checked" @change="selectedAll"
-            >全选</el-checkbox
-          >
-          <h7 style="margin-left: 500px">单价</h7>
-          <h7>数量</h7>
-          <h7>总额</h7>
-          <h7>操作</h7>
-        </div>
-        <el-checkbox v-model="checked" style="">店铺: 魅力图书店</el-checkbox>
-        <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
-          <div class="mlshangping_photo">图书</div>
-          <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
-          <div class="mltsd_right">
-            <div class="mltsd_danjia">
-              <span>￥35.98</span>
-              <h6 style="margin-top: 50px">￥25.98</h6>
-            </div>
-            <div class="mltsd_jsq">
-              <el-input-number size="mini" v-model="num1"></el-input-number>
-            </div>
-            <div class="mltsd_ze">
-              <h6 style="color: red; margin-top: 55px">￥25.98</h6>
-            </div>
-            <div class="mltsd_cz">
-              <el-popconfirm title="此商品确定删除吗？">
-                <el-button slot="reference">删除</el-button>
-              </el-popconfirm>
-            </div>
+          <div style="float: left">
+            <el-checkbox v-model="checkAll" @change="handleCheckAllChange()"
+              >全选</el-checkbox
+            >
+          </div>
+          <div style="float: right">
+            <span style="width: 50px">单价</span>
+            <span style="width: 50px">数量</span>
+            <span style="width: 50px">总额</span>
+            <span style="width: 50px">操作</span>
           </div>
         </div>
-        <el-checkbox v-model="checked" style="">店铺: 儿童图书馆</el-checkbox>
+        <!-- 多选框群组 -->
+        <el-checkbox-group
+          v-model="checkedCities"
+          @change="handleCheckedCitiesChange()"
+        >
+          <el-checkbox v-model="checkAll">店铺: 魅力图书店</el-checkbox>
+          <div class="mlshangping">
+            <el-checkbox v-model="checkAll" id="mlsp"></el-checkbox>
+            <div class="mlshangping_photo">图书</div>
+            <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
+            <div class="mltsd_right">
+              <div class="mltsd_danjia">
+                <span>￥35.98</span>
+                <h6 style="margin-top: 50px">￥25.98</h6>
+              </div>
+              <div class="mltsd_jsq">
+                <el-input-number size="mini" v-model="num1"></el-input-number>
+              </div>
+              <div class="mltsd_ze">
+                <h6 style="color: red; margin-top: 55px">￥25.98</h6>
+              </div>
+              <div class="mltsd_cz">
+                <el-popconfirm title="此商品确定删除吗？">
+                  <el-button slot="reference">删除</el-button>
+                </el-popconfirm>
+              </div>
+            </div>
+          </div>
+        </el-checkbox-group>
+
+        <!-- <el-checkbox v-model="checkAll" style="">店铺: 儿童图书馆</el-checkbox>
         <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+          <el-checkbox v-model="checkAll" id="mlsp"></el-checkbox>
           <div class="mlshangping_photo">图书</div>
           <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
           <div class="mltsd_right">
@@ -86,7 +71,7 @@
           </div>
         </div>
         <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+          <el-checkbox v-model="checkAll" id="mlsp"></el-checkbox>
           <div class="mlshangping_photo">图书</div>
           <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
           <div class="mltsd_right">
@@ -105,11 +90,11 @@
               </el-popconfirm>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="gouwuche_js">
           <el-checkbox
-            v-model="checked"
-            @change="selectedAll"
+            v-model="checkAll"
+            @change="handleCheckAllChange"
             style="margin: 15px"
             >全选</el-checkbox
           >
@@ -121,9 +106,9 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="降价商品" name="second">
-        <el-checkbox v-model="checked" style="">店铺: 儿童图书馆</el-checkbox>
+        <el-checkbox v-model="checkAll" style="">店铺: 儿童图书馆</el-checkbox>
         <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+          <el-checkbox v-model="checkAll" id="mlsp"></el-checkbox>
           <div class="mlshangping_photo">图书</div>
           <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
           <div class="mltsd_right">
@@ -145,9 +130,9 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="失效商品" name="third">
-        <el-checkbox v-model="checked" style="">店铺: 儿童图书馆</el-checkbox>
+        <el-checkbox v-model="checkAll" style="">店铺: 儿童图书馆</el-checkbox>
         <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+          <el-checkbox v-model="checkAll" id="mlsp"></el-checkbox>
           <div class="mlshangping_photo">图书</div>
           <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
           <div class="mltsd_right">
@@ -173,28 +158,43 @@
 </template>
 
 <script>
-import Top from "../components/top.vue";
-import Shoulogin from "../components/shoulogin.vue";
+import Top from '../components/top.vue'
+import Shoulogin from '../components/shoulogin.vue'
 
 export default {
   data() {
     return {
-      checked: true,
+      /* 默认标签页 */
+      activeName: 'first',
+      /* 全选状态 */
+      checkAll: true,
+      checkedCities: '', //选中状态
+      /* 商品数量 */
       num1: 1,
       num2: 1,
       num3: 1,
-    };
+    }
   },
   components: {
     Top,
     Shoulogin,
   },
   methods: {
-    handleChange(value) {
-      console.log(tab, value);
+    handleClick(tab, event) {
+      console.log(tab, event)
+    },
+    handleCheckAllChange(val) {
+      this.checkedCities = val ? cityOptions : []
+      this.isIndeterminate = false
+    },
+    handleCheckedCitiesChange(value) {
+      let checkedCount = value.length
+      this.checkAll = checkedCount === this.cities.length
+      this.isIndeterminate =
+        checkedCount > 0 && checkedCount < this.cities.length
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -262,7 +262,7 @@ export default {
   background-color: #f4f4f4;
   // border: 1px solid red;
 }
-.shangping > h7 {
+.shangping > span {
   margin: 60px;
 }
 .mlshangping {

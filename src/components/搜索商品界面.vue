@@ -51,7 +51,7 @@
               <div class="bottom clearfix">
                 <span class="min">{{ o.bookName }}</span>
                 <!-- <template slot-scope="scope"> -->
-                <el-button type="text" class="button">商品详情</el-button>
+                <!-- <el-button type="text" class="button">商品详情</el-button> -->
                 <!-- </template> -->
               </div>
             </div>
@@ -210,8 +210,8 @@ i {
 }
 
 .bottom {
-  margin-top: 13px;
-  line-height: 12px;
+  margin-top: 5px;
+  line-height: 20px;
 }
 
 .button {

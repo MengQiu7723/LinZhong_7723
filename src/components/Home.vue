@@ -79,7 +79,7 @@
         </div>
         <div class="zheng_right">
           <!-- 未登录 -->
-          <div class="deng" v-if="isToken() == 0">
+          <div class="deng" v-if="(isLogin == 0) & update">
             <!-- 登录表单区域 -->
             <el-form
               ref="loginFormRef"
@@ -111,7 +111,9 @@
                 <router-link class="last_left" :to="{ path: '/register' }"
                   >注册</router-link
                 >
-                <a class="last_right">找回密码</a>
+                <router-link class="last_right" :to="{ path: '/register' }"
+                  >找回密码</router-link
+                >
               </div>
             </div>
             <div class="lu">
@@ -127,7 +129,10 @@
             </div>
           </div>
           <!-- 已登录 -->
-          <div class="deng" v-if="isToken() == 1">欢迎来到35书城~</div>
+          <div class="deng" v-if="(isLogin == 1) & update">
+            <span>欢迎来到35书城</span>
+            <span @click="logout()">退出登录</span>
+          </div>
           <div class="zheng_right_buttom">
             <div class="block1">
               <el-carousel height="140px" width="180px">
@@ -180,6 +185,7 @@ export default {
   data() {
     return {
       bookName_Val: '',
+      isLogin: '',
       // bookId_Val: '',
       loginForm: {
         username: '',
@@ -241,6 +247,17 @@ export default {
         }
       })
     },
+    logout() {
+      window.sessionStorage.clear()
+      this.isLogin = 0
+      // 移除组件
+      this.update = false
+      // 在组件移除后，重新渲染组件
+      // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。
+      this.$nextTick(() => {
+        this.update = true
+      })
+    },
     search_button() {
       this.$router.push({
         name: 'search',
@@ -256,6 +273,7 @@ export default {
   },
   created() {
     this.getIndexInfo()
+    this.isToken()
     // console.log(this.indexInfo)
   },
 }
@@ -264,7 +282,15 @@ export default {
 <style lang="less" scoped>
 /* 小登录 */
 .el-form-item {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+}
+/deep/ .el-input__inner {
+  height: 30px;
+}
+
+.login_form {
+  width: 210px;
+  margin-top: 10px;
 }
 /* 小登录 */
 
@@ -312,31 +338,32 @@ export default {
 }
 .kai_middle {
   width: 700px;
-  height: 60px;
+  height: 50px;
   // border: 2px solid cornflowerblue;
   float: left;
 }
 .sou {
   width: 700px;
-  height: 60px;
+  height: 50px;
   margin-top: 10p;
   // border: 3px solid #14A5FF;
 }
 .input_form {
   width: 700px;
-  height: 60px;
+  height: 50px;
   border: 3px solid #14c9ff;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  border-radius: 3px;
 }
 .input_form > input {
   width: 700px;
-  height: 60px;
+  height: 50px;
   outline: none;
   border: none;
   margin-left: 10px;
-  font-size: 20px;
+  font-size: 16px;
   color: #14c9ff;
 }
 .input_form > a > img {
@@ -346,24 +373,28 @@ export default {
 }
 .input_form > button {
   width: 140px;
-  height: 60px;
+  height: 50px;
+  line-height: 50px;
   padding-left: 10px;
   background-image: linear-gradient(to right, #13d2fe, #16a6fc);
   border: none;
   color: #ffffff;
   font-size: 20px;
+  border-radius: 2px;
 }
 .kai_right a {
   width: 120px;
-  height: 62px;
+  // height: 64px;
   float: right;
+  margin-top: 3px;
   margin-right: 30px;
   background: linear-gradient(to right, #13d2fe, #16a6fc);
-  line-height: 62px;
+  line-height: 50px;
   text-align: center;
   color: #ffffff;
   font-size: 20px;
   text-decoration: none;
+  border-radius: 5px;
 }
 .kai_button {
   width: 700px;
@@ -407,6 +438,7 @@ export default {
   border: 2px solid #14aaff;
   float: left;
   overflow: hidden;
+  border-radius: 5px;
 }
 .fen {
   width: 230px;
@@ -543,23 +575,30 @@ export default {
   float: left;
   color: #14aaff;
   height: 30px;
+  // text-decoration: none; //对照（正常）
+  // text-decoration：none; //为什么我会报错？？？
 }
 .last_right {
   float: right;
   color: #6c6c6c;
+}
+a {
+  text-decoration: none;
+}
+.router-link-active {
+  text-decoration: none;
 }
 .lu {
   width: 200px;
   height: 32px;
   text-align: center;
   background: #14aaff;
+  border-radius: 3px;
 }
 .lu a {
-  width: 100px;
-  height: 32px;
-  line-height: 35px;
+  line-height: 32px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
   color: #fff;
 }
 .wei {
