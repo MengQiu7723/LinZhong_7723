@@ -1,7 +1,7 @@
 // Axios跨域代理配置
 module.exports = {
+  publicPath: "./",
   devServer: {
-    host: "0.0.0.0",
     proxy: {
       "/api": {
         // 使用"/api"来代替"http://f.apiplus.c"
