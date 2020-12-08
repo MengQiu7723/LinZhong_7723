@@ -115,16 +115,7 @@
                 ></el-col
               >
               <el-col :span="4" justify="center" align="middle">
-                <div
-                  style="
-                    background: #ff4301;
-                    width: 100px;
-                    height: 50px;
-                    line-height: 50px;
-                  "
-                >
-                  去结算
-                </div></el-col
+                <div class="settlement">去结算</div></el-col
               >
             </el-row>
           </el-col>
@@ -214,10 +205,28 @@ export default {
   methods: {
     /* 购物车 */
     async getShoppingCart() {
-      const { data: res } = await this.$http.get('shoppingCart/findByCart', {
-        /* 请求参数：id */
-        params: { uid: 3 },
-      })
+      /* 请求参数：id */
+      const { data: res } = await this.$http
+        .get('shoppingCart/findByCart')
+        .catch(function (error) {
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request)
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message)
+          }
+          console.log(error.config)
+        })
+      /* 状态处理 */
       // console.log(res.data)
       if (res.code == 0) {
         this.$message.success('获取成功')
@@ -226,19 +235,20 @@ export default {
       if (res.code == 1) {
         this.$message('获取失败')
       }
-
+      /* 按店铺分组 */
       for (let i in this.tableData) {
         /* console.log(i)
         console.log(this.tableData[i]) */
         this.shopOptions.push(i)
         this.tableDataList.push(this.tableData[i])
       }
-
+      /* 分析店铺下的每一个商品 */
       for (let i in this.tableDataList) {
         for (let j in this.tableDataList[i]) {
           this.tableDataListList.push(this.tableDataList[i][j])
         }
       }
+      /* 统计商品初始值：数量与格价 */
       for (let i in this.tableDataListList) {
         this.sumNumber = this.sumNumber + this.tableDataListList[i].number
         this.sumPrice =
@@ -261,7 +271,7 @@ export default {
     handleChange(currentValue, oldValue, id) {
       let index = 0
       console.log('当前数量：', currentValue, '之前数数', oldValue, 'ID', id)
-      /* 此处拿到发生了变化的数据 */
+      /* 此处拿到发生了变化的数据索引号:incex */
       for (let i in this.tableDataListList) {
         if (this.tableDataListList[i].id == id) {
           index = i
@@ -278,12 +288,25 @@ export default {
         this.sumPrice -
         this.tableDataListList[index].price * oldValue +
         this.tableDataListList[index].price * currentValue
+      this.updateShopcar(currentValue, index)
     },
     /* 删除购物车商品 */
     async deleteById(id) {
       const { data: res } = await this.$http.post('deleteById', {
         id: id,
       })
+    },
+    /* 修改购物车商品数量 */
+    updateShopcar(currentValue, index) {
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        const { data: res } = this.$http.post('shoppingCart/update', {
+          id: this.tableDataListList[index].id,
+          bid: this.tableDataListList[index].bid,
+          uid: this.$store.state.userInfo.id,
+          number: currentValue,
+        })
+      }, 500)
     },
     handleClick(tab, event) {
       console.log(tab, event)
@@ -347,7 +370,7 @@ export default {
   margin-left: 180px;
 }
 .el-tabs {
-  width: 1190px;
+  width: 945px;
   margin: 0px auto;
 }
 .shangping {
@@ -437,5 +460,11 @@ export default {
   position: absolute;
   right: 50px;
   border: 1px solid red;
+}
+.settlement {
+  background: #ff4301;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
 }
 </style>

@@ -8,7 +8,9 @@
         <div class="de">
           <a href="">广东</a>
           <span @click="login()" v-if="isLogin == 0">您好,请登录</span>
-          <span @click="pc()" v-if="isLogin == 1">欢迎来到35书城</span>
+          <span @click="pc()" v-if="isLogin == 1"
+            >{{ userName }}，欢迎来到35书城</span
+          >
         </div>
       </div>
       <div class="top_right">
@@ -26,6 +28,7 @@ export default {
   data() {
     return {
       isLogin: '',
+      userName: this.$store.state.userInfo.username,
     }
   },
   methods: {

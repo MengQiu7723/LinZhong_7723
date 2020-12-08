@@ -45,23 +45,31 @@
           v-for="index in indexInfo.booksClassList"
           :key="index.id"
         >
-          <div>
+          <!-- 一级分类 -->
+          <h3>
             <a href="">{{ index.name }}</a>
-          </div>
-          <div class="er" v-for="subIndex in index.children" :key="subIndex.id">
-            <div>
-              <span class="er1">{{ subIndex.name }}</span>
-            </div>
-            <div>
+          </h3>
+          <p>
+            <span
+              class="er"
+              v-for="subIndex in index.children"
+              :key="subIndex.id"
+            >
+              <!-- 二级分类 -->
+              {{ subIndex.name }}
+              <!-- <span class="er1">{{ subIndex.name }}</span> -->
+              <!--        <div>
               <span
                 class="wen"
                 v-for="subSubIndex in subIndex.children"
                 :key="subSubIndex.id"
               >
+               三级分类 
                 <a href="" class="heng">{{ subSubIndex.name }}</a>
               </span>
-            </div>
-          </div>
+            </div> -->
+            </span>
+          </p>
         </div>
         <!-- 分类 END -->
       </div>
@@ -71,8 +79,9 @@
           <div class="block">
             <!-- <span class="demonstration">默认 Hover 指示器触发</span> -->
             <el-carousel height="340px">
-              <el-carousel-item v-for="item in 4" :key="item">
-                <h3 class="small">{{ item }}</h3>
+              <el-carousel-item v-for="item in mainBannerUrl" :key="item.id">
+                <!-- <img class="small">{{ item.path }}</h3> -->
+                <img class="mainBannerImg" :src="item.path" alt="" />
               </el-carousel-item>
             </el-carousel>
           </div>
@@ -131,13 +140,14 @@
           <!-- 已登录 -->
           <div class="deng" v-if="(isLogin == 1) & update">
             <span>欢迎来到35书城</span>
-            <span @click="logout()">退出登录</span>
+            <button @click="logout()">退出登录</button>
           </div>
           <div class="zheng_right_buttom">
             <div class="block1">
               <el-carousel height="140px" width="180px">
-                <el-carousel-item v-for="item in 4" :key="item">
-                  <h3 class="small">{{ item }}</h3>
+                <el-carousel-item v-for="item in smallBannerUrl" :key="item.id">
+                  <!-- <h3 class="small">{{ item.path }}</h3> -->
+                  <img class="smallBannerImg" :src="item.path" alt="" />
                 </el-carousel-item>
               </el-carousel>
             </div>
@@ -176,6 +186,117 @@
         </div>
       </div>
     </div>
+    <div class="mod_copyright">
+      <div class="grid_c1 mod_copyright_inner">
+        <p class="mod_copyright_links">
+          <a href="javascript:void(0)">关于我们</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">联系我们</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">联系客服</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">合作招商</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">商家帮助</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">营销中心</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">手机京东</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">友情链接</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">销售联盟</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">京东社区</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">风险监测</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">隐私政策</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">京东公益</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">English Site</a>
+          <span class="mod_copyright_split">|</span>
+          <a href="javascript:void(0)">Media &amp; IR</a>
+          <!-- <img src="../assets/images/2020年12月8日22时17分57秒.webp" alt=""> -->
+        </p>
+
+        <div class="mod_copyright_info">
+          <div class="mod_copyright_cert">
+            <p>
+              <a href="javascript:void(0)">京公网安备 11000002000088号</a>
+              <span class="mod_copyright_split">|</span>
+              <span>京ICP证070359号</span>
+              <span class="mod_copyright_split">|</span>
+              <a href="javascript:void(0)"
+                >互联网药品信息服务资格证编号(京)-经营性-2014-0008</a
+              >
+              <span class="mod_copyright_split">|</span>
+              <span>新出发京零&nbsp;字第大120007号</span>
+            </p>
+            <p>
+              <span>互联网出版许可证编号新出网证(京)字150号</span>
+              <span class="mod_copyright_split">|</span>
+              <a href="javascript:void(0)">出版物经营许可证</a>
+              <span class="mod_copyright_split">|</span>
+              <a href="javascript:void(0)"
+                >网络文化经营许可证京网文[2014]2148-348号</a
+              >
+              <span class="mod_copyright_split">|</span>
+              <span>违法和不良信息举报电话：4006561155</span>
+            </p>
+            <p>
+              <span
+                >Copyright&nbsp;©&nbsp;2004&nbsp;-&nbsp;2020&nbsp;&nbsp;京东JD.com&nbsp;版权所有</span
+              >
+              <span class="mod_copyright_split">|</span>
+              <span>消费者维权热线：4006067733</span>
+              <a href="javascript:void(0)" class="mod_copyright_license"
+                >经营证照</a
+              >
+              <span class="mod_copyright_split">|</span>
+              <span>(京)网械平台备字(2018)第00003号</span>
+              <span class="mod_copyright_split">|</span>
+              <a href="javascript:void(0)" class="mod_business_license"
+                >营业执照</a
+              >
+            </p>
+          </div>
+        </div>
+        <p class="mod_copyright_auth">
+          <a
+            class="mod_copyright_auth_ico mod_copyright_auth_ico_2"
+            href="javascript:void(0)"
+            >可信网站信用评估</a
+          >
+          <a
+            class="mod_copyright_auth_ico mod_copyright_auth_ico_3"
+            href="javascript:void(0)"
+            >网络警察提醒你</a
+          >
+          <a
+            class="mod_copyright_auth_ico mod_copyright_auth_ico_4"
+            href="javascript:void(0)"
+            >诚信网站</a
+          >
+          <a
+            class="mod_copyright_auth_ico mod_copyright_auth_ico_5"
+            href="javascript:void(0)"
+            >中国互联网举报中心</a
+          >
+          <a
+            class="mod_copyright_auth_ico mod_copyright_auth_ico_6"
+            href="javascript:void(0)"
+            >网络举报APP下载</a
+          >
+          <a
+            class="mod_copyright_auth_ico mod_copyright_auth_ico_7"
+            href="javascript:void(0)"
+            >扫黄打非网举报专区</a
+          >
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -188,8 +309,8 @@ export default {
       isLogin: '',
       // bookId_Val: '',
       loginForm: {
-        username: '',
-        password: '',
+        username: 'user',
+        password: '123456',
       },
       loginFormRules: {},
       /* 首页信息 */
@@ -199,6 +320,17 @@ export default {
         advertiseList: [],
       },
       update: true,
+      /* 轮播图区域 */
+      mainBannerUrl: [
+        { path: require('../assets/images/20201208221757.webp') },
+        { path: require('../assets/images/2020年12月8日22时31分27秒.webp') },
+        { path: require('../assets/images/2020年12月8日22时32分35秒.webp') },
+        { path: require('../assets/images/2020年12月8日22时32分39秒.webp') },
+      ],
+      smallBannerUrl: [
+        { path: require('../assets/images/2020年12月8日22时35分51秒.webp') },
+        { path: require('../assets/images/2020年12月8日22时35分55秒.webp') },
+      ],
     }
   },
   components: {
@@ -232,9 +364,12 @@ export default {
           params: this.loginForm,
         })
         if (res.code == 0) {
-          window.sessionStorage.setItem('token', res.data)
+          window.sessionStorage.setItem('token', res.data.token)
           window.localStorage.setItem('role', 0)
           this.$message.success('登录成功')
+          /* 更新VueX store的userInfo */
+          this.$store.commit('userUpdate', res.data)
+          this.isLogin = 1
           // 移除组件
           this.update = false
           // 在组件移除后，重新渲染组件
@@ -454,23 +589,28 @@ export default {
   font-size: 15px;
 }
 .dian {
-  width: 230px;
+  // width: 230px;
   // height: 50px;
-  text-align: center;
-  line-height: 45px;
+  line-height: 40px;
+  padding: 0 0 0 10px
   // background: #6C6C6C;
 }
 .dian a {
   text-decoration: none;
-  font-size: 15px;
+  font-size: 16px;
   color: #14aaff;
   font-weight: 600;
 }
+.dian > h3:first-child {
+  background-color: #fff;
+}
 .er {
-  width: 230px;
-  // height: 84px;
-  // background: pink;
+  font-size: 14px;
+  margin-right: 5px;
   text-align: center;
+}
+.er:hover{
+  cursor:pointer;
 }
 .er1 {
   width: 230px;
@@ -528,6 +668,12 @@ export default {
     height: 5px;
     border-radius: 30%;
   }
+}
+.mainBannerImg{
+  width: 650px;
+}
+.smallBannerImg{
+width: 250px;
 }
 .el-carousel__item h3 {
   color: #475669;
@@ -711,5 +857,74 @@ a {
   text-decoration: none;
   color: red;
   font-size: 20px;
+}
+.mod_copyright_inner {
+  padding: 15px 0;
+  border-top: 1px solid #e1e1e1;
+  text-align: center;
+}
+.mod_copyright_split {
+  margin: 0 10px;
+  color: #ccc;
+}
+.mod_copyright_links a {
+  color: #666666;
+  font-size: 12px;
+}
+
+.mod_copyright_info {
+  padding: 10px 0;
+  line-height: 22px;
+  color: #999;
+}
+.mod_copyright_info a {
+  color: #337ab7;
+  font-size: 14px;
+}
+.mod_copyright_info span {
+  color: #999999;
+  font-size: 14px;
+}
+.mod_copyright_auth {
+  margin: 25px 0;
+}
+.mod_copyright_auth_ico_2 {
+  background-position: -205px -111px;
+}
+.mod_copyright_auth_ico_3 {
+  background-position: -205px -74px;
+}
+.mod_copyright_auth_ico_4 {
+  background-position: -205px -37px;
+}
+.mod_copyright_auth_ico_5 {
+  background-repeat: no-repeat;
+  background-position: -205px 0;
+  background-image: url(../assets/images/floor_sprite.png);
+}
+.mod_copyright_auth_ico_6 {
+  background-repeat: no-repeat;
+  background-position: 0 -155px;
+  background-image: url(../assets/images/floor_sprite.png);
+}
+.mod_copyright_auth_ico_7 {
+  background-repeat: no-repeat;
+  background-position: -205px -148px;
+  background-image: url(../assets/images/floor_sprite.png);
+}
+.mod_copyright_auth_ico_1,
+.mod_copyright_auth_ico_2,
+.mod_copyright_auth_ico_3,
+.mod_copyright_auth_ico_4 {
+  background-repeat: no-repeat;
+  background-image: url(../assets/images/floor_sprite.png);
+}
+.mod_copyright_auth_ico {
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 3px;
+  width: 103px;
+  height: 32px;
+  line-height: 1000px;
 }
 </style>

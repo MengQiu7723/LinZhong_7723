@@ -72,7 +72,7 @@
         <div class="right_top3">
           <div class="right_top3_left">
             <span class="ge">配送至</span>
-            <a href=""> 阳江</a>
+            <a href="">阳江</a>
           </div>
           <div class="right_top3_right">
             <span class="ge"> 在线配送费</span>
@@ -99,10 +99,10 @@
         </div> -->
         <div class="right_top5">
           <div class="right_top5_left">
-            <a href="">加入购物车</a>
+            <a href="javascript:void(0)" @click="addShopcar()">加入购物车</a>
           </div>
           <div class="right_top5_right">
-            <a href="">立即购买</a>
+            <a href="javascript:void(0)">立即购买</a>
           </div>
         </div>
       </div>
@@ -246,7 +246,7 @@ export default {
   },
   methods: {
     async getBookById() {
-      const { data: res } = await this.$http.get('/book/getById', {
+      const { data: res } = await this.$http.get('book/getById', {
         params: {
           id: this.bookId_Val,
         },
@@ -255,6 +255,12 @@ export default {
         this.bookInfo = res.data
       }
       // console.log(res.data.bookName)
+    },
+    async addShopcar() {
+      const { data: res } = await this.$http.post('shoppingCart/insert', {
+        bid: this.bookInfo.id,
+        number: 1,
+      })
     },
     search_val() {
       if (this.$route.params.bookName_Val) {

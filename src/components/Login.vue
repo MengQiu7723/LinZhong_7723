@@ -76,22 +76,10 @@ export default {
         // 验证用户名是否合法
         username: [
           { required: true, message: '请输入登录名称', trigger: 'blur' },
-          {
-            min: 3,
-            max: 10,
-            message: '长度在 3 到 10 个字符',
-            trigger: 'blur',
-          },
         ],
         // 验证密码是否合法
         password: [
           { required: true, message: '请输入登录密码', trigger: 'blur' },
-          {
-            min: 3,
-            max: 15,
-            message: '长度在 3 到 15 个字符',
-            trigger: 'blur',
-          },
         ],
       },
     }
@@ -110,9 +98,12 @@ export default {
           params: this.loginForm,
         })
         if (res.code == 0) {
-          window.sessionStorage.setItem('token', res.data)
+          window.sessionStorage.setItem('token', res.data.token)
           this.$message.success('登录成功')
           this.$router.push('/home')
+          this.$store.commit('userUpdate', res.data)
+          /* VueX的数据 */
+          // console.log(this.$store.state.userInfo)
         } else if (res.code == 1) {
           this.$message.error(res.msg + '，登录失败！')
         }
