@@ -257,6 +257,7 @@ export default {
 }
 .el-button {
   width: 350px;
+  height:40px;
 }
 .el-header,
 .el-footer {
