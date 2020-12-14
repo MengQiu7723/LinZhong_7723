@@ -25,6 +25,8 @@ export default new Vuex.Store({
   mutations: {
     userUpdate (state, userInfo) {
       state.userInfo = userInfo
+      window.sessionStorage.setItem('username', userInfo.username)
+      window.sessionStorage.setItem('userid', userInfo.id)
     }
   },
   actions: {

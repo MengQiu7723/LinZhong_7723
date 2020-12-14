@@ -125,8 +125,8 @@
                 >
               </div>
             </div>
-            <div class="lu">
-              <a href="javascript:void(0)" @click="login()">登录</a>
+            <div class="lu" @click="login()">
+              <a href="javascript:void(0)">登录</a>
             </div>
             <div class="wei">
               <a href="" class="qq"
@@ -738,7 +738,7 @@ a {
   width: 200px;
   height: 32px;
   text-align: center;
-  background: #14aaff;
+  background: #14d2ff;
   border-radius: 3px;
 }
 .lu a {
@@ -746,6 +746,10 @@ a {
   text-decoration: none;
   font-size: 16px;
   color: #fff;
+}
+.lu:hover{
+  cursor:pointer;
+  color: red;
 }
 .wei {
   width: 230px;

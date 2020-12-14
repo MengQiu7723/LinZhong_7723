@@ -193,6 +193,7 @@ export default {
       checkedShops: [],
       shopOptions: [],
       isIndeterminate: true,
+      uid: '',
     }
   },
   components: {
@@ -206,14 +207,21 @@ export default {
     /* 购物车 */
     async getShoppingCart() {
       /* 请求参数：id */
+      var vm = this
       const { data: res } = await this.$http
         .get('shoppingCart/findByCart')
         .catch(function (error) {
           if (error.response) {
             // The request was made and the server responded with a status code
             // that falls out of the range of 2xx
-            console.log(error.response.data)
+            // console.log(error.response.data)
             console.log(error.response.status)
+            if (error.response.status == 400) {
+              vm.$message({
+                message: '未登录或登录过期',
+                type: 'error',
+              })
+            }
             console.log(error.response.headers)
           } else if (error.request) {
             // The request was made but no response was received
@@ -254,6 +262,12 @@ export default {
         this.sumPrice =
           this.sumPrice +
           this.tableDataListList[i].number * this.tableDataListList[i].price
+      }
+      /* 顺带来个uid */
+      if (sessionStorage.getItem('userid')) {
+        this.uid = sessionStorage.getItem('userid')
+      } else {
+        this.uid = this.$store.state.userInfo.id
       }
     },
     /* 多选 */
@@ -303,7 +317,7 @@ export default {
         const { data: res } = this.$http.post('shoppingCart/update', {
           id: this.tableDataListList[index].id,
           bid: this.tableDataListList[index].bid,
-          uid: this.$store.state.userInfo.id,
+          uid: this.uid,
           number: currentValue,
         })
       }, 500)

@@ -126,20 +126,20 @@ export default {
   data() {
     // 验证手机号的规则
     var checkMobile = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入常用手机号"));
+      if (value === '') {
+        callback(new Error('请输入常用手机号'))
       }
       // 验证手机号的正则表达式
-      const regMobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+      const regMobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/
       if (regMobile.test(value)) {
-        return callback();
+        return callback()
       }
-      callback(new Error("请输入合法的手机号"));
-    };
+      callback(new Error('请输入合法的手机号'))
+    }
     // 验证验证码
     var checkVerifyCode = (rule, value, callback) => {
-      if (value === "") {
-        return callback(new Error("验证码为空啦(´-ω-`)"));
+      if (value === '') {
+        return callback(new Error('验证码为空啦(´-ω-`)'))
       }
       setTimeout(function () {
         var code = window.sessionStorage.getItem('verifyCode')
@@ -179,8 +179,8 @@ export default {
       addUserCode: '',
       /* 步骤表单 */
       active: 0,
-      messageTip: "下一步",
-      labelPosition: "right",
+      messageTip: '下一步',
+      labelPosition: 'right',
       /* 注册信息 */
       addForm: {
         username: '',
@@ -207,12 +207,12 @@ export default {
         password: [{ validator: validatePass, trigger: 'blur' }],
         checkPass: [{ validator: validatePass2, trigger: 'blur' }],
       },
-    };
+    }
   },
   methods: {
     /* 跳转登录 */
     login() {
-      this.$router.push("/login");
+      this.$router.push('/login')
     },
     /* 步骤表单 */
     next() {
@@ -221,20 +221,20 @@ export default {
         this.getVerifyCode()
         this.$refs.addUserFormRef.validateField('mobile', (mobileError) => {
           if (mobileError) {
-            console.log("手机没有通过");
+            console.log('手机没有通过')
           } else {
-            console.log("手机通过");
+            console.log('手机通过')
             this.$refs.addUserFormRef.validateField(
-              "verifyCode",
+              'verifyCode',
               (verifyCodeError) => {
                 if (verifyCodeError) {
-                  console.log("验证码没有通过");
+                  console.log('验证码没有通过')
                 } else {
                   this.active++
                   window.sessionStorage.clear('verifyCode')
                 }
               }
-            );
+            )
           }
         })
       } else if (this.active == 1) {
@@ -249,14 +249,13 @@ export default {
       } else if (this.active == 2) {
         let { data: res } = this.addUser().then((res) => {
           if (res == 0) {
-          this.messageTip = '注册成功，去登录'
-          this.active++
-        } else {
-          this.active = 0
-        }
-        return res
+            this.messageTip = '注册成功，去登录'
+            this.active++
+          } else {
+            this.active = 0
+          }
+          return res
         })
-        
       } else if (this.active == 3) {
         this.login()
       }
@@ -268,22 +267,22 @@ export default {
         .get('captcha/getcaptcha', { responseType: 'arraybuffer' })
         .then((res) => {
           let path =
-            "data:image/png;base64," +
+            'data:image/png;base64,' +
             btoa(
               new Uint8Array(res.data).reduce(
                 (data, byte) => data + String.fromCharCode(byte),
-                ""
+                ''
               )
-            );
-          this.codeSrc = path;
-        });
+            )
+          this.codeSrc = path
+        })
     },
     /* 验证　验证码　 */
     async getVerifyCode() {
-      if (this.addForm.verifyCode === "") return;
-      const { data: res } = await this.$http.get("user/checkVerify", {
+      if (this.addForm.verifyCode === '') return
+      const { data: res } = await this.$http.get('user/checkVerify', {
         params: { verifyCodeInput: this.addForm.verifyCode },
-      });
+      })
       if (res.code == 0) {
         window.sessionStorage.setItem('verifyCodeMsg', res.data)
         // this.$message.success(res.data)
@@ -318,12 +317,13 @@ export default {
     },
   },
   created() {
-    this.getImg();
+    this.getImg()
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
+/* 头部LOGO部分 */
 .head {
   width: 100%;
 }
@@ -339,7 +339,7 @@ export default {
 /* 声明清除浮动的样式 */
 .clearfix:before,
 .clearfix:after {
-  content: "";
+  content: '';
   display: table;
 }
 .clearfix:after {

@@ -261,6 +261,11 @@ export default {
         bid: this.bookInfo.id,
         number: 1,
       })
+      if (res.code == 0) {
+        this.$message.success(res.data)
+      } else {
+        this.$message.error(res.data)
+      }
     },
     search_val() {
       if (this.$route.params.bookName_Val) {
