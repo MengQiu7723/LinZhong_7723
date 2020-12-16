@@ -17,7 +17,10 @@ import {
   CarouselItem,
   Col,
   Row,
-  Tooltip
+  Tooltip,
+  Table,
+  TableColumn,
+  Dialog,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -37,4 +40,7 @@ Vue.use(CarouselItem)
 Vue.use(Col)
 Vue.use(Row)
 Vue.use(Tooltip)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Dialog)
 Vue.prototype.$message = Message

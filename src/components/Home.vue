@@ -201,19 +201,19 @@
           <span class="mod_copyright_split">|</span>
           <a href="javascript:void(0)">营销中心</a>
           <span class="mod_copyright_split">|</span>
-          <a href="javascript:void(0)">手机京东</a>
+          <a href="javascript:void(0)">手机商城</a>
           <span class="mod_copyright_split">|</span>
           <a href="javascript:void(0)">友情链接</a>
           <span class="mod_copyright_split">|</span>
           <a href="javascript:void(0)">销售联盟</a>
           <span class="mod_copyright_split">|</span>
-          <a href="javascript:void(0)">京东社区</a>
+          <a href="javascript:void(0)">商城社区</a>
           <span class="mod_copyright_split">|</span>
           <a href="javascript:void(0)">风险监测</a>
           <span class="mod_copyright_split">|</span>
           <a href="javascript:void(0)">隐私政策</a>
           <span class="mod_copyright_split">|</span>
-          <a href="javascript:void(0)">京东公益</a>
+          <a href="javascript:void(0)">商城公益</a>
           <span class="mod_copyright_split">|</span>
           <a href="javascript:void(0)">English Site</a>
           <span class="mod_copyright_split">|</span>
@@ -247,7 +247,7 @@
             </p>
             <p>
               <span
-                >Copyright&nbsp;©&nbsp;2004&nbsp;-&nbsp;2020&nbsp;&nbsp;京东JD.com&nbsp;版权所有</span
+                >Copyright&nbsp;©&nbsp;2020&nbsp;-&nbsp;2021&nbsp;&nbsp;35商城35shop.com&nbsp;版权所有</span
               >
               <span class="mod_copyright_split">|</span>
               <span>消费者维权热线：4006067733</span>
@@ -301,7 +301,7 @@
 </template>
 
 <script>
-import Top from '../components/top.vue'
+import Top from '../components/common/top.vue'
 export default {
   data() {
     return {

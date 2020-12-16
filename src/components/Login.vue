@@ -54,7 +54,8 @@
             <el-button type="primary" @click="login()">登录</el-button>
           </div>
           <div class="yangzhengma">
-            <a href=""><h4>切换至验证码登录</h4></a>
+            <span @click="register()">没有账号？马上注册</span>
+            <span>切换至验证码登录</span>
           </div>
         </div>
       </div>
@@ -108,6 +109,9 @@ export default {
           this.$message.error(res.msg + '，登录失败！')
         }
       })
+    },
+    register() {
+      this.$router.push('/register')
     },
   },
 }
@@ -240,24 +244,38 @@ export default {
 .yangzhengma {
   width: 350px;
   height: 50px;
-  margin: 50px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
   //  border: 1px solid red
 }
-.yangzhengma > a > h4 {
-  height: 30px;
+.yangzhengma span {
+  margin: 0;
+  padding: 0;
+}
+.yangzhengma > span:first-child {
+  height: 25px;
+}
+.yangzhengma > span:nth-child(2) {
+  height: 25px;
   color: #14c7ff;
-  margin-left: 200px;
 }
-.yangzhengma > a {
-  text-decoration: none;
+.yangzhengma > span:first-child:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
+.yangzhengma > span:nth-child(2):hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .el-input {
   width: 350px;
   margin-right: 55px;
 }
 .el-button {
   width: 350px;
-  height:40px;
+  height: 40px;
 }
 .el-header,
 .el-footer {

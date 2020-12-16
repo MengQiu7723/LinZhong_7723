@@ -523,7 +523,7 @@
   </div>
 </template>
 <script>
-import Top from "../components/top.vue";
+import Top from "../components/common/top.vue";
 export default {
   data() {
     return {

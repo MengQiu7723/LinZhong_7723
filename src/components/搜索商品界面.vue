@@ -78,7 +78,7 @@
 
 
 <script>
-import Top from '../components/top.vue'
+import Top from '../components/common/top.vue'
 
 export default {
   data() {
@@ -115,8 +115,6 @@ export default {
   },
   methods: {
     getBookById(id) {
-      // console.log(id)
-      // this.bookId_Val = id
       this.$router.push({
         name: 'shang',
         params: { bookId_Val: id },

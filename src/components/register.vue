@@ -5,14 +5,14 @@
       <div class="head_main clearfix">
         <div class="logo clearfix">
           <div class="logo_left">
-            <img src="../../assets/images/logo.png" alt="" />
+            <img src="../assets/images/logo.png" alt="" />
           </div>
           <div class="logo_right">
             <div class="logo_right_top">
-              <img src="../../assets/images/logo1.png" alt="" />
+              <img src="../assets/images/logo1.png" alt="" />
             </div>
             <div class="logo_right_bottom">
-              <img src="../../assets/images/logo2.png" alt="" />
+              <img src="../assets/images/logo2.png" alt="" />
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@
         </div>
         <div v-if="active == 3" style="width: 500px; margin: 0 auto">
           <div style="width: 78px; height: 102px; margin: 0 auto">
-            <img src="../../assets/images/注册成功.png" alt="" />
+            <img src="../assets/images/注册成功.png" alt="" />
           </div>
         </div>
       </el-form>
@@ -326,6 +326,7 @@ export default {
 /* 头部LOGO部分 */
 .head {
   width: 100%;
+  margin-top: 40px;
 }
 .head_main {
   width: 1200px;

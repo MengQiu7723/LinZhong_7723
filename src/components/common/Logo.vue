@@ -2,14 +2,14 @@
   <div>
     <div class="logo clearfix">
       <div class="logo_left">
-        <img src="../assets/images/logo.png" alt="" />
+        <img src="../../assets/images/logo.png" alt="" />
       </div>
       <div class="logo_right">
         <div class="logo_right_top">
-          <img src="../assets/images/logo1.png" alt="" />
+          <img src="../../assets/images/logo1.png" alt="" />
         </div>
         <div class="logo_right_bottom">
-          <img src="../assets/images/logo2.png" alt="" />
+          <img src="../../assets/images/logo2.png" alt="" />
         </div>
       </div>
     </div>

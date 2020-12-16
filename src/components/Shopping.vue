@@ -115,7 +115,9 @@
                 ></el-col
               >
               <el-col :span="4" justify="center" align="middle">
-                <div class="settlement">去结算</div></el-col
+                <div class="settlement" @click="settlement()">
+                  去结算
+                </div></el-col
               >
             </el-row>
           </el-col>
@@ -174,8 +176,8 @@
 </template>
 
 <script>
-import Top from '../components/top.vue'
-import Shoulogin from '../components/shoulogin.vue'
+import Top from '../components/common/top.vue'
+import Shoulogin from '../components/common/shoulogin.vue'
 
 export default {
   data() {
@@ -212,9 +214,6 @@ export default {
         .get('shoppingCart/findByCart')
         .catch(function (error) {
           if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            // console.log(error.response.data)
             console.log(error.response.status)
             if (error.response.status == 400) {
               vm.$message({
@@ -222,17 +221,7 @@ export default {
                 type: 'error',
               })
             }
-            console.log(error.response.headers)
-          } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            console.log(error.request)
-          } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error', error.message)
           }
-          console.log(error.config)
         })
       /* 状态处理 */
       // console.log(res.data)
@@ -324,6 +313,9 @@ export default {
     },
     handleClick(tab, event) {
       console.log(tab, event)
+    },
+    settlement() {
+      this.$router.push('/order')
     },
   },
 }
@@ -477,8 +469,10 @@ export default {
 }
 .settlement {
   background: #ff4301;
-  width: 100px;
   height: 50px;
   line-height: 50px;
+}
+.settlement:hover {
+  cursor: pointer;
 }
 </style>

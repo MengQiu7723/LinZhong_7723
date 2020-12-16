@@ -2,14 +2,14 @@
   <div class="shousuo">
     <div class="shousuo_left">
       <a href=""
-        ><img src="../assets/images/1.png" alt="" id="shousuo_left1"
+        ><img src="../../assets/images/1.png" alt="" id="shousuo_left1"
       /></a>
       <div class="shousuo_left_logo">
         <a href=""
-          ><img src="../assets/images/2.png" alt="" id="shousuo_left2"
+          ><img src="../../assets/images/2.png" alt="" id="shousuo_left2"
         /></a>
         <a href=""
-          ><img src="../assets/images/3.png" alt="" id="shousuo_left3"
+          ><img src="../../assets/images/3.png" alt="" id="shousuo_left3"
         /></a>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <div class="top">
       <div class="top_left">
         <div class="tu">
-          <a href=""><img src="../assets/images/ing1.png" alt="" /></a>
+          <a href=""><img src="../../assets/images/ing1.png" alt="" /></a>
         </div>
         <div class="de">
           <a href="">广东</a>

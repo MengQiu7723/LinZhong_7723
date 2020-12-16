@@ -1,23 +1,5 @@
 <template>
   <div class="cent">
-    <!-- <div class="top">
-      <div class="top_left">
-        <div class="tu">
-          <a href=""><img src="../assets/images/ing1.png" alt="" /></a>
-        </div>
-        <div class="de">
-          <span>广东</span>
-          <a>返回首页</a>
-          <span @click="pc()">欢迎来到35书城</span>
-        </div>
-      </div>
-      <div class="top_right">
-        <a href="javascript:void(0)" @click="pc()">个人中心</a>
-        <a href="javascript:void(0)" @click="shopCar()">购物车</a>
-        <a href="javascript:void(0)" @click="shou()">收藏夹</a>
-        <a href="javascript:void(0)" @click="ding()">我的订单</a>
-      </div>
-    </div> -->
     <Top v-if="update"></Top>
     <div class="kai">
       <div class="logo">
@@ -101,7 +83,7 @@
           <div class="right_top5_left">
             <a href="javascript:void(0)" @click="addShopcar()">加入购物车</a>
           </div>
-          <div class="right_top5_right">
+          <div class="right_top5_right" @click="settlement()">
             <a href="javascript:void(0)">立即购买</a>
           </div>
         </div>
@@ -196,7 +178,7 @@
 
 
 <script>
-import Top from '../components/top.vue'
+import Top from '../components/common/top.vue'
 export default {
   data() {
     return {
@@ -254,17 +236,45 @@ export default {
       if (res.code == 0) {
         this.bookInfo = res.data
       }
-      // console.log(res.data.bookName)
     },
+    /* 添加到购物车 */
     async addShopcar() {
-      const { data: res } = await this.$http.post('shoppingCart/insert', {
-        bid: this.bookInfo.id,
-        number: 1,
-      })
-      if (res.code == 0) {
-        this.$message.success(res.data)
-      } else {
-        this.$message.error(res.data)
+      var vm = this
+      const { data: res } = await this.$http
+        .post('shoppingCart/insert', {
+          bid: this.bookInfo.id,
+          number: 1,
+        })
+        .catch(function (error) {
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            // console.log(error.response.data)
+            console.log(error.response.status)
+            if (error.response.status == 400) {
+              vm.$message({
+                message: '未登录或登录过期',
+                type: 'error',
+              })
+            }
+            console.log(error.response.headers)
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request)
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message)
+          }
+          console.log(error.config)
+        })
+      if (res.data) {
+        if (res.code == 0) {
+          this.$message.success(res.data)
+        } else {
+          this.$message.error(res.data)
+        }
       }
     },
     search_val() {
@@ -287,14 +297,8 @@ export default {
         params: { bookName_Val: this.bookName_Val },
       })
     },
-
-    isToken() {
-      if (window.sessionStorage.getItem('token')) {
-        return (this.isLogin = 1)
-      } else {
-        return (this.isLogin = 0)
-      }
-      console.log(typeof this.isLogin)
+    settlement() {
+      this.$router.push('/order')
     },
   },
   created() {
@@ -515,7 +519,7 @@ export default {
 .zheng_top_left {
   width: 350px;
   height: 400px;
-  border: 1px solid #dddddd;
+  border: 1px solid #999999;
   float: left;
 }
 .zheng_top_left img {
@@ -534,7 +538,7 @@ export default {
 .right_top {
   width: 650px;
   height: 65px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #999999;
 }
 .right_top p {
   font-size: 20px;
@@ -545,7 +549,7 @@ export default {
 }
 .right_top span {
   font-size: 18px;
-  color: #666666;
+  color: #999999;
 }
 .qing {
   margin-left: 20px;
@@ -558,7 +562,7 @@ export default {
   line-height: 40px;
 }
 .ge {
-  color: #dddddd;
+  color: #999999;
   font-size: 17px;
   float: left;
 }
@@ -576,7 +580,7 @@ export default {
 }
 .de {
   margin-left: 20px;
-  color: #666;
+  color: #999999;
 }
 .right_top3 {
   width: 600px;
@@ -594,7 +598,7 @@ export default {
 .right_top3_left a {
   text-decoration: none;
 
-  color: #6666;
+  color: #999999;
   margin-left: 20px;
   font-size: 18px;
 }
@@ -613,7 +617,7 @@ export default {
   float: left;
 }
 .ge1 {
-  color: #dddddd;
+  color: #999999;
   font-size: 17px;
   float: left;
   margin-top: 30px;
@@ -723,7 +727,6 @@ export default {
   text-align: center;
 }
 .left1_top img {
-  width: 180px;
   height: 190px;
   margin-top: 20px;
 }
