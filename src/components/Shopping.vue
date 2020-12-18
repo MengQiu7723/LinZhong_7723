@@ -2,6 +2,7 @@
   <div>
     <Top></Top>
     <!-- <Shoulogin></Shoulogin> -->
+<<<<<<< HEAD
     <div class="shousuo">
       <div class="shousuo_left">
         <a href=""
@@ -35,100 +36,131 @@
     <!-- <el-divider></el-divider> -->
 >>>>>>> 6558c50a21d7fdd7de43ebf24a3b89d6ca37a998
     <el-tabs v-model="activeName" @tab-click="handleClick">
+=======
+    <el-tabs v-model="activeName" @tab-click="handleClick()">
+>>>>>>> f4f15e43fa903c01c434feccdac8fc26814ac480
       <el-tab-pane label="全部商品" name="first">
-        <div class="shangping">
-          <el-checkbox v-model="checked" @change="selectedAll"
-            >全选</el-checkbox
-          >
-          <h7 style="margin-left: 500px">单价</h7>
-          <h7>数量</h7>
-          <h7>总额</h7>
-          <h7>操作</h7>
-        </div>
-        <el-checkbox v-model="checked" style="">店铺: 魅力图书店</el-checkbox>
-        <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
-          <div class="mlshangping_photo">图书</div>
-          <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
-          <div class="mltsd_right">
-            <div class="mltsd_danjia">
-              <span>￥35.98</span>
-              <h6 style="margin-top: 50px">￥25.98</h6>
-            </div>
-            <div class="mltsd_jsq">
-              <el-input-number size="mini" v-model="num1"></el-input-number>
-            </div>
-            <div class="mltsd_ze">
-              <h6 style="color: red; margin-top: 55px">￥25.98</h6>
-            </div>
-            <div class="mltsd_cz">
-              <el-popconfirm title="此商品确定删除吗？">
-                <el-button slot="reference">删除</el-button>
-              </el-popconfirm>
-            </div>
+        <!-- 表头 -->
+        <el-row
+          style="width: 945px; min-height: 36px; background: #ccc"
+          type="flex"
+          align="middle"
+        >
+          <el-col :span="8">
+            <el-checkbox
+              :indeterminate="isIndeterminate"
+              v-model="checkAll"
+              @change="handleCheckAllChange"
+              >全选</el-checkbox
+            >
+          </el-col>
+          <el-col :span="16">
+            <el-row type="flex" align="middle">
+              <el-col align="middle"> <span>单价</span></el-col>
+              <el-col align="middle"> <span>数量</span></el-col>
+              <el-col align="middle"> <span>总额</span></el-col>
+              <el-col align="middle"> <span>操作</span></el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+        <!-- START -->
+        <div v-for="(index, i) in tableData" :key="index.i">
+          <el-row>
+            <el-col :span="24">
+              <el-checkbox-group
+                v-model="checkedShops"
+                @change="handleCheckedCitiesChange"
+              >
+                <el-checkbox class="sellerName" :label="i" :key="i"
+                  >店铺：{{ i }}</el-checkbox
+                >
+              </el-checkbox-group>
+            </el-col>
+          </el-row>
+          <div v-for="subIndex of index" :key="subIndex.id">
+            <el-row
+              style="width: 945px; min-height: 150px; border: 1px solid #e5e5e5"
+              type="flex"
+              align="middle"
+            >
+              <el-col :span="8">
+                <el-row type="flex" justify="center" align="middle">
+                  <el-col :span="1" :offset="1" align="middle">
+                    <!-- 每个商品前的选择框 -->
+                    <el-checkbox :key="subIndex.id"></el-checkbox>
+                  </el-col>
+                  <el-col :span="11" align="middle">
+                    <img :src="subIndex.imagesUrl" height="120px" />
+                  </el-col>
+                  <el-col :span="12">{{ subIndex.bookName }}</el-col>
+                </el-row>
+              </el-col>
+              <el-col :span="16">
+                <el-row type="flex" align="middle">
+                  <el-col align="middle">￥{{ subIndex.price }}</el-col>
+                  <el-col align="middle">
+                    <el-input-number
+                      v-model="subIndex.number"
+                      @change="
+                        (val, oldVal) => {
+                          handleChange(val, oldVal, subIndex.id)
+                        }
+                      "
+                      :min="1"
+                      :max="99999"
+                      size="mini"
+                      label="描述文字"
+                    ></el-input-number>
+                  </el-col>
+                  <el-col align="middle"
+                    >￥{{ subIndex.price * subIndex.number }}</el-col
+                  >
+                  <el-col align="middle" @click.native="deleteById(subIndex.id)"
+                    >删除</el-col
+                  >
+                </el-row>
+              </el-col>
+            </el-row>
           </div>
         </div>
-        <el-checkbox v-model="checked" style="">店铺: 儿童图书馆</el-checkbox>
-        <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
-          <div class="mlshangping_photo">图书</div>
-          <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
-          <div class="mltsd_right">
-            <div class="mltsd_danjia">
-              <h6 style="margin-top: 38px">￥29.9</h6>
-            </div>
-            <div class="mltsd_jsq">
-              <el-input-number size="mini" v-model="num2"></el-input-number>
-            </div>
-            <div class="mltsd_ze">
-              <h6 style="color: red; margin-top: 55px">￥55.98</h6>
-            </div>
-            <div class="mltsd_cz">
-              <el-popconfirm title="此商品确定删除吗？">
-                <el-button slot="reference">删除</el-button>
-              </el-popconfirm>
-            </div>
-          </div>
-        </div>
-        <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
-          <div class="mlshangping_photo">图书</div>
-          <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
-          <div class="mltsd_right">
-            <div class="mltsd_danjia">
-              <h6 style="margin-top: 38px">￥29.9</h6>
-            </div>
-            <div class="mltsd_jsq">
-              <el-input-number size="mini" v-model="num3"></el-input-number>
-            </div>
-            <div class="mltsd_ze">
-              <h6 style="color: red; margin-top: 55px">￥55.98</h6>
-            </div>
-            <div class="mltsd_cz">
-              <el-popconfirm title="此商品确定删除吗？">
-                <el-button slot="reference">删除</el-button>
-              </el-popconfirm>
-            </div>
-          </div>
-        </div>
-        <div class="gouwuche_js">
-          <el-checkbox
-            v-model="checked"
-            @change="selectedAll"
-            style="margin: 15px"
-            >全选</el-checkbox
-          >
-          <el-link :underline="false">删除</el-link>
-          <el-link :underline="false" style="margin-left: 15px"
-            >删除失效商品</el-link
-          >
-          <el-button type="info" style="margin-left: 883px">信息按钮</el-button>
-        </div>
+        <!-- END -->
+        <!-- 表底 -->
+        <el-row
+          style="width: 945px; min-height: 36px"
+          type="flex"
+          align="middle"
+        >
+          <el-col :span="8">
+            <el-checkbox
+              :indeterminate="isIndeterminate"
+              v-model="checkAll"
+              @change="handleCheckAllChange"
+              >全选</el-checkbox
+            >
+          </el-col>
+          <el-col :span="16">
+            <el-row type="flex" justify="end" align="middle">
+              <el-col :span="6" align="middle">
+                <span
+                  >已选商品<strong>&nbsp;{{ sumNumber }}&nbsp;</strong>件</span
+                ></el-col
+              >
+              <el-col :span="8" align="middle">
+                <span
+                  >合计（不计运费）：<strong> ￥{{ sumPrice }}</strong></span
+                ></el-col
+              >
+              <el-col :span="4" justify="center" align="middle">
+                <div class="settlement">去结算</div></el-col
+              >
+            </el-row>
+          </el-col>
+        </el-row>
       </el-tab-pane>
       <el-tab-pane label="降价商品" name="second">
-        <el-checkbox v-model="checked" style="">店铺: 儿童图书馆</el-checkbox>
+        <el-checkbox v-model="checkAll" style="">店铺: 儿童图书馆</el-checkbox>
         <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+          <el-checkbox v-model="checkAll" id="mlsp"></el-checkbox>
           <div class="mlshangping_photo">图书</div>
           <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
           <div class="mltsd_right">
@@ -150,9 +182,9 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="失效商品" name="third">
-        <el-checkbox v-model="checked" style="">店铺: 儿童图书馆</el-checkbox>
+        <el-checkbox v-model="checkAll" style="">店铺: 儿童图书馆</el-checkbox>
         <div class="mlshangping">
-          <el-checkbox v-model="checked" id="mlsp"></el-checkbox>
+          <el-checkbox v-model="checkAll" id="mlsp"></el-checkbox>
           <div class="mlshangping_photo">图书</div>
           <h6 style="margin-left: 180px">商品标题所发生的事孤独感工行个人</h6>
           <div class="mltsd_right">
@@ -178,28 +210,159 @@
 </template>
 
 <script>
-import Top from "../components/top.vue";
-import Shoulogin from "../components/shoulogin.vue";
+import Top from '../components/top.vue'
+import Shoulogin from '../components/shoulogin.vue'
 
 export default {
   data() {
     return {
-      checked: true,
-      num1: 1,
-      num2: 1,
-      num3: 1,
-    };
+      /* 默认标签页 */
+      activeName: 'first',
+      num2: true,
+      /* 多选表格 START*/
+      tableData: [],
+      tableDataList: [],
+      tableDataListList: [],
+      sumNumber: 0,
+      sumPrice: 0,
+      checkAll: false,
+      checkedShops: [],
+      shopOptions: [],
+      isIndeterminate: true,
+      uid: '',
+    }
   },
   components: {
     Top,
     Shoulogin,
   },
+  created() {
+    this.getShoppingCart()
+  },
   methods: {
-    handleChange(value) {
-      console.log(tab, value);
+    /* 购物车 */
+    async getShoppingCart() {
+      /* 请求参数：id */
+      var vm = this
+      const { data: res } = await this.$http
+        .get('shoppingCart/findByCart')
+        .catch(function (error) {
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            // console.log(error.response.data)
+            console.log(error.response.status)
+            if (error.response.status == 400) {
+              vm.$message({
+                message: '未登录或登录过期',
+                type: 'error',
+              })
+            }
+            console.log(error.response.headers)
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request)
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message)
+          }
+          console.log(error.config)
+        })
+      /* 状态处理 */
+      // console.log(res.data)
+      if (res.code == 0) {
+        this.$message.success('获取成功')
+        this.tableData = res.data
+      }
+      if (res.code == 1) {
+        this.$message('获取失败')
+      }
+      /* 按店铺分组 */
+      for (let i in this.tableData) {
+        /* console.log(i)
+        console.log(this.tableData[i]) */
+        this.shopOptions.push(i)
+        this.tableDataList.push(this.tableData[i])
+      }
+      /* 分析店铺下的每一个商品 */
+      for (let i in this.tableDataList) {
+        for (let j in this.tableDataList[i]) {
+          this.tableDataListList.push(this.tableDataList[i][j])
+        }
+      }
+      /* 统计商品初始值：数量与格价 */
+      for (let i in this.tableDataListList) {
+        this.sumNumber = this.sumNumber + this.tableDataListList[i].number
+        this.sumPrice =
+          this.sumPrice +
+          this.tableDataListList[i].number * this.tableDataListList[i].price
+      }
+      /* 顺带来个uid */
+      if (sessionStorage.getItem('userid')) {
+        this.uid = sessionStorage.getItem('userid')
+      } else {
+        this.uid = this.$store.state.userInfo.id
+      }
+    },
+    /* 多选 */
+    handleCheckAllChange(val) {
+      this.checkedShops = val ? this.shopOptions : []
+      this.isIndeterminate = false
+    },
+    handleCheckedCitiesChange(value) {
+      let checkedCount = value.length
+      this.checkAll = checkedCount === this.shopOptions.length
+      this.isIndeterminate =
+        checkedCount > 0 && checkedCount < this.shopOptions.length
+    },
+    /* 计算器 */
+    handleChange(currentValue, oldValue, id) {
+      let index = 0
+      console.log('当前数量：', currentValue, '之前数数', oldValue, 'ID', id)
+      /* 此处拿到发生了变化的数据索引号:incex */
+      for (let i in this.tableDataListList) {
+        if (this.tableDataListList[i].id == id) {
+          index = i
+          break
+        }
+      }
+      console.log(this.tableDataListList[index].number)
+      /* 原数量：原数据 = 当前数量（currentValue） */
+      this.tableDataListList[index].number = currentValue
+      /* 总组量：原有的基础上 + 变化后的数量（currentValue - oldValue） */
+      this.sumNumber = this.sumNumber + currentValue - oldValue
+      /* 总价格：总价格 - 变化前占有的格格 + 变化后占有的价格*/
+      this.sumPrice =
+        this.sumPrice -
+        this.tableDataListList[index].price * oldValue +
+        this.tableDataListList[index].price * currentValue
+      this.updateShopcar(currentValue, index)
+    },
+    /* 删除购物车商品 */
+    async deleteById(id) {
+      const { data: res } = await this.$http.post('deleteById', {
+        id: id,
+      })
+    },
+    /* 修改购物车商品数量 */
+    updateShopcar(currentValue, index) {
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(() => {
+        const { data: res } = this.$http.post('shoppingCart/update', {
+          id: this.tableDataListList[index].id,
+          bid: this.tableDataListList[index].bid,
+          uid: this.uid,
+          number: currentValue,
+        })
+      }, 500)
+    },
+    handleClick(tab, event) {
+      console.log(tab, event)
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -257,7 +420,7 @@ export default {
   margin-left: 180px;
 }
 .el-tabs {
-  width: 1190px;
+  width: 945px;
   margin: 0px auto;
 }
 .shangping {
@@ -267,7 +430,7 @@ export default {
   background-color: #f4f4f4;
   // border: 1px solid red;
 }
-.shangping > h7 {
+.shangping > span {
   margin: 60px;
 }
 .mlshangping {
@@ -347,5 +510,11 @@ export default {
   position: absolute;
   right: 50px;
   border: 1px solid red;
+}
+.settlement {
+  background: #ff4301;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
 }
 </style>

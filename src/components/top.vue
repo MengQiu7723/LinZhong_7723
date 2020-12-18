@@ -8,7 +8,9 @@
         <div class="de">
           <a href="">广东</a>
           <span @click="login()" v-if="isLogin == 0">您好,请登录</span>
-          <span @click="pc()" v-if="isLogin == 1">欢迎来到35书城</span>
+          <span @click="pc()" v-if="isLogin == 1"
+            >{{ userName }}，欢迎来到35书城</span
+          >
         </div>
       </div>
       <div class="top_right">
@@ -26,6 +28,7 @@ export default {
   data() {
     return {
       isLogin: '',
+      userName: '',
     }
   },
   methods: {
@@ -46,16 +49,19 @@ export default {
     },
     isToken() {
       if (window.sessionStorage.getItem('token')) {
-        return (this.isLogin = 1)
+        this.isLogin = 1
       } else {
-        return (this.isLogin = 0)
+        this.isLogin = 0
       }
-      // console.log(typeof this.isLogin)
+      if (window.sessionStorage.getItem('username')) {
+        this.userName = window.sessionStorage.getItem('username')
+      } else {
+        this.userName = this.$store.state.userInfo.username
+      }
     },
   },
   created() {
     this.isToken()
-    console.log(this.isLogin)
   },
 }
 </script>

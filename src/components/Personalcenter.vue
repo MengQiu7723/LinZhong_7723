@@ -1,20 +1,11 @@
 <template>
   <div>
     <Top></Top>
+    <!-- 头部信息 -->
     <div class="header">
-      <div class="header_left">
-        <img src="../assets/images/logo.png" alt="" />
-      </div>
-      <div class="header_left_1">
-        <span class="img1"
-          ><img src="../assets/images/logo1.png" alt=""
-        /></span>
-        <span class="img2"
-          ><img src="../assets/images/logo2.png" alt=""
-        /></span>
-      </div>
-      <div class="header_left_2">
-        <h1>个人中心</h1>
+      <Logo class="logo"></Logo>
+      <div class="register logo">
+        <h2>个人中心</h2>
       </div>
       <div class="header_right">
         <el-input placeholder="请输入内容" v-model="input2">
@@ -26,137 +17,194 @@
         </el-input>
       </div>
     </div>
-    <el-main>
-      <div class="text">
-        <div class="user">
-          <div class="headportrait">
-            <img src="../assets/images/头像1.jpg" alt="" />
-          </div>
-          <div class="username">
-            <h1>35_threefive1034879</h1>
-          </div>
-          <div class="credit">
-            <h1>信用等级</h1>
-          </div>
-          <div class="grade">
-            <h1>极好</h1>
-          </div>
-        </div>
-        <div class="wallet">
-          <div class="qianbao"><h1>我的钱包</h1></div>
-          <div class="balance">
-            <h1>1789.12</h1>
-            <h2>余额</h2>
-          </div>
-          <div class="coupon">
-            <h1>4</h1>
-            <h2>优惠券
 
-              
-            </h2>
+    <!-- 个人信息主要区 -->
+    <div class="content_bg">
+      <div class="content clearfix">
+        <!-- 用户部分 -->
+        <div class="usercard">
+          <div class="user">
+            <div class="headportrait">
+              <img src="../assets/images/头像1.jpg" alt="" />
+            </div>
+            <div class="username">
+              <p>35_threefive1034879</p>
+            </div>
+            <p class="usercredit">
+              <span>信用等级&nbsp;&nbsp;</span>
+              <span><strong>&nbsp;&nbsp;极好</strong></span>
+            </p>
           </div>
-          <div class="bankcard">
-            <h1>2</h1>
-            <h2>银行卡</h2>
+          <div class="wallet">
+            <div class="qianbao">
+              <span>我的钱包</span>
+              <span>
+                <div class="walletIcon">
+                  <i class="el-icon-view" v-if="value == false"></i>
+                  <i class="el-icon-view walletIconColor" v-else></i>
+                </div>
+                <el-switch
+                  v-model="value"
+                  active-color="#14a5ff"
+                  inactive-color="#ccc"
+                >
+                </el-switch>
+              </span>
+            </div>
+            <div class="walletbottom clearfix">
+              <div class="balance">
+                <p v-if="value == false">***</p>
+                <p v-else>1789.12</p>
+                <p>余额</p>
+              </div>
+              <div class="coupon">
+                <p v-if="value == false">***</p>
+                <p v-else>4</p>
+                <p>优惠券</p>
+              </div>
+              <div class="bankcard">
+                <p v-if="value == false">***</p>
+                <p v-else>2</p>
+                <p>银行卡</p>
+              </div>
+            </div>
+          </div>
+          <div class="follow">
+            <div class="myfollow"><span>我的关注</span></div>
+            <div class="concern clearfix">
+              <div class="commodityconcerns">
+                <p>12</p>
+                <p>商品关注</p>
+              </div>
+              <div class="storeattention">
+                <p>3</p>
+                <p>店铺关注</p>
+              </div>
+              <div class="collection">
+                <p>2</p>
+                <p>收藏</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="follow">
-          <div class="myfollow"><h1>我的关注</h1></div>
-          <div class="commodityconcerns">
-            <h1>12</h1>
-            <h2>商品关注</h2>
+        <!-- 下半部竕 -->
+        <div class="main clearfix">
+          <div class="main_left">
+            <div class="center">
+              <p>订单中心</p>
+              <ul>
+                <li>我的订单</li>
+                <li>我的评价</li>
+                <li>我的地址</li>
+              </ul>
+            </div>
+            <div class="center">
+              <p>我的钵包</p>
+              <ul>
+                <li>优惠券</li>
+                <li>银行卡</li>
+                <li>信誉等级</li>
+              </ul>
+            </div>
+            <div class="center">
+              <p>客户服务</p>
+              <ul>
+                <li>价格保护</li>
+                <li>售后服务</li>
+                <li>意风反馈</li>
+              </ul>
+            </div>
           </div>
-          <div class="storeattention">
-            <h1>3</h1>
-            <h2>店铺关注</h2>
-          </div>
-          <div class="collection">
-            <h1>2</h1>
-            <h2>收藏</h2>
+          <div class="main_right">
+            <div class="main_right_header">
+              <span>我的订单</span>
+            </div>
+            <div class="main_right_content clearfix">
+              <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+              </ul>
+            </div>
+            <div class="main_right_bottom">
+              <div class="main_right_bottom_post">
+                <div>
+                  <img src="" alt="图片加载区" />
+                </div>
+                <div>
+                  <p>
+                    <span>[发货地]&nbsp;</span>
+                    <span>[物流信息]</span>
+                  </p>
+                  <p>
+                    <span>[快递公司]</span>
+                    <span>&nbsp;|&nbsp;</span>
+                    <span>[yyyy-mm-dd : hh:mm:ss]</span>
+                  </p>
+                </div>
+                <div>></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </el-main>
+    </div>
+    <!-- 个人信息主要区 -->
   </div>
 </template>
 
 <script>
-import Top from "../components/top.vue";
+import Top from '../components/top.vue'
+import Logo from '../components/Logo.vue'
 export default {
   data() {
     return {
-      input2: "",
-    };
+      value: false,
+      input2: '',
+    }
   },
   components: {
     Top,
+    Logo,
   },
   methods: {
     search_button() {
-      this.$router.push("/search");
+      this.$router.push('/search')
     },
   },
-};
+}
 </script>
 
 
 <style lang="less" scoped>
-body {
-  background-color: #f4f4f4;
+ul,
+li {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
 }
 .header {
-  width: 100%;
+  // position: relative;
+  margin: 0 auto;
+  width: 1180px;
   height: 150px;
-  //   background: pink;
+  // background: pink;
 }
-.header_left {
-  width: 800px;
-  height: 150px;
-  //   border: 1px solid red;
-  margin-left: 50px;
+.logo {
+  margin-top: 38px;
 }
-.header_left_1 {
-  width: 200px;
-  height: 80px;
-  position: absolute;
-  left: 460px;
-  top: 70px;
-  //   border: 1px solid blue;
+.register {
+  float: left;
+  margin-left: 20px;
 }
-.header_left img {
-  position: absolute;
-  top: 70px;
-  left: 360px;
-  width: 80px;
-  height: 80px;
-}
-.header_left_1 .img1 img {
-  position: absolute;
-  top: 10px;
-}
-.header_left_1 .img2 img {
-  position: absolute;
-  bottom: 10px;
-}
-.header_left_2 {
-  width: 200px;
-  height: 80px;
-  position: absolute;
-  left: 550px;
-  top: 70px;
-}
-.header_left_2 h1 {
-  position: absolute;
-  left: 50px;
-  font-family: "微软雅黑";
-  font-weight: lighter;
-}
+
 .header_right {
-  position: absolute;
-  right: 380px;
-  top: 90px;
+  float: right;
   width: 400px;
   height: 40px;
+  margin-top: 55px;
   //   border: 1px solid blue;
 }
 .header_right .el-input {
@@ -167,209 +215,315 @@ body {
   // 14a5ff 14d2ff
   color: #ffffff !important;
 }
-.el-main {
-  background: #f4f4f4;
+
+/* 声明清除浮动的样式 */
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
 }
-.text {
-  width: 1250px;
+.clearfix:after {
+  clear: both;
 }
+/* ie6 7 专门清除浮动的样式*/
+.clearfix {
+  *zoom: 1;
+}
+
+/* 个人信息卡片区 */
+.content_bg {
+  background-color: #f8f8f8;
+  padding: 20px 0 20px 0;
+}
+
+.content {
+  margin: 0 auto;
+  width: 1180px;
+  // background-color: pink;
+}
+.usercard {
+  width: 1180px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+/* 头像与信用 */
 .user {
-  position: relative;
-  width: 340px;
-  height: 340px;
-  //   border: 1px solid red;
-  left: 320px;
+  width: 300px;
+  height: 300px;
   background: url(../assets/images/名片.png) no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   float: left;
-  z-index: 1;
+  filter: drop-shadow(0 0 5px #14a5ff);
 }
 .headportrait {
-  position: absolute;
-  width: 110px;
-  height: 110px;
-  border: 10px solid #ffffff;
-  top: 60px;
-  left: 100px;
+  margin: 40px auto;
+  width: 100px;
+  height: 100px;
+  border: 5px solid #ffffff;
   overflow: hidden;
   border-radius: 50%;
 }
 .headportrait img {
+  position: relative;
   width: 100%;
-  height: 100%;
+  bottom: 30px;
 }
 .username {
-  position: absolute;
-  // width: 210px;
-  // height: 30px;
-  // border: 1px solid red;
-  top: 200px;
-  left: 60px;
+  margin: 0 auto;
 }
-.username h1 {
+.username p {
+  text-align: center;
   font-size: larger;
   color: #ffffff;
 }
-.credit {
-  // width: 210px;
-  // height: 30px;
-  position: absolute;
-  // border: 1px solid black;
-  top: 250px;
-  left: 90px;
+.usercredit {
+  color: #fff;
+  text-align: center;
 }
-.credit h1 {
-  font-size: medium;
-  color: #ffffff;
-}
-.grade {
-  position: absolute;
-  // border: 1px solid green;
-  top: 245px;
-  right: 110px;
-}
-.grade h1 {
-  font-size: larger;
-  color: #ffffff;
-}
+
+/* 钱包 */
 .wallet {
-  position: relative;
-  width: 450px;
-  height: 280px;
-  top: 30px;
-  left: 310px;
+  width: 420px;
+  height: 300px;
   background-color: #ffffff;
   float: left;
+
+  border-radius: 5px;
+  // background: linear-gradient(145deg, #5bc6ff, #4da7db);
+  box-shadow: 5px 5px 5px #f8f8f8;
 }
 .qianbao {
-  position: absolute;
-  left: 10px;
-  width: 420px;
-  height: 70px;
-  border-bottom: 1px solid #999999;
+  width: 375px;
+  height: 60px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
 }
-.qianbao h1 {
-  margin-left: 50px;
-  font-size: 25px;
+/* 我的钱包字体 */
+.qianbao span:first-child {
+  line-height: 60px;
+  margin-left: 20px;
+  font-size: 22px;
   color: #999999;
   font-weight: lighter;
+}
+.walletIcon {
+  float: left;
+  margin-top: 7px;
+}
+.walletIcon i {
+  font-size: 28px;
+}
+.walletIconColor {
+  color: #14a5ff;
+}
+/* 我的钱包：右侧开关 */
+.qianbao span:nth-child(2) {
+  height: 60px;
+  line-height: 60px;
+  margin-right: 20px;
+  color: #cccccc;
+}
+.qianbao span:nth-child(2):hover {
+  color: #14a5ff;
+  transition: color 0.15s linear;
+}
+.qianbao span:nth-child(2) i {
+  padding-top: 10px;
+  margin-right: 15px;
+}
+.walletbottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
 }
 .balance {
-  width: 140px;
-  height: 140px;
-  // border: 1px solid black;
-  position: absolute;
-  top: 90px;
-  left: 60px;
+  float: left;
+  width: 150px;
+  padding-left: 10px;
   overflow: hidden;
 }
-.balance h1 {
-  font-size: 25px;
+.balance p {
+  font-size: 26px;
+  font-weight: 700;
 }
-.balance h2 {
-  font-weight: normal;
-  margin-top: 30px;
+.balance p:nth-child(2) {
+  font-weight: 500;
+  font-size: 20px;
 }
 .coupon {
-  width: 110px;
-  height: 140px;
-  // border: 1px solid blue;
-  position: absolute;
-  top: 90px;
-  left: 210px;
+  float: left;
+  width: 100px;
+  // height: 140px;
   overflow: hidden;
 }
-.coupon h1 {
-  font-size: 25px;
+.coupon p {
+  font-size: 26px;
+  font-weight: 700;
 }
-.coupon h2 {
-  font-weight: normal;
-  margin-top: 30px;
+.coupon p:nth-child(2) {
+  font-weight: 500;
+  font-size: 20px;
 }
 .bankcard {
+  float: left;
   width: 100px;
-  height: 140px;
-  // border: 1px solid red;
-  position: absolute;
-  top: 90px;
-  left: 330px;
   overflow: hidden;
 }
-.bankcard h1 {
-  font-size: 25px;
+.bankcard p {
+  font-size: 26px;
+  font-weight: 700;
 }
-.bankcard h2 {
-  font-weight: normal;
-  margin-top: 30px;
+.bankcard p:nth-child(2) {
+  font-weight: 500;
+  font-size: 20px;
 }
+
+/* 我的关注 */
 .follow {
-  position: relative;
-  width: 450px;
-  height: 280px;
-  top: 30px;
-  left: 320px;
+  width: 420px;
+  height: 300px;
   background-color: #ffffff;
   float: right;
+
+  border-radius: 5px;
 }
 .myfollow {
-  position: absolute;
-  left: 10px;
-  width: 420px;
-  height: 70px;
-  border-bottom: 1px solid #999999;
+  width: 375px;
+  height: 60px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
 }
-.myfollow h1 {
-  margin-left: 50px;
-  font-size: 25px;
+.myfollow span {
+  line-height: 60px;
+  margin-left: 25px;
+  font-size: 22px;
   color: #999999;
   font-weight: lighter;
 }
+.concern {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
 .commodityconcerns {
-  width: 140px;
+  float: left;
+  width: 150px;
   height: 140px;
-  // border: 1px solid black;
-  position: absolute;
-  top: 90px;
-  left: 60px;
+  padding-left: 10px;
   overflow: hidden;
 }
-.commodityconcerns h1 {
-  font-size: 25px;
+.commodityconcerns p {
+  font-size: 26px;
+  font-weight: 700;
 }
-.commodityconcerns h2 {
-  font-weight: lighter;
-  margin-top: 30px;
+.commodityconcerns p:nth-child(2) {
+  font-weight: 500;
+  font-size: 20px;
 }
 .storeattention {
+  float: left;
   width: 110px;
   height: 140px;
-  // border: 1px solid blue;
-  position: absolute;
-  top: 90px;
-  left: 210px;
   overflow: hidden;
 }
-.storeattention h1 {
-  font-size: 25px;
+.storeattention p {
+  font-size: 26px;
+  font-weight: 700;
 }
-.storeattention h2 {
-  font-weight: lighter;
-  margin-top: 30px;
+.storeattention p:nth-child(2) {
+  font-weight: 500;
+  font-size: 20px;
 }
 .collection {
+  float: left;
   width: 90px;
   height: 140px;
-  // border: 1px solid red;
-  position: absolute;
-  top: 90px;
-  left: 340px;
   overflow: hidden;
 }
-.collection h1 {
-  font-size: 25px;
+.collection p {
+  font-size: 26px;
+  font-weight: 700;
 }
-.collection h2 {
-  font-weight: lighter;
-  margin-top: 30px;
+.collection p:nth-child(2) {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/* main */
+.main {
+  width: 1180px;
+}
+/* main-left */
+.main_left {
+  width: 300px;
+  float: left;
+  // background-color: pink;
+  background-color: #fff;
+}
+.main_left div:nth-child(1),
+.main_left div:nth-child(2) {
+  border-bottom: 1px solid #ccc;
+}
+.center {
+  text-align: center;
+  line-height: 28px;
+  margin: 0 28px 0 28px;
+  padding-bottom: 28px;
+}
+.center p:first-child {
+  font-size: 22px;
+}
+/* main-right */
+.main_right {
+  width: 840px;
+  float: right;
+  // background-color: #00bfff;
+  background-color: #fff;
+}
+.main_right_header {
+  width: 750px;
+  height: 72px;
+  margin: auto;
+  border-bottom: 2px solid #ccc;
+}
+.main_right_header span:first-child {
+  line-height: 72px;
+  margin-left: 30px;
+  font-size: 22px;
+}
+.main_right_content {
+  height: 160px;
+  border-bottom: 1px solid #ccc;
+}
+.main_right_content ul li {
+  float: left;
+}
+.main_right_bottom {
+  width: 100%;
+}
+.main_right_bottom_post {
+  height: 130px;
+  border-bottom: 1px solid #ccc;
+}
+
+.main_right_bottom_post div:nth-child(1) {
+  float: left;
+  margin-left: 20px;
+  line-height: 130px;
+}
+.main_right_bottom_post div:nth-child(2) {
+  float: left;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.main_right_bottom_post div:nth-child(3) {
+  float: right;
+  margin-right: 20px;
+  line-height: 130px;
 }
 </style>

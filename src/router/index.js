@@ -2,9 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
-
 import register from '../components/user/register.vue'
-
 import Shou from '../components/shuo.vue'
 import Search from '../components/搜索商品界面.vue'
 import Ding from '../components/ding.vue'
@@ -12,6 +10,12 @@ import Personalcenter from '../components/Personalcenter.vue'
 import Shopping from '../components/Shopping.vue'
 import Shang from '../components/shang.vue'
 import Wuliu from '../components/wuliu.vue'
+
+const originalPush = Router.prototype.push
+
+Router.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 Vue.use(Router)
 

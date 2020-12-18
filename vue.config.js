@@ -1,5 +1,6 @@
 // Axios跨域代理配置
 module.exports = {
+  publicPath: "./",
   devServer: {
     proxy: {
       "/api": {
@@ -22,6 +23,8 @@ module.exports = {
 
     },
   },
+  lintOnSave: false // eslint-loader 是否在保存的时候检查
+  // false：关闭每次保存都进行检测
+  //true：开启每次保存都进行检测，效果与warning一样
 
-  lintOnSave: false
 };
