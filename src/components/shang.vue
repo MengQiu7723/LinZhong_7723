@@ -79,7 +79,7 @@
             <span class="de">免运费</span>
           </div>
         </div>
-        <div class="right_top4">
+        <!-- <div class="right_top4">
           <span class="ge1">选择版本</span>
           <div class="yi">
             <span>第一版</span>
@@ -96,7 +96,7 @@
           <div class="er">
             <span>第五版</span>
           </div>
-        </div>
+        </div> -->
         <div class="right_top5">
           <div class="right_top5_left">
             <a href="">加入购物车</a>
@@ -254,7 +254,7 @@ export default {
       if (res.code == 0) {
         this.bookInfo = res.data
       }
-      console.log(res.data.bookName)
+      // console.log(res.data.bookName)
     },
     search_val() {
       if (this.$route.params.bookName_Val) {
@@ -262,6 +262,13 @@ export default {
         window.sessionStorage.setItem('search', this.bookName_Val)
       }
       this.bookName_Val = sessionStorage.getItem('search')
+    },
+    bookId_val() {
+      if (this.$route.params.bookId_Val) {
+        this.bookId_Val = this.$route.params.bookId_Val
+        window.sessionStorage.setItem('bookId', this.bookId_Val)
+      }
+      this.bookId_Val = sessionStorage.getItem('bookId')
     },
     search_button() {
       this.$router.push({
@@ -280,7 +287,8 @@ export default {
     },
   },
   created() {
-    this.bookId_Val = this.$route.params.bookId_Val
+    this.bookId_val()
+    this.search_val()
     this.getBookById()
   },
 }

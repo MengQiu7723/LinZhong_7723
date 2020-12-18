@@ -152,9 +152,12 @@
               class="mei"
               v-for="index in indexInfo.bookList"
               :key="index.id"
+              @click="getBookById(index.id)"
             >
               <div class="niao">
-                <a href=""><img :src="index.imagesUrl" alt="" /></a>
+                <a href="javascript:void(0)"
+                  ><img :src="index.imagesUrl" alt=""
+                /></a>
               </div>
               <div class="zi">
                 <a href="">{{ index.bookName }}</a>
@@ -172,14 +175,15 @@
 </template>
 
 <script>
-import Top from "../components/top.vue";
+import Top from '../components/top.vue'
 export default {
   data() {
     return {
-      bookName_Val: "",
+      bookName_Val: '',
+      // bookId_Val: '',
       loginForm: {
-        username: "",
-        password: "",
+        username: '',
+        password: '',
       },
       loginFormRules: {},
       /* 首页信息 */
@@ -189,12 +193,20 @@ export default {
         advertiseList: [],
       },
       update: true,
-    };
+    }
   },
   components: {
     Top,
   },
   methods: {
+    getBookById(id) {
+      // this.bookId_Val = id
+      console.log(id)
+      this.$router.push({
+        name: 'shang',
+        params: { bookId_Val: id },
+      })
+    },
     shopCar() {
       this.$router.push('/shopping')
     },
@@ -208,26 +220,26 @@ export default {
     },
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
-        if (!valid) return;
+        if (!valid) return
         //get请求
-        const { data: res } = await this.$http.get("user/login", {
+        const { data: res } = await this.$http.get('user/login', {
           params: this.loginForm,
-        });
+        })
         if (res.code == 0) {
-          window.sessionStorage.setItem("token", res.data);
-          window.localStorage.setItem("role", 0);
-          this.$message.success("登录成功");
+          window.sessionStorage.setItem('token', res.data)
+          window.localStorage.setItem('role', 0)
+          this.$message.success('登录成功')
           // 移除组件
-          this.update = false;
+          this.update = false
           // 在组件移除后，重新渲染组件
           // this.$nextTick可实现在DOM 状态更新后，执行传入的方法。
           this.$nextTick(() => {
-            this.update = true;
-          });
+            this.update = true
+          })
         } else if (res.code == 1) {
-          this.$message.error(res.msg + "，登录失败！");
+          this.$message.error(res.msg + '，登录失败！')
         }
-      });
+      })
     },
     search_button() {
       this.$router.push({
@@ -246,7 +258,7 @@ export default {
     this.getIndexInfo()
     // console.log(this.indexInfo)
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -336,7 +348,7 @@ export default {
   width: 140px;
   height: 60px;
   padding-left: 10px;
-  background: #1db69a;
+  background-image: linear-gradient(to right, #13d2fe, #16a6fc);
   border: none;
   color: #ffffff;
   font-size: 20px;
@@ -346,7 +358,7 @@ export default {
   height: 62px;
   float: right;
   margin-right: 30px;
-  background: #1db69a;
+  background: linear-gradient(to right, #13d2fe, #16a6fc);
   line-height: 62px;
   text-align: center;
   color: #ffffff;
@@ -625,6 +637,10 @@ export default {
   width: 232px;
   height: 190px;
   float: left;
+}
+.mei img:hover {
+  opacity: 0.5;
+  transition: all 0.2s ease;
 }
 .niao {
   width: 100px;

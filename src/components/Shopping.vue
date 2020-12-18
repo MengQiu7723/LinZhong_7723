@@ -27,8 +27,13 @@
           <template slot="append">搜索</template>
         </el-input>
       </div>
+<<<<<<< HEAD
     </div>
     <el-divider></el-divider>
+=======
+    </div> -->
+    <!-- <el-divider></el-divider> -->
+>>>>>>> 6558c50a21d7fdd7de43ebf24a3b89d6ca37a998
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="全部商品" name="first">
         <div class="shangping">

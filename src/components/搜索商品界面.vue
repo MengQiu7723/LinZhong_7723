@@ -21,7 +21,11 @@
           v-model="bookName_Val"
           prefix-icon="el-icon-search"
         >
-          <template slot="append"><span @click="search()">搜索</span></template>
+          <template slot="append">
+            <div class="searchBtn">
+              <span @click="search()">搜索</span>
+            </div>
+          </template>
         </el-input>
       </div>
     </div>
@@ -32,6 +36,7 @@
           v-for="(o, index) in bookInfo"
           :key="index"
           :offset="index == 0 || index == 4 ? 0 : 2"
+          @click.native="getBookById(o.id)"
         >
           <el-card :body-style="{ padding: '0px' }" class="cardBox">
             <div class="cardBoxImgBox">
@@ -44,11 +49,9 @@
                 >
               </div>
               <div class="bottom clearfix">
-                <time class="min">{{ o.bookName }}</time>
+                <span class="min">{{ o.bookName }}</span>
                 <!-- <template slot-scope="scope"> -->
-                <el-button type="text" class="button" @click="getBookById(o.id)"
-                  >商品详情</el-button
-                >
+                <el-button type="text" class="button">商品详情</el-button>
                 <!-- </template> -->
               </div>
             </div>
@@ -113,10 +116,10 @@ export default {
   methods: {
     getBookById(id) {
       // console.log(id)
-      this.bookId_Val = id
+      // this.bookId_Val = id
       this.$router.push({
         name: 'shang',
-        params: { bookId_Val: this.bookId_Val },
+        params: { bookId_Val: id },
       })
     },
     search_val() {
@@ -195,9 +198,15 @@ i {
   width: 600px;
   margin-top: 60px;
 }
+.searchBtn:hover {
+  cursor: pointer;
+}
 .min {
   font-size: 20px;
   color: #303133;
+}
+.min:hover {
+  cursor: pointer;
 }
 
 .bottom {
@@ -214,6 +223,10 @@ i {
   width: 250px;
   height: 350px;
   margin-bottom: 50px;
+}
+.cardBox:hover {
+  opacity: 0.8;
+  transition: all 0.2s ease;
 }
 .cardBoxImgBox {
   width: 250px;
@@ -235,6 +248,9 @@ i {
   height: 100%;
   margin: 0 auto;
   display: block;
+}
+.image:hover {
+  cursor: pointer;
 }
 
 .clearfix:before,
