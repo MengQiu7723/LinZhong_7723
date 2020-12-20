@@ -139,7 +139,7 @@
           </div>
           <!-- 已登录 -->
           <div class="deng" v-if="(isLogin == 1) & update">
-            <span>欢迎来到35书城</span>
+            <div>欢迎来到35书城</div>
             <button @click="logout()">退出登录</button>
           </div>
           <div class="zheng_right_buttom">

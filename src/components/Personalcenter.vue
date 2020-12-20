@@ -740,17 +740,19 @@ li {
   font-size: 22px;
 }
 .center li{
-  transition: background-color .2s ease;
+  transition: background-color  .2s ease;
 }
 .center li:hover{
   background-color: #D9D9D9;
+  cursor: pointer;
+  box-shadow: 0 2px 12px 0 rgba(217, 217, 217, 0.8);
 }
 .center li span{
 transition: color .2s ease;
 }
 .center li span:hover{
   color: #14a5ff;
-  cursor: pointer;
+  // cursor: pointer;
 }
 
 

@@ -227,6 +227,7 @@ export default {
     Top,
   },
   methods: {
+    /* 获取书本 */
     async getBookById() {
       const { data: res } = await this.$http.get('book/getById', {
         params: {
@@ -277,6 +278,7 @@ export default {
         }
       }
     },
+
     search_val() {
       if (this.$route.params.bookName_Val) {
         this.bookName_Val = this.$route.params.bookName_Val
@@ -298,7 +300,10 @@ export default {
       })
     },
     settlement() {
-      this.$router.push('/order')
+      this.$router.push({
+        name: 'order',
+        params: { bookId_Val: this.bookId_Val },
+      })
     },
   },
   created() {

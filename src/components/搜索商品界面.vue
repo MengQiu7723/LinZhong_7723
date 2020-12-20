@@ -121,20 +121,27 @@ export default {
       })
     },
     search_val() {
+      /* 路由传参 如果路由参数为真*/
       if (this.$route.params.bookName_Val) {
         this.bookName_Val = this.$route.params.bookName_Val
-        window.sessionStorage.setItem('search', this.bookName_Val)
       }
+      /*  否则从会话储存里拿值*/
       this.bookName_Val = sessionStorage.getItem('search')
+      /* 最后将值保存到会话储存 */
+      window.sessionStorage.setItem('search', this.bookName_Val)
     },
     async search() {
-      window.sessionStorage.setItem('search', this.bookName_Val)
-      this.bookName_Val = sessionStorage.getItem('search')
-      const { data: res } = await this.$http.get(
-        'book/getBookNameLike/' + this.bookName_Val
-      )
+      if (this.bookName_Val === 'null') {
+        var { data: res } = await this.$http.get('book/findAll')
+      } else {
+        var { data: res } = await this.$http.get(
+          'book/getBookNameLike/' + this.bookName_Val
+        )
+      }
       if (res.code == 0) {
         this.bookInfo = res.data
+      } else {
+        this.$message.error('请求出错')
       }
     },
     /* 翻页 */

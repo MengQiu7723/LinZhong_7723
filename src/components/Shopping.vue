@@ -1,7 +1,24 @@
 <template>
   <div>
     <Top></Top>
-    <!-- <Shoulogin></Shoulogin> -->
+    <div class="header">
+      <Logo class="logo"></Logo>
+      <div class="register logo">
+        <h2>购物车</h2>
+      </div>
+      <div class="header_right">
+        <el-input placeholder="请输入内容" v-model="bookName_Val">
+          <template slot="append"
+            ><el-button
+              type="primary"
+              icon="el-icon-search"
+              @click="search_button()"
+              >搜索</el-button
+            ></template
+          >
+        </el-input>
+      </div>
+    </div>
     <el-tabs v-model="activeName" @tab-click="handleClick()">
       <el-tab-pane label="全部商品" name="first">
         <!-- 表头 -->
@@ -122,6 +139,7 @@
             </el-row>
           </el-col>
         </el-row>
+        <!-- 123 -->
       </el-tab-pane>
       <el-tab-pane label="降价商品" name="second">
         <el-checkbox v-model="checkAll" style="">店铺: 儿童图书馆</el-checkbox>
@@ -177,14 +195,14 @@
 
 <script>
 import Top from '../components/common/top.vue'
-import Shoulogin from '../components/common/shoulogin.vue'
-
+import Logo from '../components/common/Logo.vue'
 export default {
   data() {
     return {
       /* 默认标签页 */
       activeName: 'first',
       num2: true,
+      bookName_Val:'',
       /* 多选表格 START*/
       tableData: [],
       tableDataList: [],
@@ -200,7 +218,7 @@ export default {
   },
   components: {
     Top,
-    Shoulogin,
+    Logo,
   },
   created() {
     this.getShoppingCart()
@@ -322,49 +340,48 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.shousuo {
-  width: 1180px;
-  height: 200px;
+/* 声明清除浮动的样式 */
+.clearfix:before,
+.clearfix:after {
+  content: '';
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+/* ie6 7 专门清除浮动的样式*/
+.clearfix {
+  *zoom: 1;
+}
+
+.header {
   margin: 0 auto;
-  // border: 1px solid red;
+  width: 1180px;
+  height: 150px;
 }
-.shousuo_left {
-  width: 200px;
-  height: 190px;
-  // border: 1px solid yellow;
+.logo {
+  margin-top: 38px;
 }
-#shousuo_left1 {
-  width: 70px;
-  margin-top: 45px;
+.register {
+  float: left;
+  margin-left: 20px;
 }
-.shousuo_left_logo {
-  width: 100px;
-  height: 80px;
-  margin-left: 70px;
-  margin-top: -80px;
-  // border: 1px solid red;
+.header_right {
+  float: right;
+  width: 400px;
+  height: 40px;
+  margin-top: 55px;
+  //   border: 1px solid blue;
 }
-#shousuo_left2 {
-  margin-top: 10px;
+.header_right .el-input {
+  border: 2px solid #14a5ff;
 }
-#shousuo_left3 {
-  margin-top: 20px;
+.header_right .el-input .el-button {
+  background-image: linear-gradient(to right, #14a5ff, #14d2ff) !important;
+  // 14a5ff 14d2ff
+  color: #ffffff !important;
 }
-#shousuo_middle {
-  margin-left: 200px;
-  margin-top: -110px;
-}
-.shousuo_right {
-  width: 700px;
-  height: 190px;
-  margin-left: 440px;
-  margin-top: -190px;
-  // border: 1px solid green;
-}
-.el-input {
-  width: 600px;
-  margin-top: 90px;
-}
+
 .el-divider {
   background-color: #14c6ff;
   margin-top: -50px;
@@ -466,6 +483,9 @@ export default {
   position: absolute;
   right: 50px;
   border: 1px solid red;
+}
+.sellerName {
+  margin: 18px 0 15px 0;
 }
 .settlement {
   background: #ff4301;

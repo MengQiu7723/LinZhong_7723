@@ -130,8 +130,13 @@ export default {
   color: #6c6c6c;
   float: right;
   width: 100px;
-  // text-align: center;
-  margin-top: 5px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
   font-size: 18px;
+}
+.top_right a:hover {
+  color: #32c8ff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 </style>
