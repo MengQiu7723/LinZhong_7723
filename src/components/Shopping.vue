@@ -20,6 +20,7 @@
       </div>
     </div>
     <el-tabs v-model="activeName" @tab-click="handleClick()">
+
       <el-tab-pane label="全部商品" name="first">
         <!-- 表头 -->
         <el-row
@@ -200,7 +201,7 @@ export default {
   data() {
     return {
       /* 默认标签页 */
-      activeName: 'first',
+      activeName: "first",
       num2: true,
       bookName_Val:'',
       /* 多选表格 START*/
@@ -213,130 +214,130 @@ export default {
       checkedShops: [],
       shopOptions: [],
       isIndeterminate: true,
-      uid: '',
-    }
+      uid: "",
+    };
   },
   components: {
     Top,
     Logo,
   },
   created() {
-    this.getShoppingCart()
+    this.getShoppingCart();
   },
   methods: {
     /* 购物车 */
     async getShoppingCart() {
       /* 请求参数：id */
-      var vm = this
+      var vm = this;
       const { data: res } = await this.$http
-        .get('shoppingCart/findByCart')
+        .get("shoppingCart/findByCart")
         .catch(function (error) {
           if (error.response) {
             console.log(error.response.status)
             if (error.response.status == 400) {
               vm.$message({
-                message: '未登录或登录过期',
-                type: 'error',
-              })
+                message: "未登录或登录过期",
+                type: "error",
+              });
             }
           }
         })
       /* 状态处理 */
       // console.log(res.data)
       if (res.code == 0) {
-        this.$message.success('获取成功')
-        this.tableData = res.data
+        this.$message.success("获取成功");
+        this.tableData = res.data;
       }
       if (res.code == 1) {
-        this.$message('获取失败')
+        this.$message("获取失败");
       }
       /* 按店铺分组 */
       for (let i in this.tableData) {
         /* console.log(i)
         console.log(this.tableData[i]) */
-        this.shopOptions.push(i)
-        this.tableDataList.push(this.tableData[i])
+        this.shopOptions.push(i);
+        this.tableDataList.push(this.tableData[i]);
       }
       /* 分析店铺下的每一个商品 */
       for (let i in this.tableDataList) {
         for (let j in this.tableDataList[i]) {
-          this.tableDataListList.push(this.tableDataList[i][j])
+          this.tableDataListList.push(this.tableDataList[i][j]);
         }
       }
       /* 统计商品初始值：数量与格价 */
       for (let i in this.tableDataListList) {
-        this.sumNumber = this.sumNumber + this.tableDataListList[i].number
+        this.sumNumber = this.sumNumber + this.tableDataListList[i].number;
         this.sumPrice =
           this.sumPrice +
-          this.tableDataListList[i].number * this.tableDataListList[i].price
+          this.tableDataListList[i].number * this.tableDataListList[i].price;
       }
       /* 顺带来个uid */
-      if (sessionStorage.getItem('userid')) {
-        this.uid = sessionStorage.getItem('userid')
+      if (sessionStorage.getItem("userid")) {
+        this.uid = sessionStorage.getItem("userid");
       } else {
-        this.uid = this.$store.state.userInfo.id
+        this.uid = this.$store.state.userInfo.id;
       }
     },
     /* 多选 */
     handleCheckAllChange(val) {
-      this.checkedShops = val ? this.shopOptions : []
-      this.isIndeterminate = false
+      this.checkedShops = val ? this.shopOptions : [];
+      this.isIndeterminate = false;
     },
     handleCheckedCitiesChange(value) {
-      let checkedCount = value.length
-      this.checkAll = checkedCount === this.shopOptions.length
+      let checkedCount = value.length;
+      this.checkAll = checkedCount === this.shopOptions.length;
       this.isIndeterminate =
-        checkedCount > 0 && checkedCount < this.shopOptions.length
+        checkedCount > 0 && checkedCount < this.shopOptions.length;
     },
     /* 计算器 */
     handleChange(currentValue, oldValue, id) {
-      let index = 0
-      console.log('当前数量：', currentValue, '之前数数', oldValue, 'ID', id)
+      let index = 0;
+      console.log("当前数量：", currentValue, "之前数数", oldValue, "ID", id);
       /* 此处拿到发生了变化的数据索引号:incex */
       for (let i in this.tableDataListList) {
         if (this.tableDataListList[i].id == id) {
-          index = i
-          break
+          index = i;
+          break;
         }
       }
-      console.log(this.tableDataListList[index].number)
+      console.log(this.tableDataListList[index].number);
       /* 原数量：原数据 = 当前数量（currentValue） */
-      this.tableDataListList[index].number = currentValue
+      this.tableDataListList[index].number = currentValue;
       /* 总组量：原有的基础上 + 变化后的数量（currentValue - oldValue） */
-      this.sumNumber = this.sumNumber + currentValue - oldValue
+      this.sumNumber = this.sumNumber + currentValue - oldValue;
       /* 总价格：总价格 - 变化前占有的格格 + 变化后占有的价格*/
       this.sumPrice =
         this.sumPrice -
         this.tableDataListList[index].price * oldValue +
-        this.tableDataListList[index].price * currentValue
-      this.updateShopcar(currentValue, index)
+        this.tableDataListList[index].price * currentValue;
+      this.updateShopcar(currentValue, index);
     },
     /* 删除购物车商品 */
     async deleteById(id) {
-      const { data: res } = await this.$http.post('deleteById', {
+      const { data: res } = await this.$http.post("deleteById", {
         id: id,
-      })
+      });
     },
     /* 修改购物车商品数量 */
     updateShopcar(currentValue, index) {
-      clearTimeout(this.timeout)
+      clearTimeout(this.timeout);
       this.timeout = setTimeout(() => {
-        const { data: res } = this.$http.post('shoppingCart/update', {
+        const { data: res } = this.$http.post("shoppingCart/update", {
           id: this.tableDataListList[index].id,
           bid: this.tableDataListList[index].bid,
           uid: this.uid,
           number: currentValue,
-        })
-      }, 500)
+        });
+      }, 500);
     },
     handleClick(tab, event) {
-      console.log(tab, event)
+      console.log(tab, event);
     },
     settlement() {
       this.$router.push('/order')
     },
   },
-}
+};
 </script>
 
 <style lang="less" scoped>

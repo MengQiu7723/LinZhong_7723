@@ -10,6 +10,7 @@ import Personalcenter from '../components/Personalcenter.vue'
 import Shopping from '../components/Shopping.vue'
 import Shang from '../components/shang.vue'
 import Order from '../components/Order.vue'
+import Wuliu from '../components/wuliu.vue'
 
 const originalPush = Router.prototype.push
 
@@ -31,7 +32,8 @@ const router = new Router({
     { path: '/Personalcenter', component: Personalcenter },
     { path: '/shopping', component: Shopping },
     { path: '/shang', name: 'shang', component: Shang },
-    { path: '/order', name: 'order', component: Order }
+    { path: '/order', name: 'order', component: Order },
+    { path: '/wuliu', component: Wuliu },
   ],
 });
 
