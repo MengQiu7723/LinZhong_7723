@@ -3,14 +3,15 @@
 </template>
 
 <script>
+import Top from '../components/common/top.vue'
 export default {
   data() {
-    return {};
+    return {}
   },
   components: {
     Top,
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
